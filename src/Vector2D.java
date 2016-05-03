@@ -14,6 +14,7 @@ public class Vector2D extends Vector
     }
     //Copy Constuctur
     public Vector2D(Vector2D vector2D){
+
         super(vector2D);
     }
 
