@@ -157,16 +157,69 @@ abstract public class LineareAlgebra
         return dotProduct;
     }
 
-    
+    static double cosEquation2D(Vector2D vec1,Vector2D vec2){
+        double cos = (dotProduct2D(vec1,vec2))/(veclength2D(vec1)*veclength2D(vec2));
+        return cos;
+    }
+    static double cosEquation3D(Vector3D vec1,Vector3D vec2){
+        double cos = (dotProduct3D(vec1,vec2))/(veclength3D(vec1)*veclength3D(vec2));
+        return cos;
+    }
+    static double sinEquation2D(Vector2D vec1,Vector2D vec2){
+        double cos = (crossProduct2D(vec1,vec2))/(veclength2D(vec1)*veclength2D(vec2));
+        return cos;
+    }
+    static double sinEquation3D(Vector3D vec1,Vector3D vec2){
+        Vector vec = crossProduct3D(vec1,vec2);
+        double cos = (vec.veclength())/(veclength3D(vec1)*veclength3D(vec2));
+        return cos;
+    }
 
+    // Noch mal Prüfen##########################################################
+    static double angleRad2D(Vector2D vec1, Vector2D vec2){
+        double angle = cosEquation2D(vec1,vec2);
+        angle = Math.acos(angle);
+        return angle;
+    }
+
+    static double angleRad3D(Vector3D vec1, Vector3D vec2){
+        double angle = cosEquation3D(vec1,vec2);
+
+        angle = Math.toDegrees(angle);
+        angle = Math.atan(angle);
+        return angle;
+    }
+
+
+    static double angleDegree2D(Vector2D vec1, Vector2D vec2){
+        double angle = cosEquation2D(vec1,vec2);
+        angle = Math.acos(angle);
+        angle = Math.toDegrees(angle);
+        return angle;
+    }
+
+    static double angleDegree3D(Vector3D vec1, Vector3D vec2){
+        double angle = cosEquation3D(vec1,vec2);
+        angle = Math.acos(angle);
+        angle = Math.toDegrees(angle);
+        return angle;
+    }
 
     public static void main(String[] args)
     {
-        Vector2D vec1 = new Vector2D(3,1);
+        Vector2D vec1 = new Vector2D(1,2);
         Vector2D vec2 = new Vector2D(2,3);
-        double dist = 0;
-        dist = LineareAlgebra.dotProduct2D(vec1,vec2);
-        System.out.print(dist);
+        double cos = 0;
+        cos = LineareAlgebra.angleRad2D(vec1,vec2);
+        System.out.print(cos+"\n");
+
+        Vector3D vec13d = new Vector3D(1,2,3);
+        Vector3D vec23d = new Vector3D(2,3,4);
+        double cos3d = 0;
+        cos = LineareAlgebra.angleRad3D(vec13d,vec23d);
+        System.out.print(cos+"\n");
+
+
 
     }
 }
