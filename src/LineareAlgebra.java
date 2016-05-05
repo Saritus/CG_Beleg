@@ -263,20 +263,12 @@ abstract public class LineareAlgebra
 
     public static void main(String[] args)
     {
-        Vector2D vec1 = new Vector2D(1,2);
-        Vector2D vec2 = new Vector2D(2,3);
-        double cos = 0;
-        cos = LineareAlgebra.crossProduct2D(vec1,vec2);
-        //System.out.print(cos+"\n");
+        Vector3D vec1 = new Vector3D(3,2,1);
+        Vector3D vec2 = new Vector3D(Double.MAX_VALUE,Double.MIN_VALUE,Double.MAX_VALUE);
+        vec1.sub(vec2);
+        System.out.println(vec1);
 
-        Vector3D vec13d = new Vector3D(1,2,3);
-        Vector3D vec23d = new Vector3D(4,5,6);
-        Vector3D vec33d = new Vector3D(7,8,9);
-        double cos3d = 0;
-        cos3d = LineareAlgebra.determinant3D(vec13d, vec23d,vec33d);
-        //System.out.print(cos3d+"\n");
 
-        LineareAlgebra.show(vec13d);
 
     }
 }

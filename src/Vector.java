@@ -1,7 +1,8 @@
 /**
  * Created by Matze on 03.05.16.
  */
-abstract public class Vector
+
+ abstract public class Vector
 {
     int length;
     protected double[] vectorelements;
@@ -46,15 +47,15 @@ abstract public class Vector
             this.vectorelements[i] += vec.vectorelements[i];
         }
     }
-    // ########################### i need some help here Kaugummi kauen
+    // ########################### i need some help here
     void sub(Vector vec){
         for (int i = 0; i < length;i++ ){
-                if(Double.MAX_VALUE - this.vectorelements[i] < vec.vectorelements[i])
-                    throw new ArithmeticException();
-
-                if(-Double.MAX_VALUE - vec.vectorelements[i] > this.vectorelements[i])
-                    throw new ArithmeticException();
-
+            if(Double.MAX_VALUE-this.vectorelements[i] < vec.vectorelements[i]){
+                throw new ArithmeticException();
+            }
+            if(-Double.MAX_VALUE + this.vectorelements[i] > vec.vectorelements[i]){
+                throw new ArithmeticException();
+            }
             vectorelements[i] -= vec.vectorelements[i];
         }
     }
@@ -62,18 +63,33 @@ abstract public class Vector
     void mult(double scalar){
 
         for (int i = 0; i < length; i++){
-            if(Double.MAX_VALUE < vectorelements[i]*scalar)
+            if(Double.MAX_VALUE/vectorelements[i] < scalar)
                 throw new ArithmeticException();
-            if(-Double.MAX_VALUE > vectorelements[i]*scalar)
+            if(-Double.MAX_VALUE/vectorelements[i] > scalar)
                 throw new ArithmeticException();
             vectorelements[i] *= scalar;
         }
     }
 
     void div(double scalar){
-        for (int i = 0; i < vectorelements.length;i++){
-            vectorelements[i] /= scalar;
+        if(scalar == 0){
+            throw new ArithmeticException();
         }
+        for (int i = 0; i < vectorelements.length;i++){
+            if(scalar > 0 && scalar < 1){
+                if(Double.MAX_VALUE*scalar < this.vectorelements[i]){
+                throw new ArithmeticException();
+                }
+            }
+            if(scalar > -1 && scalar < 0){
+                if(-Double.MAX_VALUE*scalar < this.vectorelements[i]){
+                    throw new ArithmeticException();
+                }
+            }
+                vectorelements[i] /= scalar;
+        }
+
+
     }
 
     boolean isEqual(Vector vector){
@@ -96,12 +112,16 @@ abstract public class Vector
     double veclength(){
         double sum = 0;
         for (int i = 0; i < length;i++){
-             sum += Math.pow(vectorelements[i],2);
+            sum += Math.pow(vectorelements[i],2);
+            if(Double.MAX_VALUE -vectorelements[i] < 0 ){
+                throw new ArithmeticException();
+            }
         }
         return Math.sqrt(sum);
     }
 
     void normalize(){
+
         div(length);
     }
 

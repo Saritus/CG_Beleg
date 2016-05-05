@@ -13,7 +13,8 @@ public class VectorTest {
     public void testGet() throws Exception {
 
     }
-    @Test
+
+    @org.junit.Test
     public void testSetPosition() throws Exception {
 
     }
@@ -56,47 +57,76 @@ public class VectorTest {
         assertEquals(expected.get(0),vec1.get(0),0);
         assertEquals(expected.get(1),vec1.get(1),0);
         assertEquals(expected.get(2),vec1.get(2),0);
+
     }
 
-        //##################### wat is hier nur los
+        //##################### TODO
+    @org.junit.Test
     public void testSubToBig() throws Exception {
         expected.expect(ArithmeticException.class);
-        Vector3D vec1 = new Vector3D(-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE);
-        Vector3D vec2 = new Vector3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+        Vector3D vec1 = new Vector3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+        Vector3D vec2 = new Vector3D(-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE);
         vec1.sub(vec2);
     }
 
+    @org.junit.Test
     public void testSubToSmall() throws Exception {
-        //expected.expect(ArithmeticException.class);
+        expected.expect(ArithmeticException.class);
         Vector3D vec1 = new Vector3D(-Double.MAX_VALUE, -Double.MIN_VALUE, -Double.MIN_VALUE);
-        Vector3D vec2 = new Vector3D(-Double.MIN_VALUE, -Double.MIN_VALUE, -Double.MIN_VALUE);
+        Vector3D vec2 = new Vector3D(Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE);
         vec1.sub(vec2);
     }
-
+    @org.junit.Test
     public void testSubToBigNoException() throws Exception {
         Vector3D vec1 = new Vector3D(-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE);
         Vector3D vec2 = new Vector3D(-1, 0,0);
         vec1.sub(vec2);
     }
 
-
     @org.junit.Test
-    public void testMult() throws Exception {
+    public void testMult2DToBigException() throws Exception {
+        expected.expect(ArithmeticException.class);
+        Vector2D vec1 = new Vector2D(Double.MAX_VALUE,Double.MAX_VALUE);
+        vec1.mult(Double.MAX_VALUE);
 
     }
 
     @org.junit.Test
-    public void testDiv() throws Exception {
+    public void testMult2DToSmallException() throws Exception {
+        expected.expect(ArithmeticException.class);
+        Vector2D vec1 = new Vector2D(-Double.MAX_VALUE,-Double.MAX_VALUE);
+        vec1.mult(Double.MAX_VALUE);
 
+    }
+
+    @org.junit.Test
+    public void testDivToBig() throws Exception {
+        expected.expect(ArithmeticException.class);
+        Vector2D vec1 = new Vector2D(Double.MAX_VALUE, Double.MAX_VALUE);
+        vec1.div(Double.MIN_VALUE);
+    }
+
+    @org.junit.Test
+    public void testDivToSmall() throws Exception {
+        expected.expect(ArithmeticException.class);
+        Vector2D vec1 = new Vector2D(Double.MAX_VALUE, Double.MAX_VALUE);
+        vec1.div(-Double.MIN_VALUE);
     }
 
     @org.junit.Test
     public void testIsEqual() throws Exception {
-
+        Vector2D vec1 = new Vector2D(2,3);
+        Vector2D vec2 = new Vector2D(2,3);
+        vec1.isEqual(vec2);
+        assertEquals(vec1.get(0),vec2.get(0),0);
+        assertEquals(vec1.get(1),vec2.get(1), 0);
     }
+//    @org.junit.Test
+//    public void testVecLengthToBig(){
+//        expected.expect(ArithmeticException.class);
+//        Vector2D vec1 = new Vector2D(Double.MAX_VALUE,Double.MAX_VALUE);
+//        vec1.veclength();
+//    }
 
-    @org.junit.Test
-    public void testIsNotEqual() throws Exception {
 
-    }
 }
