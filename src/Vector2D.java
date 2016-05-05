@@ -3,6 +3,13 @@
  */
 public class Vector2D extends Vector
 {
+    @Override
+    public double get(int pos) {
+        if(pos >= length)
+            throw new ArrayIndexOutOfBoundsException();
+        return super.get(pos);
+    }
+
     public Vector2D(){
 
         super(2);

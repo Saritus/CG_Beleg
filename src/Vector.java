@@ -11,12 +11,13 @@ abstract public class Vector
        vectorelements = new double[length];
     }
 
-    //Constructor
+    //Copy Constructor
     Vector(Vector vec){
         this.length = vec.length;
         this.vectorelements = vec.vectorelements.clone();
     }
 
+    //Exceptionhandling in Vec2D + Vec3D
     public double get(int pos){
         return vectorelements[pos];
     }
@@ -36,20 +37,35 @@ abstract public class Vector
         return true;
     }
 
-    void add(Vector vector){
+    void add(Vector vec){
         for (int i = 0; i < length;i++){
-            this.vectorelements[i] += vector.vectorelements[i];
+            if(Double.MAX_VALUE - this.vectorelements[i] <  vec.vectorelements[i])
+                    throw new ArithmeticException();
+            if(-Double.MAX_VALUE - this.vectorelements[i] >  vec.vectorelements[i])
+                throw new ArithmeticException();
+            this.vectorelements[i] += vec.vectorelements[i];
         }
     }
-
-    void sub(Vector vector){
+    // ########################### i need some help here Kaugummi kauen
+    void sub(Vector vec){
         for (int i = 0; i < length;i++ ){
-            vectorelements[i] -= vector.vectorelements[i];
+                if(Double.MAX_VALUE - this.vectorelements[i] < vec.vectorelements[i])
+                    throw new ArithmeticException();
+
+                if(-Double.MAX_VALUE - vec.vectorelements[i] > this.vectorelements[i])
+                    throw new ArithmeticException();
+
+            vectorelements[i] -= vec.vectorelements[i];
         }
     }
 
     void mult(double scalar){
+
         for (int i = 0; i < length; i++){
+            if(Double.MAX_VALUE < vectorelements[i]*scalar)
+                throw new ArithmeticException();
+            if(-Double.MAX_VALUE > vectorelements[i]*scalar)
+                throw new ArithmeticException();
             vectorelements[i] *= scalar;
         }
     }
@@ -86,7 +102,15 @@ abstract public class Vector
     }
 
     void normalize(){
-
         div(length);
+    }
+
+    @Override
+    public String toString() {
+        String str = this.getClass() + " ";
+        for (double vectorelement : vectorelements) {
+            str += vectorelement+" ";
+        }
+        return str;
     }
 }

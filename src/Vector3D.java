@@ -3,6 +3,13 @@
  */
 public class Vector3D extends Vector
 {
+    @Override
+    public double get(int pos) {
+        if(pos > length)
+            throw new IndexOutOfBoundsException();
+        return super.get(pos);
+    }
+
     Vector3D(){
 
         super(3);
@@ -20,6 +27,7 @@ public class Vector3D extends Vector
     }
 
     public void setPosition(double x, double y, double z){
+
         super.setPosition(new double[]{x,y,z});
     }
 
