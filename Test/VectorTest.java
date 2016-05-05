@@ -35,8 +35,8 @@ public class VectorTest {
     @org.junit.Test
     public void testAddToSmallException() throws Exception {
         expected.expect(ArithmeticException.class);
-        Vector2D vec1 = new Vector2D(-Double.MAX_VALUE,Double.MAX_VALUE);
-        Vector2D vec2 = new Vector2D(-Double.MAX_VALUE,Double.MAX_VALUE);
+        Vector2D vec1 = new Vector2D(-Double.MAX_VALUE,-Double.MAX_VALUE);
+        Vector2D vec2 = new Vector2D(-Double.MAX_VALUE,-Double.MAX_VALUE);
         vec1.add(vec2);
     }
     @org.junit.Test
@@ -59,8 +59,6 @@ public class VectorTest {
         assertEquals(expected.get(2),vec1.get(2),0);
 
     }
-
-        //##################### TODO
     @org.junit.Test
     public void testSubToBig() throws Exception {
         expected.expect(ArithmeticException.class);
@@ -68,7 +66,7 @@ public class VectorTest {
         Vector3D vec2 = new Vector3D(-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE);
         vec1.sub(vec2);
     }
-
+    // hier wird es ein Fahrrad irgendwie ################################
     @org.junit.Test
     public void testSubToSmall() throws Exception {
         expected.expect(ArithmeticException.class);

@@ -20,6 +20,7 @@
 
     //Exceptionhandling in Vec2D + Vec3D
     public double get(int pos){
+
         return vectorelements[pos];
     }
 
@@ -50,10 +51,10 @@
     // ########################### i need some help here
     void sub(Vector vec){
         for (int i = 0; i < length;i++ ){
-            if(Double.MAX_VALUE-this.vectorelements[i] < vec.vectorelements[i]){
+            if(Double.MAX_VALUE + vec.vectorelements[i] < this.vectorelements[i]){
                 throw new ArithmeticException();
             }
-            if(-Double.MAX_VALUE + this.vectorelements[i] > vec.vectorelements[i]){
+            if(Double.MAX_VALUE < (this.vectorelements[i] - vec.vectorelements[i])){
                 throw new ArithmeticException();
             }
             vectorelements[i] -= vec.vectorelements[i];
@@ -110,7 +111,7 @@
     }
 
     double veclength(){
-        double sum = 0;
+        double sum = 0.0;
         for (int i = 0; i < length;i++){
             sum += Math.pow(vectorelements[i],2);
             if(Double.MAX_VALUE -vectorelements[i] < 0 ){

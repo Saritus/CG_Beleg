@@ -95,7 +95,7 @@ abstract public class LineareAlgebra
     }
 
     static double euclideandist2D(Vector2D vec1,Vector2D vec2){
-        double distance = 0;
+        double distance = 0.0;
         Vector vec3 = sub2D(vec2,vec1);
         for (int i = 0; i < vec3.length;i++){
             distance += Math.pow(vec3.vectorelements[i],2);
@@ -103,7 +103,7 @@ abstract public class LineareAlgebra
         return Math.sqrt(distance);
     }
     static double euclideandist3D(Vector3D vec1,Vector3D vec2){
-        double distance = 0;
+        double distance = 0.0;
         Vector vec3 = sub3D(vec2,vec1);
         for (int i = 0; i < vec3.length;i++){
             distance += Math.pow(vec3.vectorelements[i],2);
@@ -111,7 +111,7 @@ abstract public class LineareAlgebra
         return Math.sqrt(distance);
     }
     static double manhattendist2D(Vector2D vec1, Vector2D vec2){
-        double dist = 0;
+        double dist = 0.0;
         Vector vec = sub2D(vec1,vec2);
         for (int i = 0; i < vec1.length; i++){
             dist += vec.vectorelements[i];
@@ -119,7 +119,7 @@ abstract public class LineareAlgebra
         return dist;
     }
     static double manhattendist3D(Vector3D vec1, Vector3D vec2){
-        double dist = 0;
+        double dist = 0.0;
         Vector vec = sub3D(vec1,vec2);
         for (int i = 0; i < vec1.length; i++){
             dist += vec.vectorelements[i];
@@ -128,7 +128,7 @@ abstract public class LineareAlgebra
     }
 
     static double crossProduct2D(Vector2D vec1, Vector2D vec2){
-        double det = 0;
+        double det = 0.0;
         det = (vec1.vectorelements[0]*vec2.vectorelements[1])-(vec2.vectorelements[0]*vec1.vectorelements[1]);
         return det;
     }
@@ -142,7 +142,7 @@ abstract public class LineareAlgebra
     }
 
     static double dotProduct2D(Vector2D vec1, Vector2D vec2){
-        double dotProduct = 0;
+        double dotProduct = 0.0;
         for(int i = 0; i < vec1.length; i++){
             dotProduct += (vec1.vectorelements[i]*vec2.vectorelements[i]);
         }
@@ -150,7 +150,7 @@ abstract public class LineareAlgebra
     }
 
     static double dotProduct3D(Vector3D vec1, Vector3D vec2){
-        double dotProduct = 0;
+        double dotProduct = 0.0;
         for(int i = 0; i < vec1.length; i++){
             dotProduct += (vec1.vectorelements[i]*vec2.vectorelements[i]);
         }
@@ -230,7 +230,7 @@ abstract public class LineareAlgebra
     }
 
     static double determinant3D(Vector3D vec1, Vector3D vec2, Vector3D vec3){
-        double det = 0;
+        double det = 0.0;
         det = vec1.get(0)*(vec2.get(1)*vec3.get(2))-(vec3.get(1)*vec2.get(2));
         det = det - vec2.get(0)*((vec1.get(1)*vec3.get(2))-(vec3.get(1)*vec1.get(2)));
         det = det + (vec3.get(0)*((vec1.get(1)*vec2.get(2))-(vec2.get(1)*vec1.get(2))));
