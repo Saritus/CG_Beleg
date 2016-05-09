@@ -1,3 +1,5 @@
+package Vector;
+
 /**
  * Created by Matze on 03.05.16.
  */
@@ -18,7 +20,6 @@
         this.vectorelements = vec.vectorelements.clone();
     }
 
-    //Exceptionhandling in Vec2D + Vec3D
     public double get(int pos){
 
         return vectorelements[pos];
@@ -48,16 +49,13 @@
             this.vectorelements[i] += vec.vectorelements[i];
         }
     }
-    // ########################### i need some help here
     void sub(Vector vec){
-        for (int i = 0; i < length;i++ ){
-            if(Double.MAX_VALUE + vec.vectorelements[i] < this.vectorelements[i]){
+        for (int i = 0; i < length;i++){
+            if(Double.MAX_VALUE - this.vectorelements[i] <  -vec.vectorelements[i])
                 throw new ArithmeticException();
-            }
-            if(Double.MAX_VALUE < (this.vectorelements[i] - vec.vectorelements[i])){
+            if(-Double.MAX_VALUE - this.vectorelements[i] >  -vec.vectorelements[i])
                 throw new ArithmeticException();
-            }
-            vectorelements[i] -= vec.vectorelements[i];
+            this.vectorelements[i] -= vec.vectorelements[i];
         }
     }
 
@@ -76,21 +74,7 @@
         if(scalar == 0){
             throw new ArithmeticException();
         }
-        for (int i = 0; i < vectorelements.length;i++){
-            if(scalar > 0 && scalar < 1){
-                if(Double.MAX_VALUE*scalar < this.vectorelements[i]){
-                throw new ArithmeticException();
-                }
-            }
-            if(scalar > -1 && scalar < 0){
-                if(-Double.MAX_VALUE*scalar < this.vectorelements[i]){
-                    throw new ArithmeticException();
-                }
-            }
-                vectorelements[i] /= scalar;
-        }
-
-
+        mult(1/scalar);
     }
 
     boolean isEqual(Vector vector){
@@ -114,24 +98,34 @@
         double sum = 0.0;
         for (int i = 0; i < length;i++){
             sum += Math.pow(vectorelements[i],2);
-            if(Double.MAX_VALUE -vectorelements[i] < 0 ){
+
+            if((Double.MAX_VALUE/vectorelements[i]) < vectorelements[i] ){
+                throw new ArithmeticException();
+            }
+            if(Double.MAX_VALUE/vectorelements[i] > -vectorelements[i]){
                 throw new ArithmeticException();
             }
         }
         return Math.sqrt(sum);
+
     }
 
-    void normalize(){
 
-        div(length);
+    void normalize(){
+        double len = veclength();
+        if(len == 0){
+            throw new ArithmeticException();
+        }
+        div(len);
+
     }
 
     @Override
     public String toString() {
-        String str = this.getClass() + " ";
+        String str =  "( "+vectorelements[0];
         for (double vectorelement : vectorelements) {
-            str += vectorelement+" ";
+            str += ", "+vectorelement;
         }
-        return str;
+        return str+" )";
     }
 }
