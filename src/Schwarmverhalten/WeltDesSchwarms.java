@@ -1,39 +1,45 @@
 package Schwarmverhalten;
 
 import static org.lwjgl.opengl.GL11.*;
+import math.*;
 
 import org.lwjgl.opengl.Display;
 
 public class WeltDesSchwarms extends BasisFenster {
-    private SchwarmObjekt fonzie;
+	private ObjektManager om;
 
-    public WeltDesSchwarms() {
-        super("Welt eines einsamen Fonzies", 1024, 680);
-        fonzie = new SchwarmObjekt();
-    }
+	public WeltDesSchwarms() {
+		super("Welt des Schwarms", 1024, 680);
+		om = new ObjektManager();
+		init();
+	}
 
-    @Override
-    public void renderLoop() {
-        while (!Display.isCloseRequested()) {
-            glClearColor(0.1f, 0.2f, 0.3f, 1);
-            glClear(GL_COLOR_BUFFER_BIT);
+	private void init() {
+		new SchwarmObjekt(new Vektor2D(50, 50), new Vektor2D(), 2, om);
+		new SchwarmObjekt(new Vektor2D(200, 200), new Vektor2D(), 2, om);
+		new SchwarmObjekt(new Vektor2D(500, 500), new Vektor2D(), 2, om);
+	}
 
-            // ist ja 2d
-            glMatrixMode (GL_PROJECTION);
-            glLoadIdentity ();
-            glOrtho (0, 640, 480, 0, 0, 1);
-            glMatrixMode (GL_MODELVIEW);
-            glDisable(GL_DEPTH_TEST);
+	@Override
+	public void renderLoop() {
+		while (!Display.isCloseRequested()) {
+			glClearColor(0.1f, 0.2f, 0.3f, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 
-            // einen Kreis anzeigen
-            fonzie.render();
+			// ist ja 2d
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+			glOrtho(0, 640, 480, 0, 0, 1);
+			glMatrixMode(GL_MODELVIEW);
+			glDisable(GL_DEPTH_TEST);
 
-            Display.update();
-        }
-    }
+			om.render();
 
-    public static void main(String[] args) {
-        new WeltDesSchwarms().start();
-    }
+			Display.update();
+		}
+	}
+
+	public static void main(String[] args) {
+		new WeltDesSchwarms().start();
+	}
 }
-
