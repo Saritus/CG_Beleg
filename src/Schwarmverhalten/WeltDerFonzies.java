@@ -9,7 +9,7 @@ public class WeltDerFonzies extends BasisFenster {
 
     public WeltDerFonzies() {
         super("Welt eines einsamen Fonzies", 1024, 680);
-        fonzie = new Fonzies(320, 240);
+        fonzie = new Fonzies();
     }
 
     @Override
