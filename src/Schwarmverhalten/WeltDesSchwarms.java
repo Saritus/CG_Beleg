@@ -21,7 +21,7 @@ public class WeltDesSchwarms extends BasisFenster {
 	}
 
 	@Override
-	public void renderLoop() {
+	public void renderLoop() throws Exception {
 		while (!Display.isCloseRequested()) {
 			glClearColor(0.1f, 0.2f, 0.3f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -33,13 +33,14 @@ public class WeltDesSchwarms extends BasisFenster {
 			glMatrixMode(GL_MODELVIEW);
 			glDisable(GL_DEPTH_TEST);
 
+			om.update();
 			om.render();
 
 			Display.update();
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		new WeltDesSchwarms().start();
 	}
 }

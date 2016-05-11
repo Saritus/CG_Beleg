@@ -7,18 +7,19 @@ public class ObjektManager {
 	protected int count;
 
 	ObjektManager() {
-		objects = new BasisObjekt[0];
+		objects = new BasisObjekt[10];
 		count = 0;
 	}
 
 	public void add(BasisObjekt obj) {
-		BasisObjekt[] array = new BasisObjekt[objects.length + 1];
-		for (int i = 0; i < objects.length; i++) {
+		BasisObjekt[] array = new BasisObjekt[count + 1];
+		for (int i = 0; i < count; i++) {
 			array[i] = objects[i];
 			array[i].id = i;
 		}
-		array[objects.length] = obj;
-		count++;
+		obj.om = this;
+		array[count++] = obj;
+		objects = array;
 	}
 
 	public boolean check(BasisObjekt obj) {
@@ -35,15 +36,15 @@ public class ObjektManager {
 	}
 
 	public void remove(int id) {
-		if ((id < 0) || (id >= objects.length)) {
+		if ((id < 0) || (id >= count)) {
 			return;
 		}
-		BasisObjekt[] array = new BasisObjekt[objects.length - 1];
+		BasisObjekt[] array = new BasisObjekt[count - 1];
 		for (int i = 0; i < id; i++) {
 			array[i] = objects[i];
 			array[i].id = i;
 		}
-		for (int i = id; i < objects.length; i++) {
+		for (int i = id; i < count; i++) {
 			array[i] = objects[i + 1];
 			array[i].id = i;
 		}
@@ -78,8 +79,18 @@ public class ObjektManager {
 	}
 
 	public void render() {
-		for (int i = 0; i < count; i++) {
-			objects[i].render();
+		if (count > 0) {
+			for (int i = 0; i < count; i++) {
+				objects[i].render();
+			}
+		}
+	}
+
+	public void update() throws Exception {
+		if (count > 0) {
+			for (int i = 0; i < count; i++) {
+				objects[i].behavior.update();
+			}
 		}
 	}
 }

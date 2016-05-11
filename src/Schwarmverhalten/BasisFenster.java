@@ -29,9 +29,9 @@ public abstract class BasisFenster {
       }
    }
 
-   public abstract void renderLoop();
+   public abstract void renderLoop() throws Exception;
 
-   public void start() {
+   public void start() throws Exception {
       initDisplay();
       renderLoop();
       Display.destroy();
