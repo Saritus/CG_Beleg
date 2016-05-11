@@ -2,10 +2,8 @@ package Schwarmverhalten;
 
 import math.Vektor2D;
 
-/**
- * Created by Matze on 10.05.16.
- */
 public abstract class BasisObjekt {
+	int id;
 	public Vektor2D pos;
 	public Vektor2D speed;
 	public double masse;
@@ -13,6 +11,7 @@ public abstract class BasisObjekt {
 	ObjektManager om;
 
 	public BasisObjekt(Vektor2D pos, Vektor2D speed, double masse, ObjektManager om, Behavior behavior) {
+		this.id = -1;
 		this.pos = pos;
 		this.speed = speed;
 		this.masse = masse;

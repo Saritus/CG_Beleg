@@ -4,12 +4,12 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.opengl.Display;
 
-public class WeltDerFonzies extends BasisFenster {
-    private Fonzies fonzie;
+public class WeltDesSchwarms extends BasisFenster {
+    private SchwarmObjekt fonzie;
 
-    public WeltDerFonzies() {
+    public WeltDesSchwarms() {
         super("Welt eines einsamen Fonzies", 1024, 680);
-        fonzie = new Fonzies();
+        fonzie = new SchwarmObjekt();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class WeltDerFonzies extends BasisFenster {
     }
 
     public static void main(String[] args) {
-        new WeltDerFonzies().start();
+        new WeltDesSchwarms().start();
     }
 }
 

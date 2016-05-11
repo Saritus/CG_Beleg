@@ -7,32 +7,29 @@ import java.lang.Thread.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
-/**
- * Created by Matze on 10.05.16.
- */
-public class Fonzies extends BasisObjekt {
+public class SchwarmObjekt extends BasisObjekt {
 
-	public Fonzies() {
+	public SchwarmObjekt() {
 		super();
 	}
 
-	public Fonzies(Vektor2D pos, Vektor2D speed, double masse, ObjektManager om, Behavior behavior) {
+	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, ObjektManager om, Behavior behavior) {
 		super(pos, speed, masse, om, behavior);
 	}
 
-	public Fonzies(Vektor2D pos, Vektor2D speed, double masse, ObjektManager om) {
+	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, ObjektManager om) {
 		super(pos, speed, masse, om);
 	}
 
-	public Fonzies(Vektor2D pos, Vektor2D speed, double masse) {
+	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse) {
 		super(pos, speed, masse);
 	}
 
-	public Fonzies(Vektor2D pos, Vektor2D speed) {
+	public SchwarmObjekt(Vektor2D pos, Vektor2D speed) {
 		super(pos, speed);
 	}
 
-	public Fonzies(Vektor2D pos) {
+	public SchwarmObjekt(Vektor2D pos) {
 		super(pos);
 	}
 

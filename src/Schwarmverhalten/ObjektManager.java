@@ -2,12 +2,9 @@ package Schwarmverhalten;
 
 import math.*;
 
-/**
- * Created by Besitzer on 09.05.2016.
- */
 public class ObjektManager {
-	BasisObjekt[] objects;
-	int count;
+	protected BasisObjekt[] objects;
+	protected int count;
 
 	ObjektManager() {
 		objects = new BasisObjekt[0];
@@ -18,21 +15,48 @@ public class ObjektManager {
 		BasisObjekt[] array = new BasisObjekt[objects.length + 1];
 		for (int i = 0; i < objects.length; i++) {
 			array[i] = objects[i];
+			array[i].id = i;
 		}
 		array[objects.length] = obj;
 		count++;
 	}
 
 	public boolean check(BasisObjekt obj) {
-		return false;
+		if ((obj.id < 0) || (obj.id >= objects.length))
+			return false;
+		else if (obj.pos == objects[obj.id].pos)
+			return true;
+		else
+			return false;
 	}
 
 	public void remove(BasisObjekt obj) {
+		remove(obj.id);
+	}
 
+	public void remove(int id) {
+		if ((id < 0) || (id >= objects.length)) {
+			return;
+		}
+		BasisObjekt[] array = new BasisObjekt[objects.length - 1];
+		for (int i = 0; i < id; i++) {
+			array[i] = objects[i];
+			array[i].id = i;
+		}
+		for (int i = id; i < objects.length; i++) {
+			array[i] = objects[i + 1];
+			array[i].id = i;
+		}
+		objects = array;
+		count--;
 	}
 
 	public BasisObjekt[] getObjects() {
 		return objects;
+	}
+
+	public int getCount() {
+		return count;
 	}
 
 	public Vektor2D getAveragePosition() throws Exception {
@@ -51,5 +75,11 @@ public class ObjektManager {
 		}
 		avgspeed.div(count);
 		return avgspeed;
+	}
+
+	public void render() {
+		for (int i = 0; i < count; i++) {
+			objects[i].render();
+		}
 	}
 }
