@@ -24,7 +24,6 @@ public class Fonzies extends BasisObjekt
         //glColor3d(r, g, b);
         glBegin(GL_TRIANGLE_FAN);
 
-
         glVertex2f((float)pos.getElem(0)+50, (float)pos.getElem(1)-30);
         glColor3d(0,1,0);
         glVertex2f((float)pos.getElem(0)+50,(float)pos.getElem(1)+100);
@@ -32,8 +31,5 @@ public class Fonzies extends BasisObjekt
         glVertex2f((float)pos.getElem(0)-50,(float)pos.getElem(1)+10);
 
         glEnd();
-
-
-
     }
 }

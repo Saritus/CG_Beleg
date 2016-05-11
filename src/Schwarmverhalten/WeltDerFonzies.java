@@ -4,8 +4,6 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.opengl.Display;
 
-import Schwarmverhalten.frame.BasisFenster;
-
 public class WeltDerFonzies extends BasisFenster {
     private Fonzies fonzie;
 

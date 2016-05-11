@@ -6,20 +6,24 @@ public class Vektor {
 	protected double[] array;
 	protected int dimension;
 
+	@SuppressWarnings("unused")
 	private Vektor() {
 	}
 
-	public Vektor(int dimension, double[] array) throws Exception {
+	public Vektor(int dimension, double[] array) {
 		this.dimension = dimension;
 		this.array = new double[dimension];
-		setPosition(array);
+		try {
+			setPosition(array);
+		} catch (Exception e) {
+		}
 	}
 
-	public Vektor(double[] array, int dimension) throws Exception {
+	public Vektor(double[] array, int dimension) {
 		this(dimension, array);
 	}
 
-	public Vektor(Vektor vec) throws Exception {
+	public Vektor(Vektor vec) {
 		this(vec.dimension, vec.array);
 	}
 

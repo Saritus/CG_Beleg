@@ -1,7 +1,5 @@
 package Vector;
 
-import Vector.Vector2D;
-import Vector.Vector3D;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 
