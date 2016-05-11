@@ -39,14 +39,14 @@ public class Vektor3D extends Vektor {
 	}
 
 	public void setY(double y) {
-		array[0] = y;
+		array[1] = y;
 	}
 
 	public double getZ() {
-		return array[1];
+		return array[2];
 	}
 
 	public void setZ(double z) {
-		array[0] = z;
+		array[2] = z;
 	}
 }

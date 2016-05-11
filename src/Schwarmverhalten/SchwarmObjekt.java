@@ -13,12 +13,17 @@ public class SchwarmObjekt extends BasisObjekt {
 		super();
 	}
 
-	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, ObjektManager om, Behavior behavior) {
-		super(pos, speed, masse, om, behavior);
+	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, ObjektManager om,
+			Behavior behavior) {
+		super(pos, speed, masse, maxSpeed, om, behavior);
 	}
 
-	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, ObjektManager om) {
-		super(pos, speed, masse, om);
+	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, ObjektManager om) {
+		super(pos, speed, masse, maxSpeed, om);
+	}
+
+	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
+		super(pos, speed, masse, maxSpeed);
 	}
 
 	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse) {
@@ -38,11 +43,11 @@ public class SchwarmObjekt extends BasisObjekt {
 		// glColor3d(r, g, b);
 		glBegin(GL_TRIANGLE_FAN);
 
-		glVertex2f((float) pos.getX() + 50, (float) pos.getY() - 30);
+		glVertex2f((float) pos.getX(), (float) pos.getY() - 20);
 		glColor3d(0, 1, 0);
-		glVertex2f((float) pos.getX() + 50, (float) pos.getY() + 100);
+		glVertex2f((float) pos.getX() + 20, (float) pos.getY() + 20);
 		glColor3d(1, 0, 0);
-		glVertex2f((float) pos.getX() - 50, (float) pos.getY() + 10);
+		glVertex2f((float) pos.getX() - 20, (float) pos.getY() + 20);
 
 		glEnd();
 	}

@@ -15,9 +15,9 @@ public class WeltDesSchwarms extends BasisFenster {
 	}
 
 	private void init() {
-		new SchwarmObjekt(new Vektor2D(50, 50), new Vektor2D(), 2, om);
-		new SchwarmObjekt(new Vektor2D(200, 200), new Vektor2D(), 2, om);
-		new SchwarmObjekt(new Vektor2D(500, 500), new Vektor2D(), 2, om);
+		new SchwarmObjekt(new Vektor2D(50, 50), new Vektor2D(20, -20), 2, 0.1, om);
+		new SchwarmObjekt(new Vektor2D(200, 200), new Vektor2D(20, -20), 2, 0.1, om);
+		new SchwarmObjekt(new Vektor2D(500, 500), new Vektor2D(20, -20), 2, 0.1, om);
 	}
 
 	@Override

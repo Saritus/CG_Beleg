@@ -33,12 +33,12 @@ public class Vektor2D extends Vektor {
 	public void setX(double x) {
 		array[0] = x;
 	}
-	
+
 	public double getY() {
 		return array[1];
 	}
 
 	public void setY(double y) {
-		array[0] = y;
+		array[1] = y;
 	}
 }

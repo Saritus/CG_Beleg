@@ -175,10 +175,7 @@ public abstract class LineareAlgebra {
 	}
 
 	public static Vektor truncate(Vektor vec, double maxLength) throws Exception   {
-		Vektor result=vec.clone();
-		result.normalize();
-		result.mult(maxLength);
-		return result;
+		return (vec.clone()).truncate(maxLength);
 	}
 	
 	public static Vektor truncate(double maxLength, Vektor vec) throws Exception   {

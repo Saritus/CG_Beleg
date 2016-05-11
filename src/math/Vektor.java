@@ -36,7 +36,7 @@ public class Vektor {
 	}
 
 	public double getElem(int dimension) throws Exception {
-		if ((dimension >= this.dimension) || (dimension < 0)) {
+		if ((this.dimension >= dimension) || (dimension < 0)) {
 			throw new Exception("Invalid dimension");
 		}
 		return array[dimension];
@@ -86,11 +86,11 @@ public class Vektor {
 	}
 
 	public boolean isEqual(Vektor vec) {
-		if (this.dimension != vec.dimension) {
+		if (dimension != vec.dimension) {
 			return false;
 		}
 		for (int i = 0; i < dimension; i++) {
-			if (this.array[i] != vec.array[i]) {
+			if (array[i] != vec.array[i]) {
 				return false;
 			}
 		}
@@ -146,5 +146,19 @@ public class Vektor {
 
 	public Vektor negate() throws Exception {
 		return mult(-1);
+	}
+
+	public Vektor truncate(double maxLength) throws Exception {
+		if (length() > maxLength) {
+			normalize();
+			mult(maxLength);
+		}
+		return this;
+	}
+
+	public Vektor cut(double maxX, double maxY) {
+		array[0] = array[0] % maxX;
+		array[1] = array[1] % maxY;
+		return this;
 	}
 }

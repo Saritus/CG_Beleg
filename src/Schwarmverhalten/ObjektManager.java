@@ -78,6 +78,21 @@ public class ObjektManager {
 		return avgspeed;
 	}
 
+	public Vektor getSeparation(BasisObjekt obj) throws Exception {
+		Vektor2D result = new Vektor2D();
+		for (int i = 0; i < count; i++) {
+			if (obj.id != objects[i].id) {
+				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(objects[i].pos, obj.pos);
+				Vektor2D sep;
+				if (!dif.isNullVector()) {
+					sep = (Vektor2D) LineareAlgebra.div(dif, dif.lengthsquare());
+					result.add(sep.negate());
+				}
+			}
+		}
+		return result;
+	}
+
 	public void render() {
 		if (count > 0) {
 			for (int i = 0; i < count; i++) {
