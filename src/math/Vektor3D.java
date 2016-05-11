@@ -1,20 +1,20 @@
 package math;
 
 public class Vektor3D extends Vektor {
-	
-	public Vektor3D(double[] array) throws Exception {
+
+	public Vektor3D(double[] array) {
 		super(3, array);
 	}
 
-	public Vektor3D(double x, double y, double z) throws Exception {
+	public Vektor3D(double x, double y, double z) {
 		this(new double[] { x, y, z });
 	}
 
-	public Vektor3D() throws Exception {
+	public Vektor3D() {
 		this(new double[] { 0, 0, 0 });
 	}
 
-	public Vektor3D(Vektor vec) throws Exception {
+	public Vektor3D(Vektor vec) {
 		this(vec.array);
 	}
 
@@ -24,5 +24,29 @@ public class Vektor3D extends Vektor {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public double getX() {
+		return array[0];
+	}
+
+	public void setX(double x) {
+		array[0] = x;
+	}
+
+	public double getY() {
+		return array[1];
+	}
+
+	public void setY(double y) {
+		array[0] = y;
+	}
+
+	public double getZ() {
+		return array[1];
+	}
+
+	public void setZ(double z) {
+		array[0] = z;
 	}
 }
