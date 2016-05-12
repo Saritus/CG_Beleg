@@ -5,9 +5,9 @@ import math.*;
 public class Schwarmverhalten implements Behavior {
 
 	private BasisObjekt obj;
-	public static double alignment_value = 0.;
-	public static double cohesion_value = 0.;
-	public static double separation_value = 1.14;
+	public static double alignment_value = 6.5;
+	public static double cohesion_value = 0.05;
+	public static double separation_value = 10.;
 
 	Schwarmverhalten(BasisObjekt obj) {
 		this.obj = obj;
@@ -24,6 +24,6 @@ public class Schwarmverhalten implements Behavior {
 		obj.speed.add(force.div(obj.masse));
 		obj.speed.truncate(obj.maxSpeed);
 		obj.pos.add(obj.speed);
-		obj.pos.cut(1024, 680);
+		obj.pos.cut(1024-390, 768-300);
 	}
 }

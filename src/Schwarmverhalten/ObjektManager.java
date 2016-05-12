@@ -84,7 +84,7 @@ public class ObjektManager {
 			if (obj.id != objects[i].id) {
 				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(objects[i].pos, obj.pos);
 				Vektor2D sep;
-				if (!dif.isNullVector()) {
+				if ((!dif.isNullVector()) || (dif.lengthsquare() < 100)) {
 					sep = (Vektor2D) LineareAlgebra.div(dif, dif.lengthsquare());
 					result.add(sep.negate());
 				}

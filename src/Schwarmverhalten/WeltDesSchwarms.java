@@ -9,15 +9,17 @@ public class WeltDesSchwarms extends BasisFenster {
 	private ObjektManager om;
 
 	public WeltDesSchwarms() {
-		super("Welt des Schwarms", 1024, 680);
+		super("Welt des Schwarms", 1024, 768);
 		om = new ObjektManager();
 		init();
 	}
 
 	private void init() {
-		new SchwarmObjekt(new Vektor2D(50, 50), new Vektor2D(20, -20), 2, 0.1, om);
-		new SchwarmObjekt(new Vektor2D(200, 200), new Vektor2D(20, -20), 2, 0.1, om);
-		new SchwarmObjekt(new Vektor2D(500, 500), new Vektor2D(20, -20), 2, 0.1, om);
+		for(int i=0; i<25; i++) {
+			for(int j=0; j<25; j++) {
+				new SchwarmObjekt(new Vektor2D(10*i, 10*j), new Vektor2D(Math.random()*20, Math.random()*20), 10, Math.random()+1, om);
+			}
+		}
 	}
 
 	@Override

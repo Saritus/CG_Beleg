@@ -157,6 +157,8 @@ public class Vektor {
 	}
 
 	public Vektor cut(double maxX, double maxY) {
+		array[0] += maxX;
+		array[1] += maxY;
 		array[0] = array[0] % maxX;
 		array[1] = array[1] % maxY;
 		return this;
