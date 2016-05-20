@@ -41,7 +41,7 @@ public class SchwarmObjekt extends BasisObjekt {
 	@Override
 	public void render() {
 		// glColor3d(r, g, b);
-		if ((pos.getX() > 5) && (pos.getY() > 5) && (pos.getX() < 1024-395) && (pos.getY() < 463)) {
+		if ((pos.getX() > 5) && (pos.getY() > 5) && (pos.getX() < 1024 - 5) && (pos.getY() < 768 - 5)) {
 			glBegin(GL_TRIANGLE_FAN);
 
 			glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
