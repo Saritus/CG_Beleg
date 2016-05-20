@@ -56,7 +56,7 @@ public class SchwarmObjekt extends BasisObjekt {
 			glBegin(GL_LINE_STRIP);
 			glColor3d(1, 1, 1);
 			glVertex2d(pos.getX(), pos.getY());
-			glVertex2d(pos.getX() + speed.getX() * 30, pos.getY() + speed.getY() * 30);
+			glVertex2d(pos.getX() + speed.getX() * 20, pos.getY() + speed.getY() * 20);
 			glEnd();
 		}
 	}

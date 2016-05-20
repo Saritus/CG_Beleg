@@ -6,7 +6,7 @@ public class Schwarmverhalten implements Behavior {
 
 	private BasisObjekt obj;
 	public static double alignment_value = 15.5;
-	public static double cohesion_value = 0.05;
+	public static double cohesion_value = 0.04;
 	public static double separation_value = 10.;
 
 	Schwarmverhalten(BasisObjekt obj) {
