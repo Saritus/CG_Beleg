@@ -156,11 +156,22 @@ public class Vektor {
 		return this;
 	}
 
-	public Vektor cut(double maxX, double maxY) {
-		array[0] += maxX;
-		array[1] += maxY;
-		array[0] = array[0] % maxX;
-		array[1] = array[1] % maxY;
+	public Vektor truncate(double... maxValues) throws Exception {
+		Function.CheckDimensions(dimension, maxValues.length);
+		for (int i = 0; i < dimension; i++) {
+			array[i] = array[i] > maxValues[i] ? maxValues[i] : array[i];
+		}
+		return this;
+	}
+
+	public Vektor modulo(double... values) throws Exception {
+		Function.CheckDimensions(dimension, values.length);
+		for (int i = 0; i < dimension; i++) {
+			while (array[i] < 0) {
+				array[i] += values[i];
+			}
+			array[i] %= values[i];
+		}
 		return this;
 	}
 }
