@@ -17,7 +17,7 @@ public class Schwarmverhalten implements Behavior {
 
 	@Override
 	public void update() throws Exception {
-		Vektor2D force = new Vektor2D();
+		Vektor2D force;
 		Vektor2D mouse = new Vektor2D(Mouse.getX(), 768-Mouse.getY());
 		Vektor2D alignment = (Vektor2D) obj.om.getAverageSpeed();
 		Vektor2D cohesion = (Vektor2D) obj.om.getCohesion(obj, 400);
