@@ -25,7 +25,7 @@ public class ObjektManager {
 	public boolean check(BasisObjekt obj) {
 		if ((obj.id < 0) || (obj.id >= objects.length))
 			return false;
-		else if (obj.pos == objects[obj.id].pos)
+		else if (obj.pos.isEqual(objects[obj.id].pos))
 			return true;
 		else
 			return false;
@@ -78,15 +78,16 @@ public class ObjektManager {
 		return avgspeed;
 	}
 
-	public Vektor getSeparation(BasisObjekt obj) throws Exception {
+	public Vektor getSeparation(BasisObjekt obj, double abstand) throws Exception {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < count; i++) {
 			if (obj.id != objects[i].id) {
-				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(objects[i].pos, obj.pos);
+				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
 				Vektor2D sep;
-				if ((!dif.isNullVector()) || (dif.lengthsquare() < 75)) {
+				if ((dif.lengthsquare() < abstand*abstand)) {
 					sep = (Vektor2D) LineareAlgebra.div(dif, dif.lengthsquare());
-					result.add(sep.negate());
+					result.add(dif);
+					System.out.println(dif.length()+" " + dif.lengthsquare());
 				}
 			}
 		}
