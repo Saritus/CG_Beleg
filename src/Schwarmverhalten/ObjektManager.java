@@ -69,6 +69,18 @@ public class ObjektManager {
 		return avgpos;
 	}
 
+	public Vektor getCohesion(BasisObjekt obj,double abstand) throws Exception{
+		Vektor2D average= new Vektor2D();
+		int anzahl=0;
+		for(int i=0;i<count;i++) {
+			if(LineareAlgebra.sub(obj.pos,objects[i].pos).length()<abstand) {
+				average.add(objects[i].pos);
+				anzahl++;
+			}
+		}
+		return average.div(anzahl).sub(obj.pos);
+	}
+
 	public Vektor getAverageSpeed() throws Exception {
 		Vektor2D avgspeed = new Vektor2D();
 		for (int i = 0; i < this.count; i++) {
@@ -86,8 +98,7 @@ public class ObjektManager {
 				Vektor2D sep;
 				if ((dif.lengthsquare() < abstand*abstand)) {
 					sep = (Vektor2D) LineareAlgebra.div(dif, dif.lengthsquare());
-					result.add(dif);
-					System.out.println(dif.length()+" " + dif.lengthsquare());
+					result.add(dif.div(dif.lengthsquare()));
 				}
 			}
 		}

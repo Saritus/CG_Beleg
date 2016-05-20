@@ -15,9 +15,9 @@ public class WeltDesSchwarms extends BasisFenster {
 	}
 
 	private void init() {
-		for(int i=0; i<25; i++) {
-			for(int j=0; j<25; j++) {
-				new SchwarmObjekt(new Vektor2D(50*i, 50*j), new Vektor2D(Math.random()*40, Math.random()*40), 30, Math.random()+1, om);
+		for(int i=0; i<10; i++) {
+			for(int j=0; j<10; j++) {
+				new SchwarmObjekt(new Vektor2D(50*i, 50*j), new Vektor2D(Math.random()*40, Math.random()*40), 10, Math.random(), om);
 			}
 		}
 	}
