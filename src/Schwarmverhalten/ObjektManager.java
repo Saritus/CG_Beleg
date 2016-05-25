@@ -90,6 +90,18 @@ public class ObjektManager {
 		return avgspeed;
 	}
 
+	public Vektor getAlignment(BeweglichesObjekt obj, double abstand) throws Exception {
+		Vektor2D average = new Vektor2D();
+		int anzahl = 0;
+		for (int i = 0; i < count; i++) {
+			if (LineareAlgebra.sub(obj.pos, objects[i].pos).length() < abstand) {
+				average.add(objects[i].speed);
+				anzahl++;
+			}
+		}
+		return average.div(anzahl);
+	}
+
 	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < count; i++) {
