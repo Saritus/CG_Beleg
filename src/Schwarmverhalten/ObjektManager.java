@@ -1,14 +1,18 @@
 package Schwarmverhalten;
 
+import org.lwjgl.input.Mouse;
+
 import math.*;
 
 public class ObjektManager {
 	protected BeweglichesObjekt[] objects;
 	protected int count;
+	protected StatischesObjekt[] obstacles;
 
 	ObjektManager() {
 		objects = new BeweglichesObjekt[10];
 		count = 0;
+		obstacles = new StatischesObjekt[1];
 	}
 
 	public void add(BeweglichesObjekt obj) {
@@ -50,6 +54,30 @@ public class ObjektManager {
 		}
 		objects = array;
 		count--;
+	}
+
+	public void add(StatischesObjekt obj) {
+		if (!check(obj)) {
+			StatischesObjekt[] array = new StatischesObjekt[obstacles.length + 1];
+			for (int i = 0; i < obstacles.length; i++) {
+				array[i] = obstacles[i];
+			}
+			array[obstacles.length] = obj;
+			obstacles = array;
+		}
+	}
+
+	public boolean check(StatischesObjekt obj) {
+		for (int i = 1; i < obstacles.length; i++) {
+			if (obj.pos.isEqual(obstacles[i].pos)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void removeAllObstacles() {
+		obstacles = new StatischesObjekt[1];
 	}
 
 	public BeweglichesObjekt[] getObjects() {
@@ -115,15 +143,30 @@ public class ObjektManager {
 		return result;
 	}
 
-	public void render() {
-		if (count > 0) {
-			for (int i = 0; i < count; i++) {
-				objects[i].render();
+	public Vektor getObstacleSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
+		Vektor2D result = new Vektor2D();
+		for (int i = 0; i < obstacles.length; i++) {
+			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, obstacles[i].pos);
+			if ((dif.lengthsquare() < abstand * abstand)) {
+				result.add(dif.div(dif.lengthsquare()));
+
 			}
 		}
+		return result;
+	}
+
+	public void render() {
+		for (int i = 0; i < obstacles.length; i++) {
+			obstacles[i].render();
+		}
+		for (int i = 0; i < count; i++) {
+			objects[i].render();
+		}
+
 	}
 
 	public void update() throws Exception {
+		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
 		if (count > 0) {
 			for (int i = 0; i < count; i++) {
 				objects[i].behavior.update();

@@ -52,23 +52,19 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 
 	@Override
 	public void render() {
-		// glColor3d(r, g, b);
-		if ((pos.getX() > 5) && (pos.getY() > 5) && (pos.getX() < 1024 - 5) && (pos.getY() < 768 - 5)) {
-			// Dreieck
-			glBegin(GL_TRIANGLE_FAN);
-			glColor3d(0, 0, 1);
-			glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
-			glColor3d(0, 1, 0);
-			glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
-			glColor3d(1, 0, 0);
-			glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
-			glEnd();
+		glBegin(GL_TRIANGLE_FAN);
+		glColor3d(0, 0, 1);
+		glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
+		glColor3d(0, 1, 0);
+		glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
+		glColor3d(1, 0, 0);
+		glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
+		glEnd();
 
-			/*
-			 * // Speed glBegin(GL_LINE_STRIP); glColor3d(1, 1, 1);
-			 * glVertex2d(pos.getX(), pos.getY()); glVertex2d(pos.getX() +
-			 * speed.getX() * 20, pos.getY() + speed.getY() * 20); glEnd();
-			 */
-		}
+		/*
+		 * Speed glBegin(GL_LINE_STRIP); glColor3d(1, 1, 1);
+		 * glVertex2d(pos.getX(), pos.getY()); glVertex2d(pos.getX() +
+		 * speed.getX() * 20, pos.getY() + speed.getY() * 20); glEnd();
+		 */
 	}
 }
