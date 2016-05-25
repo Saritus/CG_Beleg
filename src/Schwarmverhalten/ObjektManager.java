@@ -77,7 +77,9 @@ public class ObjektManager {
 	}
 
 	public void removeAllObstacles() {
+		StatischesObjekt mouse = obstacles[0];
 		obstacles = new StatischesObjekt[1];
+		obstacles[0] = mouse;
 	}
 
 	public BeweglichesObjekt[] getObjects() {
@@ -167,6 +169,12 @@ public class ObjektManager {
 
 	public void update() throws Exception {
 		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
+		if (Mouse.isButtonDown(0)) {
+			add(obstacles[0]);
+		} else if (Mouse.isButtonDown(1)) {
+			removeAllObstacles();
+		}
+
 		if (count > 0) {
 			for (int i = 0; i < count; i++) {
 				objects[i].behavior.update();
