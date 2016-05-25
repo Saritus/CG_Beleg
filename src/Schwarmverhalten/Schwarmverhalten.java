@@ -18,16 +18,15 @@ public class Schwarmverhalten implements Behavior {
 	@Override
 	public void update() throws Exception {
 		Vektor2D force;
-		Vektor2D mouse = new Vektor2D(Mouse.getX(), 768-Mouse.getY());
+		Vektor2D mouse = new Vektor2D(Mouse.getX(), 768 - Mouse.getY());
 		Vektor2D alignment = (Vektor2D) obj.om.getAverageSpeed();
 		Vektor2D cohesion = (Vektor2D) obj.om.getCohesion(obj, 400);
 		Vektor2D separation = (Vektor2D) obj.om.getSeparation(obj, 30);
 		Vektor2D mouseforce = (Vektor2D) LineareAlgebra.sub(mouse, obj.pos);
-/*
-		if(mouseforce.length()<100)
-			mouseforce.normalize();
-		else
-			mouseforce=new Vektor2D();*/
+		/*
+		 * if(mouseforce.length()<100) mouseforce.normalize(); else
+		 * mouseforce=new Vektor2D();
+		 */
 		force = (Vektor2D) LineareAlgebra.add(alignment.mult(alignment_value), cohesion.mult(cohesion_value),
 				separation.mult(separation_value), mouseforce.mult(mouse_value));
 		obj.speed.add(force.div(obj.masse));

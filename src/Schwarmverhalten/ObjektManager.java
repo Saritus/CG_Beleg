@@ -69,11 +69,11 @@ public class ObjektManager {
 		return avgpos;
 	}
 
-	public Vektor getCohesion(BasisObjekt obj,double abstand) throws Exception{
-		Vektor2D average= new Vektor2D();
-		int anzahl=0;
-		for(int i=0;i<count;i++) {
-			if(LineareAlgebra.sub(obj.pos,objects[i].pos).length()<abstand) {
+	public Vektor getCohesion(BasisObjekt obj, double abstand) throws Exception {
+		Vektor2D average = new Vektor2D();
+		int anzahl = 0;
+		for (int i = 0; i < count; i++) {
+			if (LineareAlgebra.sub(obj.pos, objects[i].pos).length() < abstand) {
 				average.add(objects[i].pos);
 				anzahl++;
 			}
@@ -96,7 +96,7 @@ public class ObjektManager {
 			if (obj.id != objects[i].id) {
 				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
 				Vektor2D sep;
-				if ((dif.lengthsquare() < abstand*abstand)) {
+				if ((dif.lengthsquare() < abstand * abstand)) {
 					sep = (Vektor2D) LineareAlgebra.div(dif, dif.lengthsquare());
 					result.add(dif.div(dif.lengthsquare()));
 				}
