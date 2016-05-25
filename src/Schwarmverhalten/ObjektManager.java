@@ -3,16 +3,16 @@ package Schwarmverhalten;
 import math.*;
 
 public class ObjektManager {
-	protected BasisObjekt[] objects;
+	protected BeweglichesObjekt[] objects;
 	protected int count;
 
 	ObjektManager() {
-		objects = new BasisObjekt[10];
+		objects = new BeweglichesObjekt[10];
 		count = 0;
 	}
 
-	public void add(BasisObjekt obj) {
-		BasisObjekt[] array = new BasisObjekt[count + 1];
+	public void add(BeweglichesObjekt obj) {
+		BeweglichesObjekt[] array = new BeweglichesObjekt[count + 1];
 		for (int i = 0; i < count; i++) {
 			array[i] = objects[i];
 			array[i].id = i;
@@ -22,7 +22,7 @@ public class ObjektManager {
 		objects = array;
 	}
 
-	public boolean check(BasisObjekt obj) {
+	public boolean check(BeweglichesObjekt obj) {
 		if ((obj.id < 0) || (obj.id >= objects.length))
 			return false;
 		else if (obj.pos.isEqual(objects[obj.id].pos))
@@ -31,7 +31,7 @@ public class ObjektManager {
 			return false;
 	}
 
-	public void remove(BasisObjekt obj) {
+	public void remove(BeweglichesObjekt obj) {
 		remove(obj.id);
 	}
 
@@ -39,7 +39,7 @@ public class ObjektManager {
 		if ((id < 0) || (id >= count)) {
 			return;
 		}
-		BasisObjekt[] array = new BasisObjekt[count - 1];
+		BeweglichesObjekt[] array = new BeweglichesObjekt[count - 1];
 		for (int i = 0; i < id; i++) {
 			array[i] = objects[i];
 			array[i].id = i;
@@ -52,7 +52,7 @@ public class ObjektManager {
 		count--;
 	}
 
-	public BasisObjekt[] getObjects() {
+	public BeweglichesObjekt[] getObjects() {
 		return objects;
 	}
 
@@ -69,7 +69,7 @@ public class ObjektManager {
 		return avgpos;
 	}
 
-	public Vektor getCohesion(BasisObjekt obj, double abstand) throws Exception {
+	public Vektor getCohesion(BeweglichesObjekt obj, double abstand) throws Exception {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
 		for (int i = 0; i < count; i++) {
@@ -90,14 +90,12 @@ public class ObjektManager {
 		return avgspeed;
 	}
 
-	public Vektor getSeparation(BasisObjekt obj, double abstand) throws Exception {
+	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < count; i++) {
 			if (obj.id != objects[i].id) {
 				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
-				Vektor2D sep;
 				if ((dif.lengthsquare() < abstand * abstand)) {
-					sep = (Vektor2D) LineareAlgebra.div(dif, dif.lengthsquare());
 					result.add(dif.div(dif.lengthsquare()));
 				}
 			}

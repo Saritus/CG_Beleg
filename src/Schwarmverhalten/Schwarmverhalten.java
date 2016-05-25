@@ -5,13 +5,13 @@ import org.lwjgl.input.Mouse;
 
 public class Schwarmverhalten implements Behavior {
 
-	private BasisObjekt obj;
+	private BeweglichesObjekt obj;
 	public static double alignment_value = 15.5;
 	public static double cohesion_value = 1.;
 	public static double separation_value = 10000.;
 	public static double mouse_value = .5;
 
-	Schwarmverhalten(BasisObjekt obj) {
+	Schwarmverhalten(BeweglichesObjekt obj) {
 		this.obj = obj;
 	}
 

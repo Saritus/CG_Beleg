@@ -1,41 +1,53 @@
 package Schwarmverhalten;
 
-import math.Vektor2D;
-import org.lwjgl.opengl.Display;
-import org.omg.PortableServer.THREAD_POLICY_ID;
-import java.lang.Thread.*;
-
 import static org.lwjgl.opengl.GL11.*;
 
-public class SchwarmObjekt extends BasisObjekt {
+import math.Vektor2D;
 
-	public SchwarmObjekt() {
-		super();
+public class SchwarmObjekt extends BeweglichesObjekt {
+
+	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, ObjektManager om) {
+		super(id, pos, speed, masse, maxSpeed);
+		om.add(this);
+		behavior = new Schwarmverhalten(this);
 	}
 
-	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, ObjektManager om,
-			Behavior behavior) {
-		super(pos, speed, masse, maxSpeed, om, behavior);
+	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, ObjektManager om) {
+		super(id, pos, speed, masse);
+		om.add(this);
+		behavior = new Schwarmverhalten(this);
 	}
 
 	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, ObjektManager om) {
-		super(pos, speed, masse, maxSpeed, om);
+		super(pos, speed, masse, maxSpeed);
+		om.add(this);
+		behavior = new Schwarmverhalten(this);
+	}
+
+	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, ObjektManager om) {
+		super(pos, speed, masse);
+		om.add(this);
+		behavior = new Schwarmverhalten(this);
+	}
+
+	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
+		super(id, pos, speed, masse, maxSpeed);
+		behavior = new Schwarmverhalten(this);
+	}
+
+	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse) {
+		super(id, pos, speed, masse);
+		behavior = new Schwarmverhalten(this);
 	}
 
 	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
 		super(pos, speed, masse, maxSpeed);
+		behavior = new Schwarmverhalten(this);
 	}
 
 	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse) {
 		super(pos, speed, masse);
-	}
-
-	public SchwarmObjekt(Vektor2D pos, Vektor2D speed) {
-		super(pos, speed);
-	}
-
-	public SchwarmObjekt(Vektor2D pos) {
-		super(pos);
+		behavior = new Schwarmverhalten(this);
 	}
 
 	@Override

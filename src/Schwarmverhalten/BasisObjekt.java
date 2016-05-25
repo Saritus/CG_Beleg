@@ -3,48 +3,25 @@ package Schwarmverhalten;
 import math.Vektor2D;
 
 public abstract class BasisObjekt {
-	int id;
-	public Vektor2D pos;
-	public Vektor2D speed;
-	public double masse;
-	public double maxSpeed;
-	Behavior behavior;
-	ObjektManager om;
 
-	public BasisObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, ObjektManager om,
-			Behavior behavior) {
-		this.id = -1;
+	protected int id;
+	protected Vektor2D pos;
+
+	protected BasisObjekt(int id, Vektor2D pos) {
+		this.id = id;
 		this.pos = pos;
-		this.speed = speed;
-		this.masse = masse;
-		this.maxSpeed = maxSpeed;
-		om.add(this);
-		this.behavior = behavior;
 	}
 
-	public BasisObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, ObjektManager om) {
-		this(pos, speed, masse, maxSpeed, om, null);
-		behavior = new Schwarmverhalten(this);
+	protected BasisObjekt(Vektor2D pos) {
+		this(-1, pos);
 	}
 
-	public BasisObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
-		this(pos, speed, masse, maxSpeed, new ObjektManager(), null);
+	protected BasisObjekt(int id) {
+		this(id, new Vektor2D());
 	}
 
-	public BasisObjekt(Vektor2D pos, Vektor2D speed, double masse) {
-		this(pos, speed, masse, Double.MAX_VALUE, new ObjektManager(), null);
-	}
-
-	public BasisObjekt(Vektor2D pos, Vektor2D speed) {
-		this(pos, speed, 1, Double.MAX_VALUE, new ObjektManager(), null);
-	}
-
-	public BasisObjekt(Vektor2D pos) {
-		this(pos, new Vektor2D(), 1, Double.MAX_VALUE, new ObjektManager(), null);
-	}
-
-	public BasisObjekt() {
-		this(new Vektor2D(), new Vektor2D(), 1, Double.MAX_VALUE, new ObjektManager(), null);
+	protected BasisObjekt() {
+		this(-1, new Vektor2D());
 	}
 
 	public abstract void render();
