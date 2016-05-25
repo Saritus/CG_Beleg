@@ -36,7 +36,7 @@ public class Vektor {
 	}
 
 	public double getElem(int dimension) throws Exception {
-		if ((this.dimension >= dimension) || (dimension < 0)) {
+		if ((this.dimension <= dimension) || (dimension < 0)) {
 			throw new Exception("Invalid dimension");
 		}
 		return array[dimension];
