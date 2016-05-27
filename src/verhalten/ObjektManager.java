@@ -192,8 +192,13 @@ public class ObjektManager {
 			}
 		}
 	}
-	
+
 	public float[] getPosArray() {
-		return null;
+		float[] result = new float[count * 2];
+		for (int i = 0; i < count; i++) {
+			result[2 * i] = (float) objects[i].pos.getX();
+			result[2 * i + 1] = (float) objects[i].pos.getY();
+		}
+		return result;
 	}
 }
