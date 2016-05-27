@@ -56,8 +56,8 @@ public class ObjektManager {
 		count--;
 	}
 
-	public void add(StatischesObjekt obj) {
-		if (!check(obj)) {
+	public void add(StatischesObjekt obj) throws Exception {
+		if (!check(obj, 10)) {
 			StatischesObjekt[] array = new StatischesObjekt[obstacles.length + 1];
 			for (int i = 0; i < obstacles.length; i++) {
 				array[i] = obstacles[i];
@@ -70,6 +70,15 @@ public class ObjektManager {
 	public boolean check(StatischesObjekt obj) {
 		for (int i = 1; i < obstacles.length; i++) {
 			if (obj.pos.isEqual(obstacles[i].pos)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean check(StatischesObjekt obj, double abstand) throws Exception {
+		for (int i = 1; i < obstacles.length; i++) {
+			if (LineareAlgebra.manhattanDistance(obj.pos, obstacles[i].pos) < abstand) {
 				return true;
 			}
 		}
@@ -124,7 +133,7 @@ public class ObjektManager {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
 		for (int i = 0; i < count; i++) {
-			if (LineareAlgebra.sub(obj.pos, objects[i].pos).length() < abstand) {
+			if (LineareAlgebra.sub(obj.pos, objects[i].pos).lengthsquare() < abstand * abstand) {
 				average.add(objects[i].speed);
 				anzahl++;
 			}

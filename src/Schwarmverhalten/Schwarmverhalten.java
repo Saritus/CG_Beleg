@@ -1,7 +1,6 @@
 package Schwarmverhalten;
 
 import math.*;
-import org.lwjgl.input.Mouse;
 
 public class Schwarmverhalten implements Behavior {
 
