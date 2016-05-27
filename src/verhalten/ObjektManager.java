@@ -1,8 +1,23 @@
 package verhalten;
 
-import org.lwjgl.input.Mouse;
-
 import math.*;
+
+import org.lwjgl.BufferUtils;
+import org.lwjgl.glfw.GLFWCursorPosCallback;
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.opengl.GL11;
+
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class ObjektManager {
 	protected BeweglichesObjekt[] objects;
@@ -13,7 +28,7 @@ public class ObjektManager {
 		objects = new BeweglichesObjekt[10];
 		count = 0;
 		obstacles = new StatischesObjekt[1];
-		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
+		obstacles[0] = new HindernisObjekt(0, 0);
 	}
 
 	public void add(BeweglichesObjekt obj) {
@@ -179,13 +194,13 @@ public class ObjektManager {
 
 	}
 
-	public void update() throws Exception {
+	public void update(Vektor2D Mouse) throws Exception {
 		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
-		if (Mouse.isButtonDown(0)) {
+		/*if (Mouse.isButtonDown(0)) {
 			add(obstacles[0]);
 		} else if (Mouse.isButtonDown(1)) {
 			removeAllObstacles();
-		}
+		}*/
 
 		if (count > 0) {
 			for (int i = 0; i < count; i++) {
