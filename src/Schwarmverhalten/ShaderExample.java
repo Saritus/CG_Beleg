@@ -1,38 +1,41 @@
 package Schwarmverhalten;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.LWJGLException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
+import math.Vektor.*;
 import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by Matze on 27.05.16.
  */
-public class Shader2
+
+/*
+* Dieser Shader war nur zu Testzwecken.
+* */
+public class ShaderExample
 {
-    int shaderProgramm = glCreateProgram();
-    int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-    public int getShaderProgrammVar() {
-        return shaderProgramm;
-    }
+    public static void mainexample(String[] args) {
 
-    public int getVertexShader() {
-        return vertexShader;
-    }
+        try {
+            Display.setDisplayMode(new DisplayMode(640, 480));
+            Display.setTitle("Shader");
+            Display.create();
+        }
+        catch (LWJGLException e){
+            e.printStackTrace();
+            Display.destroy();
+        }
 
-    public int getFragmentShader() {
-        return fragmentShader;
-    }
+        int shaderProgramm = glCreateProgram();
+        int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+        int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-
-    public void getShaderProgramm(){
-
-        shaderProgramm = glCreateProgram();
-        vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
         StringBuilder vertexShaderSource = new StringBuilder();
         StringBuilder fragmentShaderSource = new StringBuilder();
@@ -45,11 +48,11 @@ public class Shader2
                 vertexShaderSource.append(line).append("\n");
             }
             reader.close();
+
         }
         catch (IOException e){
             System.err.println("Vertexshader wasnt loaded properly");
             Display.destroy();
-
         }
         // Fragmentshader
         try {
@@ -59,14 +62,12 @@ public class Shader2
                 fragmentShaderSource.append(line).append("\n");
             }
             reader.close();
+
         }
         catch (IOException e){
             System.err.println("Fragmentshader wasnt loaded properly");
             Display.destroy();
-
         }
-
-
         // Lets go
         glShaderSource(vertexShader,vertexShaderSource);
         glCompileShader(vertexShader);
@@ -80,26 +81,44 @@ public class Shader2
         glAttachShader(shaderProgramm,vertexShader);
         glAttachShader(shaderProgramm,fragmentShader);
         glLinkProgram(shaderProgramm);
-
         glValidateProgram(shaderProgramm);
 
 
 
-    }
+        while(!Display.isCloseRequested()){
+            glClear(GL_COLOR_BUFFER_BIT);
 
-    public void useShaderBeforeGL_Begin(){
-        glUseProgram(shaderProgramm);
-    }
-    public void useShaderAfterGL_End(){
-        glUseProgram(shaderProgramm);
-    }
-    public void deleteShader(){
+            glUseProgram(shaderProgramm);
 
-        glDetachShader(shaderProgramm,vertexShader);
-        glDetachShader(shaderProgramm,fragmentShader);
+
+            glBegin(GL_TRIANGLE_FAN);
+            glColor3f(1,0,0);
+            glVertex2f(-0.5f, -0.5f);
+
+            glColor3f(0,1,0);
+            glVertex2f(0.5f,-0.5f);
+
+            glColor3f(0,0,1);
+            glVertex2f(0f,0.5f);
+            glEnd();
+
+            glUseProgram(0);
+
+
+            Display.update();
+            Display.sync(60);
+        }
+
+
+
+
         glDeleteProgram(shaderProgramm);
         glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
+        glDeleteShader(vertexShader);
+
+        Display.destroy();
+        System.exit(0);
     }
+
 
 }
