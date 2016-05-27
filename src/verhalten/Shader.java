@@ -9,9 +9,9 @@ import static org.lwjgl.opengl.GL20.*;
  */
 
 public class Shader {
-	int shaderProgramm = glCreateProgram();
-	int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	private int shaderProgramm = glCreateProgram();
+	private int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	private int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
 	public int getShaderProgrammVar() {
 		return shaderProgramm;
@@ -31,8 +31,8 @@ public class Shader {
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-		String vertexShaderSource = Function.readFromFile("src/Schwarmverhalten/vertex.shader");
-		String fragmentShaderSource = Function.readFromFile("src/Schwarmverhalten/fragment.shader");
+		String vertexShaderSource = Function.readFromFile("src/verhalten/vertex.glsl");
+		String fragmentShaderSource = Function.readFromFile("src/verhalten/fragment.glsl");
 
 		glShaderSource(vertexShader, vertexShaderSource);
 		glCompileShader(vertexShader);
