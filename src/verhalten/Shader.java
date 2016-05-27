@@ -71,10 +71,10 @@ public class Shader {
 	}
 
 	public void setUniformVariables(float[] positions, float[] speed, float[] obstacles) {
-		//int speedLoc = GL20.glGetUniformLocation(shaderProgramm, "speed");
-		//GL20.glUniform2f(speedLoc, (float) Math.abs(speed.getX()), (float) Math.abs(speed.getY()));
+		// int bewLoc = GL20.glGetUniformLocation(shaderProgramm, "bew");
+		// GL20.glUniform2f(bewLoc, (float) speed.getX(), (float) speed.getY());
 		int posLoc = GL20.glGetUniformLocation(shaderProgramm, "positions");
-		//GL20.glUniform2f(speedLoc, (float) Math.abs(speed.getX()), (float) Math.abs(speed.getY()));
+		//glUniform2fv(posLoc, 200, positions);
 	}
 
 }
