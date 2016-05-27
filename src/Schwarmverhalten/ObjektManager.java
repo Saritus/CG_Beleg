@@ -143,11 +143,12 @@ public class ObjektManager {
 
 	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
 		Vektor2D result = new Vektor2D();
+		double diflength;
 		for (int i = 0; i < count; i++) {
 			if (obj.id != objects[i].id) {
 				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
-				if ((dif.lengthsquare() < abstand * abstand)) {
-					result.add(dif.div(dif.lengthsquare()));
+				if (((diflength = dif.lengthsquare()) < abstand * abstand)) {
+					result.add(dif.div(diflength));
 				}
 			}
 		}
@@ -156,10 +157,11 @@ public class ObjektManager {
 
 	public Vektor getObstacleSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
 		Vektor2D result = new Vektor2D();
+		double diflength;
 		for (int i = 0; i < obstacles.length; i++) {
 			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, obstacles[i].pos);
-			if ((dif.lengthsquare() < abstand * abstand)) {
-				result.add(dif.div(dif.lengthsquare()));
+			if (((diflength = dif.lengthsquare()) < abstand * abstand)) {
+				result.add(dif.div(diflength));
 
 			}
 		}

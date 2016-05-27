@@ -27,6 +27,6 @@ public class Schwarmverhalten implements Behavior {
 		obj.speed.add(force.div(obj.masse));
 		obj.speed.truncate(obj.maxSpeed);
 		obj.pos.add(obj.speed);
-		obj.pos.modulo(1024 - 5, 768 - 5);
+		obj.pos.modulo(1024, 768);
 	}
 }
