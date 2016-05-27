@@ -1,6 +1,7 @@
 package verhalten;
 
 import static org.lwjgl.opengl.GL11.*;
+
 import math.Vektor2D;
 
 public class SchwarmObjekt extends BeweglichesObjekt {
@@ -51,7 +52,8 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 
 	@Override
 	public void render(Shader shader) {
-		shader.setUniformVariables(speed);		
+
+		shader.setUniformVariables(speed);
 		glBegin(GL_TRIANGLE_FAN);
 		glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
 		glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);

@@ -70,7 +70,7 @@ public class Shader {
 
 	public void setUniformVariables(Vektor2D speed) {
 		int speedLoc = GL20.glGetUniformLocation(shaderProgramm, "speed");
-		GL20.glUniform2f(speedLoc, (float) speed.getX(), (float) speed.getY());
+		GL20.glUniform2f(speedLoc, (float) Math.abs(speed.getX()), (float) Math.abs(speed.getY()));
 	}
 
 }
