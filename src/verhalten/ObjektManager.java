@@ -201,4 +201,13 @@ public class ObjektManager {
 		}
 		return result;
 	}
+	
+	public float[] getSpeedArray() {
+		float[] result = new float[count * 2];
+		for (int i = 0; i < count; i++) {
+			result[2 * i] = (float) objects[i].speed.getX();
+			result[2 * i + 1] = (float) objects[i].speed.getY();
+		}
+		return result;
+	}
 }
