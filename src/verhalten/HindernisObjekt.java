@@ -27,7 +27,7 @@ public class HindernisObjekt extends StatischesObjekt {
 	}
 
 	@Override
-	public void render() {
+	public void render(Shader shader) {
 		glBegin(GL_LINE_LOOP);
 		glColor3d(1, 1, 1);
 		glVertex2f((float) pos.getX(), (float) pos.getY() - 5);

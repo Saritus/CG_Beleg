@@ -1,8 +1,10 @@
+uniform vec2 speed;
 varying vec3 color;
 
 void main() {
 	gl_Position = ftransform();
-	color.x = gl_Position.x;
-	color.y = gl_Position.y;
+	//color.xy = gl_Position.xy;
+	color.x = speed.x;
+	color.y = speed.y;
 	color.z = 1.;
 }

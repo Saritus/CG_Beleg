@@ -1,8 +1,11 @@
 package verhalten;
 
 import help.Function;
+import math.*;
 
 import static org.lwjgl.opengl.GL20.*;
+
+import org.lwjgl.opengl.GL20;
 
 /**
  * Created by Matze on 27.05.16.
@@ -36,11 +39,11 @@ public class Shader {
 
 		glShaderSource(vertexShader, vertexShaderSource);
 		glCompileShader(vertexShader);
-		System.out.println(glGetShaderInfoLog(vertexShader, 1024));
+		//System.out.println(glGetShaderInfoLog(vertexShader, 1024));
 
 		glShaderSource(fragmentShader, fragmentShaderSource);
 		glCompileShader(fragmentShader);
-		System.out.println(glGetShaderInfoLog(fragmentShader, 1024));
+		//System.out.println(glGetShaderInfoLog(fragmentShader, 1024));
 
 		glAttachShader(shaderProgramm, vertexShader);
 		glAttachShader(shaderProgramm, fragmentShader);
@@ -63,6 +66,11 @@ public class Shader {
 		glDeleteProgram(shaderProgramm);
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
+	}
+
+	public void setUniformVariables(Vektor2D speed) {
+		int speedLoc = GL20.glGetUniformLocation(shaderProgramm, "speed");
+		GL20.glUniform2f(speedLoc, (float) speed.getX(), (float) speed.getY());
 	}
 
 }

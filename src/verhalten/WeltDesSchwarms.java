@@ -37,7 +37,7 @@ public class WeltDesSchwarms extends BasisFenster {
 			shader.getShaderProgramm();
 			shader.useShaderBeforeGL_Begin();
 			om.update();
-			om.render();
+			om.render(shader);
 			shader.useShaderAfterGL_End();
 
 			Display.update();

@@ -168,12 +168,12 @@ public class ObjektManager {
 		return result;
 	}
 
-	public void render() {
+	public void render(Shader shader) {
 		for (int i = 0; i < obstacles.length; i++) {
-			obstacles[i].render();
+			obstacles[i].render(shader);
 		}
 		for (int i = 0; i < count; i++) {
-			objects[i].render();
+			objects[i].render(shader);
 		}
 
 	}

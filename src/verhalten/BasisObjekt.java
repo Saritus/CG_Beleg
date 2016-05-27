@@ -24,5 +24,5 @@ public abstract class BasisObjekt {
 		this(-1, new Vektor2D());
 	}
 
-	public abstract void render();
+	public abstract void render(Shader shader);
 }
