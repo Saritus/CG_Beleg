@@ -30,9 +30,9 @@ public class Shader2
 
     public void getShaderProgramm(){
 
-        int shaderProgramm = glCreateProgram();
-        int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+        shaderProgramm = glCreateProgram();
+        vertexShader = glCreateShader(GL_VERTEX_SHADER);
+        fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
         StringBuilder vertexShaderSource = new StringBuilder();
         StringBuilder fragmentShaderSource = new StringBuilder();
@@ -66,7 +66,7 @@ public class Shader2
 
         }
 
-        System.out.println(vertexShaderSource);
+
         // Lets go
         glShaderSource(vertexShader,vertexShaderSource);
         glCompileShader(vertexShader);
@@ -80,21 +80,26 @@ public class Shader2
         glAttachShader(shaderProgramm,vertexShader);
         glAttachShader(shaderProgramm,fragmentShader);
         glLinkProgram(shaderProgramm);
+
         glValidateProgram(shaderProgramm);
+
 
 
     }
 
     public void useShaderBeforeGL_Begin(){
-        glUseProgram(4);
+        glUseProgram(shaderProgramm);
     }
     public void useShaderAfterGL_End(){
-        glUseProgram(0);
+        glUseProgram(shaderProgramm);
     }
     public void deleteShader(){
+
+        glDetachShader(shaderProgramm,vertexShader);
+        glDetachShader(shaderProgramm,fragmentShader);
         glDeleteProgram(shaderProgramm);
         glDeleteShader(vertexShader);
-        glDeleteShader(vertexShader);
+        glDeleteShader(fragmentShader);
     }
 
 }

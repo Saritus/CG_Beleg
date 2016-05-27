@@ -31,9 +31,6 @@ public class Shader
             e.printStackTrace();
             Display.destroy();
         }
-//
-        Shader2 shader2 = new Shader2();
-//        shader2.getShaderProgramm();
 
         int shaderProgramm = glCreateProgram();
         int vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -90,10 +87,8 @@ public class Shader
 
         while(!Display.isCloseRequested()){
             glClear(GL_COLOR_BUFFER_BIT);
-           shader2.useShaderBeforeGL_Begin();
-            //System.out.println(shader2.getShaderProgrammVar());
-            //System.out.println(shaderProgramm);
-            //glUseProgram(shaderProgramm);
+
+            glUseProgram(shaderProgramm);
 
 
             glBegin(GL_TRIANGLE_FAN);
@@ -116,10 +111,10 @@ public class Shader
 
 
 
-        shader2.deleteShader();
-//        glDeleteProgram(shaderProgramm);
-//        glDeleteShader(vertexShader);
-//        glDeleteShader(vertexShader);
+
+        glDeleteProgram(shaderProgramm);
+        glDeleteShader(vertexShader);
+        glDeleteShader(vertexShader);
 
         Display.destroy();
         System.exit(0);

@@ -23,11 +23,9 @@ public class WeltDesSchwarms extends BasisFenster {
 		}
 	}
 
-
-
-
 	@Override
 	public void renderLoop() throws Exception {
+		Shader2 shader = new Shader2();
 		while (!Display.isCloseRequested()) {
 			glClearColor(0.1f, 0.2f, 0.3f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -39,7 +37,7 @@ public class WeltDesSchwarms extends BasisFenster {
 			glMatrixMode(GL_MODELVIEW);
 			glDisable(GL_DEPTH_TEST);
 
-			Shader2 shader = new Shader2();
+
 			shader.getShaderProgramm();
 			shader.useShaderBeforeGL_Begin();
 			om.update();
