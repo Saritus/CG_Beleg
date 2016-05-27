@@ -39,7 +39,7 @@ public class Shader
 
         // Vertexshader
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/Schwarmverhalten/shader.vert"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/Schwarmverhalten/vert.shader"));
             String line;
             while((line = reader.readLine())!= null){
                 vertexShaderSource.append(line).append("\n");
@@ -53,7 +53,7 @@ public class Shader
         }
         // Fragmentshader
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/Schwarmverhalten/shader.frag"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/Schwarmverhalten/frag.shader"));
             String line;
             while((line = reader.readLine())!= null){
                 fragmentShaderSource.append(line).append("\n");
