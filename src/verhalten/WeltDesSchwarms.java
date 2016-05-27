@@ -35,10 +35,8 @@ public class WeltDesSchwarms extends BasisFenster {
 			glDisable(GL_DEPTH_TEST);
 
 			shader.getShaderProgramm();
-			shader.useShaderBeforeGL_Begin();
 			om.update();
 			om.render(shader);
-			shader.useShaderAfterGL_End();
 
 			Display.update();
 			shader.deleteShader();

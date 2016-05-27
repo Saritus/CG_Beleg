@@ -49,7 +49,7 @@ public class Shader {
 		glAttachShader(shaderProgramm, fragmentShader);
 		glLinkProgram(shaderProgramm);
 		glValidateProgram(shaderProgramm);
-
+		glUseProgram(shaderProgramm);
 	}
 
 	public void useShaderBeforeGL_Begin() {
@@ -57,7 +57,7 @@ public class Shader {
 	}
 
 	public void useShaderAfterGL_End() {
-		glUseProgram(shaderProgramm);
+		glUseProgram(0);
 	}
 
 	public void deleteShader() {

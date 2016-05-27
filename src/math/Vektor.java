@@ -173,5 +173,6 @@ public class Vektor {
 			array[i] %= values[i];
 		}
 		return this;
+
 	}
 }

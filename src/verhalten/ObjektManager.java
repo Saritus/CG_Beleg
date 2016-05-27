@@ -192,4 +192,8 @@ public class ObjektManager {
 			}
 		}
 	}
+	
+	public float[] getPosArray() {
+		return null;
+	}
 }
