@@ -1,4 +1,4 @@
-package Schwarmverhalten;
+package verhalten;
 
 import math.*;
 

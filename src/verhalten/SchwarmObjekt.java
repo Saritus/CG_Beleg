@@ -1,4 +1,4 @@
-package Schwarmverhalten;
+package verhalten;
 
 import static org.lwjgl.opengl.GL11.*;
 import math.Vektor2D;

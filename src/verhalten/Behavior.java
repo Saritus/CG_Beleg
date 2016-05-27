@@ -1,4 +1,4 @@
-package Schwarmverhalten;
+package verhalten;
 
 public interface Behavior {
 
