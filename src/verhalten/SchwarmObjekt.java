@@ -51,9 +51,8 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 	}
 
 	@Override
-	public void render(Shader shader) {
+	public void render() {
 
-		shader.setUniformVariables(speed);
 		glBegin(GL_TRIANGLE_FAN);
 		glColor3f(1,0,0);
 		glVertex2f((float) pos.getX(), (float) pos.getY() - 10);

@@ -13,6 +13,7 @@ public class ObjektManager {
 		objects = new BeweglichesObjekt[10];
 		count = 0;
 		obstacles = new StatischesObjekt[1];
+		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
 	}
 
 	public void add(BeweglichesObjekt obj) {
@@ -168,12 +169,12 @@ public class ObjektManager {
 		return result;
 	}
 
-	public void render(Shader shader) {
+	public void render() {
 		for (int i = 0; i < obstacles.length; i++) {
-			obstacles[i].render(shader);
+			obstacles[i].render();
 		}
 		for (int i = 0; i < count; i++) {
-			objects[i].render(shader);
+			objects[i].render();
 		}
 
 	}

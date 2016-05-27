@@ -7,6 +7,8 @@ import static org.lwjgl.opengl.GL20.*;
 
 import org.lwjgl.opengl.GL20;
 
+import com.sun.corba.se.impl.logging.OMGSystemException;
+
 /**
  * Created by Matze on 27.05.16.
  */
@@ -68,9 +70,11 @@ public class Shader {
 		glDeleteShader(fragmentShader);
 	}
 
-	public void setUniformVariables(Vektor2D speed) {
-		int speedLoc = GL20.glGetUniformLocation(shaderProgramm, "speed");
-		GL20.glUniform2f(speedLoc, (float) Math.abs(speed.getX()), (float) Math.abs(speed.getY()));
+	public void setUniformVariables(float[] positions, float[] speed, float[] obstacles) {
+		//int speedLoc = GL20.glGetUniformLocation(shaderProgramm, "speed");
+		//GL20.glUniform2f(speedLoc, (float) Math.abs(speed.getX()), (float) Math.abs(speed.getY()));
+		int posLoc = GL20.glGetUniformLocation(shaderProgramm, "positions");
+		//GL20.glUniform2f(speedLoc, (float) Math.abs(speed.getX()), (float) Math.abs(speed.getY()));
 	}
 
 }

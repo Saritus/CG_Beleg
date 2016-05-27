@@ -1,3 +1,4 @@
+uniform vec2 positions[100];
 uniform vec2 speed;
 varying vec3 color;
 

@@ -2,6 +2,8 @@ package verhalten;
 
 import math.Vektor2D;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL20;
+
 import static org.lwjgl.opengl.GL11.*;
 
 public class WeltDesSchwarms extends BasisFenster {
@@ -35,8 +37,9 @@ public class WeltDesSchwarms extends BasisFenster {
 			glDisable(GL_DEPTH_TEST);
 
 			shader.getShaderProgramm();
+			shader.setUniformVariables(om.getPosArray(), om.getSpeedArray(), om.getObstacleArray());
 			om.update();
-			om.render(shader);
+			om.render();
 
 			Display.update();
 			shader.deleteShader();
