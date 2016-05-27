@@ -30,7 +30,7 @@ public class WeltDesSchwarms extends BasisFenster {
 
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
-			glOrtho(0, 1024, 768, 0, 0, 1);
+			glOrtho(0, width, height, 0, 0, 1);
 			glMatrixMode(GL_MODELVIEW);
 			glDisable(GL_DEPTH_TEST);
 

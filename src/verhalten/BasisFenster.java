@@ -5,8 +5,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public abstract class BasisFenster {
-	private int width, height;
-	private String title;
+	protected int width, height;
+	protected String title;
 
 	public BasisFenster() {
 		this("BasisFenster", 640, 480);
