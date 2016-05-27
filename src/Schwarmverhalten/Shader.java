@@ -33,8 +33,8 @@ public class Shader {
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-		String vertexShaderSource = readFromFile("src/Schwarmverhalten/vert.shader");
-		String fragmentShaderSource = readFromFile("src/Schwarmverhalten/frag.shader");
+		String vertexShaderSource = readFromFile("src/Schwarmverhalten/vertex.shader");
+		String fragmentShaderSource = readFromFile("src/Schwarmverhalten/fragment.shader");
 
 		// Lets go
 		glShaderSource(vertexShader, vertexShaderSource);
