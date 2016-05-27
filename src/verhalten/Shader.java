@@ -5,9 +5,11 @@ import math.*;
 
 import static org.lwjgl.opengl.GL20.*;
 
-import org.lwjgl.opengl.GL20;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 
-import com.sun.corba.se.impl.logging.OMGSystemException;
+import org.lwjgl.opengl.GL20;
 
 /**
  * Created by Matze on 27.05.16.
@@ -74,7 +76,16 @@ public class Shader {
 		// int bewLoc = GL20.glGetUniformLocation(shaderProgramm, "bew");
 		// GL20.glUniform2f(bewLoc, (float) speed.getX(), (float) speed.getY());
 		int posLoc = GL20.glGetUniformLocation(shaderProgramm, "positions");
-		//glUniform2fv(posLoc, 200, positions);
+		GL20.glUniform2fv(posLoc, toFloatBuffer(positions));
+	}
+
+	public static FloatBuffer toFloatBuffer(float[] v) {
+		ByteBuffer buf = ByteBuffer.allocateDirect(v.length * 4);
+		buf.order(ByteOrder.nativeOrder());
+		FloatBuffer buffer = buf.asFloatBuffer();
+		buffer.put(v);
+		buffer.position(0);
+		return buffer;
 	}
 
 }

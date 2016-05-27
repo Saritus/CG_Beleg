@@ -1,8 +1,7 @@
 package verhalten;
 
 import math.Vektor2D;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL20;
+import org.lwjgl.opengl.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
