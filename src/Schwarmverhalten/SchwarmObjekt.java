@@ -1,6 +1,7 @@
 package Schwarmverhalten;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL20.*;
 
 import math.Vektor2D;
 
@@ -52,6 +53,8 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 
 	@Override
 	public void render() {
+
+
 		glBegin(GL_TRIANGLE_FAN);
 		glColor3d(0, 0, 1);
 		glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
@@ -59,6 +62,7 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 		glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
 		glColor3d(1, 0, 0);
 		glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
+
 		glEnd();
 
 		/*

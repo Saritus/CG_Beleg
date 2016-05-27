@@ -4,6 +4,12 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import static org.lwjgl.opengl.GL20.*;
+
 public abstract class BasisFenster {
 	private int width, height;
 	private String title;
@@ -29,11 +35,15 @@ public abstract class BasisFenster {
 		}
 	}
 
+
+
 	public abstract void renderLoop() throws Exception;
 
 	public void start() throws Exception {
 		initDisplay();
 		renderLoop();
+
+
 		Display.destroy();
 		System.exit(0);
 

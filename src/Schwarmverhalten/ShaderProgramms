@@ -1,0 +1,19 @@
+###################Copy paste for VertexShaderCode
+
+varying vec3 color;
+
+void main() {
+    color = gl_Color.rgb;
+    gl_Position = ftransform();
+}
+
+###################Copy paste for FragmentShaderCode
+
+varying vec3 color;
+
+void main() {
+    gl_FragColor = vec4(color,1);
+}
+
+####################### add more
+

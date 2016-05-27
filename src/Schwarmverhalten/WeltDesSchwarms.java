@@ -2,8 +2,9 @@ package Schwarmverhalten;
 
 import math.Vektor2D;
 import org.lwjgl.opengl.Display;
-
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL20.*;
+
 
 public class WeltDesSchwarms extends BasisFenster {
 	private ObjektManager om;
@@ -22,6 +23,9 @@ public class WeltDesSchwarms extends BasisFenster {
 		}
 	}
 
+
+
+
 	@Override
 	public void renderLoop() throws Exception {
 		while (!Display.isCloseRequested()) {
@@ -35,10 +39,16 @@ public class WeltDesSchwarms extends BasisFenster {
 			glMatrixMode(GL_MODELVIEW);
 			glDisable(GL_DEPTH_TEST);
 
+			Shader2 shader = new Shader2();
+			shader.getShaderProgramm();
+			shader.useShaderBeforeGL_Begin();
 			om.update();
 			om.render();
+			shader.useShaderAfterGL_End();
+
 
 			Display.update();
+			shader.deleteShader();
 		}
 	}
 
