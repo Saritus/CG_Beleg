@@ -39,11 +39,11 @@ public class Shader {
 
 		glShaderSource(vertexShader, vertexShaderSource);
 		glCompileShader(vertexShader);
-		//System.out.println(glGetShaderInfoLog(vertexShader, 1024));
+		System.out.println(glGetShaderInfoLog(vertexShader, 1024));
 
 		glShaderSource(fragmentShader, fragmentShaderSource);
 		glCompileShader(fragmentShader);
-		//System.out.println(glGetShaderInfoLog(fragmentShader, 1024));
+		System.out.println(glGetShaderInfoLog(fragmentShader, 1024));
 
 		glAttachShader(shaderProgramm, vertexShader);
 		glAttachShader(shaderProgramm, fragmentShader);
