@@ -7,6 +7,7 @@ import static org.lwjgl.opengl.GL20.*;
 
 import java.nio.*;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
@@ -74,7 +75,7 @@ public class Shader {
 	}
 
 	public void setUniformVariables(float[] positions, float[] speed, float[] obstacles) {
-		int bewLoc = GL20.glGetUniformLocation(shaderProgramm, "bew");
+		/*int bewLoc = GL20.glGetUniformLocation(shaderProgramm, "bew");
 		System.out.println(bewLoc);
 		GL20.glUniform2f(bewLoc, speed[0], speed[1]);
 
@@ -88,7 +89,21 @@ public class Shader {
 
 		int obstacleLoc = GL20.glGetUniformLocation(shaderProgramm, "obstacles[200]");
 		System.out.println(obstacleLoc);
-		GL20.glUniform2(obstacleLoc, toFloatBuffer(obstacles));
+		GL20.glUniform2(obstacleLoc, toFloatBuffer(obstacles));*/
+		
+		int someIntegers[] = {1,0,1};
+		IntBuffer buffOfIntegers = BufferUtils.createIntBuffer(someIntegers.length);
+	    buffOfIntegers.put(someIntegers);
+	    buffOfIntegers.rewind();
+	    int loc5 = GL20.glGetUniformLocation(shaderProgramm, "anArrayOfInts");
+	    GL20.glUniform1(loc5, buffOfIntegers);
+	    
+	    float someFloats[] = {0.5f, 0.5f, 0.5f};
+	    FloatBuffer bufferOfFloats = BufferUtils.createFloatBuffer(someFloats.length);
+	    bufferOfFloats.put(someFloats);
+	    bufferOfFloats.rewind();
+	    int loc6 = GL20.glGetUniformLocation(shaderProgramm, "anArrayOfFloats");
+	    GL20.glUniform1(loc6, bufferOfFloats);
 	}
 
 	public static FloatBuffer toFloatBuffer(float[] v) {
