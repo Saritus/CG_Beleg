@@ -5,7 +5,10 @@ import math.*;
 
 import static org.lwjgl.opengl.GL20.*;
 
+import java.nio.*;
+
 import org.lwjgl.opengl.GL20;
+import org.lwjgl.opengl.GL30;
 
 import com.sun.corba.se.impl.logging.OMGSystemException;
 
@@ -71,10 +74,30 @@ public class Shader {
 	}
 
 	public void setUniformVariables(float[] positions, float[] speed, float[] obstacles) {
-		// int bewLoc = GL20.glGetUniformLocation(shaderProgramm, "bew");
-		// GL20.glUniform2f(bewLoc, (float) speed.getX(), (float) speed.getY());
-		int posLoc = GL20.glGetUniformLocation(shaderProgramm, "positions");
-		//glUniform2fv(posLoc, 200, positions);
+		int bewLoc = GL20.glGetUniformLocation(shaderProgramm, "bew");
+		System.out.println(bewLoc);
+		GL20.glUniform2f(bewLoc, speed[0], speed[1]);
+
+		int posLoc = GL20.glGetUniformLocation(shaderProgramm, "positions[200]");
+		System.out.println(posLoc);
+		GL20.glUniform2(2, toFloatBuffer(positions));
+
+		int speedLoc = GL20.glGetUniformLocation(shaderProgramm, "speed[200]");
+		System.out.println(speedLoc);
+		GL20.glUniform2(speedLoc, toFloatBuffer(speed));
+
+		int obstacleLoc = GL20.glGetUniformLocation(shaderProgramm, "obstacles[200]");
+		System.out.println(obstacleLoc);
+		GL20.glUniform2(obstacleLoc, toFloatBuffer(obstacles));
+	}
+
+	public static FloatBuffer toFloatBuffer(float[] v) {
+		ByteBuffer buf = ByteBuffer.allocateDirect(v.length * 4);
+		buf.order(ByteOrder.nativeOrder());
+		FloatBuffer buffer = buf.asFloatBuffer();
+		buffer.put(v);
+		buffer.position(0);
+		return buffer;
 	}
 
 }
