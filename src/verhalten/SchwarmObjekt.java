@@ -2,6 +2,8 @@ package verhalten;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import org.lwjgl.opengl.GL20;
+
 import math.Vektor2D;
 
 public class SchwarmObjekt extends BeweglichesObjekt {
@@ -52,7 +54,10 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 
 	@Override
 	public void render() {
-
+		int loc = GL20.glGetUniformLocation(om.shader.getShaderProgrammVar(), "objid");
+		if (loc != -1) {
+			GL20.glUniform1i(loc, this.id);
+		}
 		glBegin(GL_TRIANGLE_FAN);
 		glColor3f(1,0,0);
 		glVertex2f((float) pos.getX(), (float) pos.getY() - 10);

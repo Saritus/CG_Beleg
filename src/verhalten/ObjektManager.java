@@ -8,12 +8,18 @@ public class ObjektManager {
 	protected BeweglichesObjekt[] objects;
 	protected int count;
 	protected StatischesObjekt[] obstacles;
+	
+	public Shader shader;
 
 	ObjektManager() {
 		objects = new BeweglichesObjekt[10];
 		count = 0;
 		obstacles = new StatischesObjekt[1];
 		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
+	}
+	
+	public void setShader(Shader shader) {
+		this.shader = shader;
 	}
 
 	public void add(BeweglichesObjekt obj) {

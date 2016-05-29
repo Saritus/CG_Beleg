@@ -8,6 +8,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class WeltDesSchwarms extends BasisFenster {
 	private ObjektManager om;
+	public Shader shader;
 
 	public WeltDesSchwarms() {
 		super("Welt des Schwarms", 1024, 768);
@@ -25,7 +26,8 @@ public class WeltDesSchwarms extends BasisFenster {
 
 	@Override
 	public void renderLoop() throws Exception {
-		Shader shader = new Shader();
+		shader = new Shader();
+		om.setShader(shader);
 		while (!Display.isCloseRequested()) {
 			glClearColor(0.1f, 0.2f, 0.3f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);

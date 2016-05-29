@@ -75,44 +75,30 @@ public class Shader {
 	}
 
 	public void setUniformVariables(float[] positions, float[] speed, float[] obstacles) {
-		/*int bewLoc = GL20.glGetUniformLocation(shaderProgramm, "bew");
-		System.out.println(bewLoc);
-		GL20.glUniform2f(bewLoc, speed[0], speed[1]);
-
-		int posLoc = GL20.glGetUniformLocation(shaderProgramm, "positions[200]");
-		System.out.println(posLoc);
-		GL20.glUniform2(2, toFloatBuffer(positions));
-
-		int speedLoc = GL20.glGetUniformLocation(shaderProgramm, "speed[200]");
-		System.out.println(speedLoc);
-		GL20.glUniform2(speedLoc, toFloatBuffer(speed));
-
-		int obstacleLoc = GL20.glGetUniformLocation(shaderProgramm, "obstacles[200]");
-		System.out.println(obstacleLoc);
-		GL20.glUniform2(obstacleLoc, toFloatBuffer(obstacles));*/
-		
-		int someIntegers[] = {1,0,1};
-		IntBuffer buffOfIntegers = BufferUtils.createIntBuffer(someIntegers.length);
-	    buffOfIntegers.put(someIntegers);
-	    buffOfIntegers.rewind();
-	    int loc5 = GL20.glGetUniformLocation(shaderProgramm, "anArrayOfInts");
-	    GL20.glUniform1(loc5, buffOfIntegers);
-	    
-	    float someFloats[] = {0.5f, 0.5f, 0.5f};
-	    FloatBuffer bufferOfFloats = BufferUtils.createFloatBuffer(someFloats.length);
-	    bufferOfFloats.put(someFloats);
-	    bufferOfFloats.rewind();
-	    int loc6 = GL20.glGetUniformLocation(shaderProgramm, "anArrayOfFloats");
-	    GL20.glUniform1(loc6, bufferOfFloats);
+		setFloatArray("position", positions);
+		setFloatArray("speed", speed);
 	}
 
-	public static FloatBuffer toFloatBuffer(float[] v) {
-		ByteBuffer buf = ByteBuffer.allocateDirect(v.length * 4);
-		buf.order(ByteOrder.nativeOrder());
-		FloatBuffer buffer = buf.asFloatBuffer();
-		buffer.put(v);
-		buffer.position(0);
-		return buffer;
+	public void setFloatArray(String desc, FloatBuffer buffer) {
+		int id = GL20.glGetUniformLocation(shaderProgramm, desc);
+		if (id != -1) {
+			GL20.glUniform1(id, buffer);
+		}
+	}
+
+	public void setFloatArray(FloatBuffer buffer, String desc) {
+		setFloatArray(desc, buffer);
+	}
+
+	public void setFloatArray(String desc, float[] array) {
+		FloatBuffer buffer = BufferUtils.createFloatBuffer(array.length);
+		buffer.put(array);
+		buffer.rewind();
+		setFloatArray(desc, buffer);
+	}
+
+	public void setFloatArray(float[] array, String desc) {
+		setFloatArray(desc, array);
 	}
 
 }
