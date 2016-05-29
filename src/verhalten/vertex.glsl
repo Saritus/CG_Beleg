@@ -6,7 +6,13 @@ uniform int objid;
 varying vec3 color;
 
 void main() {
-	gl_Position = ftransform();
+	vec2 pos[100];
+	for(int i=0; i<100; i++) {
+		pos[i] = vec2(position[2*i], position[2*i + 1]);
+	}
+	//gl_Position = vec3(position[2*objid], position[2*objid+1],0.0);
+	vec4 vertex = gl_Vertex;
+	gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * vertex;
 	//color.xyz = gl_Position.xyz;
-	color.xyz = vec3(speed[2*objid], speed[2*objid+1], 0);
+	color.xyz = vec3(pos[objid].x, pos[objid].y, float(objid) / 100.);
 }
