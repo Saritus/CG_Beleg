@@ -14,5 +14,13 @@ void main() {
 	vec4 vertex = gl_Vertex;
 	gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * vertex;
 	//color.xyz = gl_Position.xyz;
-	color.xyz = vec3(pos[objid].x, pos[objid].y, float(objid) / 100.);
+	color.xyz = vec3(position[199], pos[objid].y, float(objid) / 100.);
+}
+
+vec2 getAverage(vec2 pos[100]) {
+	vec2 result = vec2(0,0);
+	for(int i=0; i<100; i++) {
+		result += pos[i];
+	}
+	return result;
 }

@@ -11,8 +11,6 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import com.sun.corba.se.impl.logging.OMGSystemException;
-
 /**
  * Created by Matze on 27.05.16.
  */
@@ -99,6 +97,10 @@ public class Shader {
 
 	public void setFloatArray(float[] array, String desc) {
 		setFloatArray(desc, array);
+	}
+	
+	public void getFloatArray() {
+		GL30.glBindFragDataLocation(shaderProgramm, 0, "colorOut");
 	}
 
 }
