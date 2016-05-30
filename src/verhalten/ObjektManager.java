@@ -30,7 +30,6 @@ public class ObjektManager {
 			array[i] = objects[i];
 			array[i].id = i;
 		}
-		obj.om = this;
 		array[count++] = obj;
 		objects = array;
 	}
