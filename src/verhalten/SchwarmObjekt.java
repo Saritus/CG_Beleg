@@ -54,7 +54,7 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 
 	@Override
 	public void render() {
-		int loc = GL20.glGetUniformLocation(om.shader.getShaderProgrammVar(), "objid");
+		int loc = GL20.glGetUniformLocation(Shader.getInstance().getShaderProgrammVar(), "objid");
 		if (loc != -1) {
 			GL20.glUniform1i(loc, this.id);
 		}

@@ -11,14 +11,20 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-/**
- * Created by Matze on 27.05.16.
- */
-
 public class Shader {
+
+	private static Shader instance;
+
 	private int shaderProgramm = glCreateProgram();
 	private int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	private int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+
+	public static Shader getInstance() {
+		if (instance == null)
+			instance = new Shader();
+		return instance;
+
+	}
 
 	public int getShaderProgrammVar() {
 		return shaderProgramm;
@@ -98,7 +104,7 @@ public class Shader {
 	public void setFloatArray(float[] array, String desc) {
 		setFloatArray(desc, array);
 	}
-	
+
 	public void getFloatArray() {
 		GL30.glBindFragDataLocation(shaderProgramm, 0, "colorOut");
 	}
