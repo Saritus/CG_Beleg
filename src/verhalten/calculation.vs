@@ -1,9 +1,14 @@
-uniform float position[200];
-uniform float speed[200];
-uniform float obstacles[200];
+//uniform float position[200];
+//uniform float speed[200];
+//uniform float obstacles[200];
 uniform int objid;
+out float result;
 
 void main() {
+	result = sqrt(float(objid));
+}
+
+void main2() {
 	vec2 pos[100];
 	for(int i=0; i<100; i++) {
 		pos[i] = vec2(position[2*i], position[2*i + 1]);

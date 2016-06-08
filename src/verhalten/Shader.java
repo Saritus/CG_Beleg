@@ -16,6 +16,7 @@ public class Shader {
 	private static Shader instance;
 
 	private int shaderProgramm = glCreateProgram();
+	// private int calculationShader = glCreateShader(GL_VERTEX_SHADER);
 	private int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	private int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
@@ -44,11 +45,18 @@ public class Shader {
 	public void getShaderProgramm() {
 
 		shaderProgramm = glCreateProgram();
+		// calculationShader = glCreateShader(GL_VERTEX_SHADER);
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
+		// String calculationShaderSource =
+		// Function.readFromFile("src/verhalten/calculation.vs");
 		String vertexShaderSource = Function.readFromFile("src/verhalten/anzeige.vs");
 		String fragmentShaderSource = Function.readFromFile("src/verhalten/anzeige.fs");
+
+		// glShaderSource(calculationShader, calculationShaderSource);
+		// glCompileShader(calculationShader);
+		// System.out.println(glGetShaderInfoLog(calculationShader, 1024));
 
 		glShaderSource(vertexShader, vertexShaderSource);
 		glCompileShader(vertexShader);
@@ -58,8 +66,13 @@ public class Shader {
 		glCompileShader(fragmentShader);
 		System.out.println(glGetShaderInfoLog(fragmentShader, 1024));
 
+		// glAttachShader(shaderProgramm, calculationShader);
 		glAttachShader(shaderProgramm, vertexShader);
 		glAttachShader(shaderProgramm, fragmentShader);
+
+		//String feedbackVaryings[] = { "outValue" };
+		//GL30.glTransformFeedbackVaryings(shaderProgramm, feedbackVaryings, GL30.GL_INTERLEAVED_ATTRIBS);
+
 		glLinkProgram(shaderProgramm);
 		glValidateProgram(shaderProgramm);
 		glUseProgram(shaderProgramm);
@@ -74,9 +87,11 @@ public class Shader {
 	}
 
 	public void deleteShader() {
+		// glDetachShader(shaderProgramm, calculationShader);
 		glDetachShader(shaderProgramm, vertexShader);
 		glDetachShader(shaderProgramm, fragmentShader);
 		glDeleteProgram(shaderProgramm);
+		// glDeleteShader(calculationShader);
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
 	}
