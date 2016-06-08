@@ -28,7 +28,7 @@ public class WeltDesSchwarms extends BasisFenster {
 	public void renderLoop() throws Exception {
 		shader = Shader.getInstance();
 		while (!Display.isCloseRequested()) {
-			glClearColor(0.1f, 0.2f, 0.3f, 1);
+			glClearColor(0.9f, 0.9f, 0.9f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			glMatrixMode(GL_PROJECTION);
@@ -38,7 +38,7 @@ public class WeltDesSchwarms extends BasisFenster {
 			glDisable(GL_DEPTH_TEST);
 
 			shader.getShaderProgramm();
-			shader.setUniformVariables(om.getPosArray(), om.getSpeedArray(), om.getObstacleArray());
+			//shader.setUniformVariables(om.getPosArray(), om.getSpeedArray(), om.getObstacleArray());
 			om.update();
 			om.render();
 

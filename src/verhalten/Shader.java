@@ -47,8 +47,8 @@ public class Shader {
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-		String vertexShaderSource = Function.readFromFile("src/verhalten/vertex.glsl");
-		String fragmentShaderSource = Function.readFromFile("src/verhalten/fragment.glsl");
+		String vertexShaderSource = Function.readFromFile("src/verhalten/anzeige.vs");
+		String fragmentShaderSource = Function.readFromFile("src/verhalten/anzeige.fs");
 
 		glShaderSource(vertexShader, vertexShaderSource);
 		glCompileShader(vertexShader);
