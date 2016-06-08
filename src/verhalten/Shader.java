@@ -19,6 +19,9 @@ public class Shader {
 	private int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	private int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
+	private Shader() {
+	}
+
 	public static Shader getInstance() {
 		if (instance == null)
 			instance = new Shader();
