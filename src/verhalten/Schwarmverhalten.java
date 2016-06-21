@@ -18,13 +18,12 @@ public class Schwarmverhalten implements Behavior {
 	@Override
 	public void update() throws Exception {
 		om.calculateDistance((SchwarmObjekt) obj);
-		Vektor2D alignment = (Vektor2D) om.getAlignment(obj, 200);
-		Vektor2D cohesion = (Vektor2D) om.getCohesion(obj, 200);
-		Vektor2D separation = (Vektor2D) om.getSeparation(obj, 30);
-		Vektor2D obstacles = (Vektor2D) om.getObstacleSeparation(obj, 50);
+		Vektor2D alignment = (Vektor2D) om.getAlignment(obj, 200).mult(alignment_value);
+		Vektor2D cohesion = (Vektor2D) om.getCohesion(obj, 200).mult(cohesion_value);
+		Vektor2D separation = (Vektor2D) om.getSeparation(obj, 30).mult(separation_value);
+		Vektor2D obstacles = (Vektor2D) om.getObstacleSeparation(obj, 50).mult(obstacles_value);
 
-		Vektor2D force = (Vektor2D) LineareAlgebra.add(alignment.mult(alignment_value), cohesion.mult(cohesion_value),
-				separation.mult(separation_value), obstacles.mult(obstacles_value));
+		Vektor2D force = (Vektor2D) LineareAlgebra.add(alignment, cohesion, separation, obstacles);
 
 		obj.speed.add(force.div(obj.masse));
 		obj.speed.truncate(obj.maxSpeed);

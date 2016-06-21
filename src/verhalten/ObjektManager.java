@@ -120,7 +120,7 @@ public class ObjektManager {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
 		for (int i = 0; i < count; i++) {
-			if (LineareAlgebra.sub(obj.pos, objects[i].pos).length() < abstand) {
+			if (obj.abstand[i] < abstand) {
 				average.add(objects[i].pos);
 				anzahl++;
 			}
@@ -230,7 +230,7 @@ public class ObjektManager {
 		obj.abstand = new double[count];
 		for (int i = 0; i < count; i++) {
 			try {
-				obj.abstand[i] = LineareAlgebra.euklDistance(obj.pos, objects[i].pos);
+				obj.abstand[i] = LineareAlgebra.manhattanDistance(obj.pos, objects[i].pos);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
