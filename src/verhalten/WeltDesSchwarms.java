@@ -2,30 +2,33 @@ package verhalten;
 
 import math.Vektor2D;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL20;
+
 import static org.lwjgl.opengl.GL11.*;
 
 public class WeltDesSchwarms extends BasisFenster {
 	private ObjektManager om;
+	public Shader shader;
 
 	public WeltDesSchwarms() {
 		super("Welt des Schwarms", 1024, 768);
-		om = new ObjektManager();
+		om = ObjektManager.getInstance();
 		init();
 	}
 
 	private void init() {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				new SchwarmObjekt(new Vektor2D(50 * i, 50 * j), new Vektor2D(), 10000, 0.25 * Math.random() + 0.25, om);
+				new SchwarmObjekt(new Vektor2D(50 * i, 50 * j), new Vektor2D(), 20000, 0.25 * Math.random() + 0.25);
 			}
 		}
 	}
 
 	@Override
 	public void renderLoop() throws Exception {
-		Shader shader = new Shader();
+		shader = Shader.getInstance();
 		while (!Display.isCloseRequested()) {
-			glClearColor(0.1f, 0.2f, 0.3f, 1);
+			glClearColor(0.9f, 0.9f, 0.9f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			glMatrixMode(GL_PROJECTION);
@@ -34,9 +37,9 @@ public class WeltDesSchwarms extends BasisFenster {
 			glMatrixMode(GL_MODELVIEW);
 			glDisable(GL_DEPTH_TEST);
 
-			shader.getShaderProgramm();
+			shader.createShaderProgramm();
 			om.update();
-			om.render(shader);
+			om.render();
 
 			Display.update();
 			shader.deleteShader();

@@ -9,10 +9,19 @@ public class ObjektManager {
 	protected int count;
 	protected StatischesObjekt[] obstacles;
 
-	ObjektManager() {
+	private static ObjektManager instance;
+
+	private ObjektManager() {
 		objects = new BeweglichesObjekt[10];
 		count = 0;
 		obstacles = new StatischesObjekt[1];
+		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
+	}
+
+	public static ObjektManager getInstance() {
+		if (instance == null)
+			instance = new ObjektManager();
+		return instance;
 	}
 
 	public void add(BeweglichesObjekt obj) {
@@ -21,7 +30,6 @@ public class ObjektManager {
 			array[i] = objects[i];
 			array[i].id = i;
 		}
-		obj.om = this;
 		array[count++] = obj;
 		objects = array;
 	}
@@ -133,7 +141,7 @@ public class ObjektManager {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
 		for (int i = 0; i < count; i++) {
-			if (LineareAlgebra.sub(obj.pos, objects[i].pos).lengthsquare() < abstand * abstand) {
+			if (obj.abstand[i] < abstand) {
 				average.add(objects[i].speed);
 				anzahl++;
 			}
@@ -143,12 +151,11 @@ public class ObjektManager {
 
 	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
 		Vektor2D result = new Vektor2D();
-		double diflength;
 		for (int i = 0; i < count; i++) {
 			if (obj.id != objects[i].id) {
 				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
-				if (((diflength = dif.lengthsquare()) < abstand * abstand)) {
-					result.add(dif.div(diflength));
+				if ((obj.abstand[i] < abstand) && (obj.abstand[i] > 0)) {
+					result.add(dif.div(obj.abstand[i] * obj.abstand[i]));
 				}
 			}
 		}
@@ -160,20 +167,19 @@ public class ObjektManager {
 		double diflength;
 		for (int i = 0; i < obstacles.length; i++) {
 			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, obstacles[i].pos);
-			if (((diflength = dif.lengthsquare()) < abstand * abstand)) {
+			if (((diflength = dif.lengthsquare()) < abstand * abstand) && (diflength > 0)) {
 				result.add(dif.div(diflength));
-
 			}
 		}
 		return result;
 	}
 
-	public void render(Shader shader) {
+	public void render() {
 		for (int i = 0; i < obstacles.length; i++) {
-			obstacles[i].render(shader);
+			obstacles[i].render();
 		}
 		for (int i = 0; i < count; i++) {
-			objects[i].render(shader);
+			objects[i].render();
 		}
 
 	}
@@ -192,8 +198,42 @@ public class ObjektManager {
 			}
 		}
 	}
-	
+
 	public float[] getPosArray() {
-		return null;
+		float[] result = new float[count * 2];
+		for (int i = 0; i < count; i++) {
+			result[2 * i] = (float) objects[i].pos.getX();
+			result[2 * i + 1] = (float) objects[i].pos.getY();
+		}
+		return result;
+	}
+
+	public float[] getSpeedArray() {
+		float[] result = new float[count * 2];
+		for (int i = 0; i < count; i++) {
+			result[2 * i] = (float) objects[i].speed.getX();
+			result[2 * i + 1] = (float) objects[i].speed.getY();
+		}
+		return result;
+	}
+
+	public float[] getObstacleArray() {
+		float[] result = new float[obstacles.length * 2];
+		for (int i = 0; i < obstacles.length; i++) {
+			result[2 * i] = (float) obstacles[i].pos.getX();
+			result[2 * i + 1] = (float) obstacles[i].pos.getY();
+		}
+		return result;
+	}
+
+	public void calculateDistance(SchwarmObjekt obj) {
+		obj.abstand = new double[count];
+		for (int i = 0; i < count; i++) {
+			try {
+				obj.abstand[i] = LineareAlgebra.euklDistance(obj.pos, objects[i].pos);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
