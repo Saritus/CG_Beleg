@@ -36,9 +36,18 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 	public void render() {
 		glBegin(GL_TRIANGLE_FAN);
 		glColor3f(1, (float) (this.maxSpeed - this.speed.length()), (float) (this.maxSpeed - this.speed.length()));
-		glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
-		glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
-		glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
+		// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
+		
+
+		try {
+			glVertex2f((float) (pos.getX() + 10f * speed.normalize().getElem(0)),
+					(float) (pos.getY() + 10f * speed.normalize().getElem(1)));
+			glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
+			glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		glEnd();
 	}
 }

@@ -154,7 +154,7 @@ public class ObjektManager {
 		for (int i = 0; i < count; i++) {
 			if (obj.id != objects[i].id) {
 				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
-				if (obj.abstand[i] < abstand) {
+				if ((obj.abstand[i] < abstand) && (obj.abstand[i] > 0)) {
 					result.add(dif.div(obj.abstand[i] * obj.abstand[i]));
 				}
 			}
@@ -167,7 +167,7 @@ public class ObjektManager {
 		double diflength;
 		for (int i = 0; i < obstacles.length; i++) {
 			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, obstacles[i].pos);
-			if (((diflength = dif.lengthsquare()) < abstand * abstand)) {
+			if (((diflength = dif.lengthsquare()) < abstand * abstand) && (diflength > 0)) {
 				result.add(dif.div(diflength));
 			}
 		}
