@@ -34,22 +34,13 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 
 	@Override
 	public void render() {
-		int loc = GL20.glGetUniformLocation(Shader.getInstance().getShaderProgrammVar(), "objid");
-		if (loc != -1) {
-			GL20.glUniform1i(loc, this.id);
-		}
 		glBegin(GL_TRIANGLE_FAN);
-		glColor3f(1, 0, 0);
+
+		glColor3f(1, (float) (this.maxSpeed - this.speed.length()), (float) (this.maxSpeed - this.speed.length()));
 		glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
 		glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
 		glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
 
 		glEnd();
-
-		/*
-		 * Speed glBegin(GL_LINE_STRIP); glColor3d(1, 1, 1);
-		 * glVertex2d(pos.getX(), pos.getY()); glVertex2d(pos.getX() +
-		 * speed.getX() * 20, pos.getY() + speed.getY() * 20); glEnd();
-		 */
 	}
 }

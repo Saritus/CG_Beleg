@@ -16,7 +16,6 @@ public class Shader {
 	private static Shader instance;
 
 	private int shaderProgramm = glCreateProgram();
-	// private int calculationShader = glCreateShader(GL_VERTEX_SHADER);
 	private int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	private int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
@@ -30,7 +29,7 @@ public class Shader {
 
 	}
 
-	public int getShaderProgrammVar() {
+	public int getShaderProgramm() {
 		return shaderProgramm;
 	}
 
@@ -42,21 +41,14 @@ public class Shader {
 		return fragmentShader;
 	}
 
-	public void getShaderProgramm() {
+	public void createShaderProgramm() {
 
 		shaderProgramm = glCreateProgram();
-		// calculationShader = glCreateShader(GL_VERTEX_SHADER);
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-		// String calculationShaderSource =
-		// Function.readFromFile("src/verhalten/calculation.vs");
-		String vertexShaderSource = Function.readFromFile("src/verhalten/anzeige.vs");
-		String fragmentShaderSource = Function.readFromFile("src/verhalten/anzeige.fs");
-
-		// glShaderSource(calculationShader, calculationShaderSource);
-		// glCompileShader(calculationShader);
-		// System.out.println(glGetShaderInfoLog(calculationShader, 1024));
+		String vertexShaderSource = Function.readFromFile("src/verhalten/anzeige.vshader");
+		String fragmentShaderSource = Function.readFromFile("src/verhalten/anzeige.fshader");
 
 		glShaderSource(vertexShader, vertexShaderSource);
 		glCompileShader(vertexShader);
@@ -66,12 +58,8 @@ public class Shader {
 		glCompileShader(fragmentShader);
 		System.out.println(glGetShaderInfoLog(fragmentShader, 1024));
 
-		// glAttachShader(shaderProgramm, calculationShader);
 		glAttachShader(shaderProgramm, vertexShader);
 		glAttachShader(shaderProgramm, fragmentShader);
-
-		//String feedbackVaryings[] = { "outValue" };
-		//GL30.glTransformFeedbackVaryings(shaderProgramm, feedbackVaryings, GL30.GL_INTERLEAVED_ATTRIBS);
 
 		glLinkProgram(shaderProgramm);
 		glValidateProgram(shaderProgramm);
@@ -87,44 +75,10 @@ public class Shader {
 	}
 
 	public void deleteShader() {
-		// glDetachShader(shaderProgramm, calculationShader);
 		glDetachShader(shaderProgramm, vertexShader);
 		glDetachShader(shaderProgramm, fragmentShader);
 		glDeleteProgram(shaderProgramm);
-		// glDeleteShader(calculationShader);
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
 	}
-
-	public void setUniformVariables(float[] positions, float[] speed, float[] obstacles) {
-		setFloatArray("position", positions);
-		setFloatArray("speed", speed);
-	}
-
-	public void setFloatArray(String desc, FloatBuffer buffer) {
-		int id = GL20.glGetUniformLocation(shaderProgramm, desc);
-		if (id != -1) {
-			GL20.glUniform1(id, buffer);
-		}
-	}
-
-	public void setFloatArray(FloatBuffer buffer, String desc) {
-		setFloatArray(desc, buffer);
-	}
-
-	public void setFloatArray(String desc, float[] array) {
-		FloatBuffer buffer = BufferUtils.createFloatBuffer(array.length);
-		buffer.put(array);
-		buffer.rewind();
-		setFloatArray(desc, buffer);
-	}
-
-	public void setFloatArray(float[] array, String desc) {
-		setFloatArray(desc, array);
-	}
-
-	public void getFloatArray() {
-		GL30.glBindFragDataLocation(shaderProgramm, 0, "colorOut");
-	}
-
 }
