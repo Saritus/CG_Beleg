@@ -180,4 +180,12 @@ public abstract class LineareAlgebra {
 	public static Vektor truncate(double maxLength, Vektor vec) throws Exception {
 		return truncate(vec, maxLength);
 	}
+
+	public static Vektor turn(Vektor vec, double angle) {
+		return vec.clone().turn(angle);
+	}
+
+	public static Vektor turn(double angle, Vektor vec) {
+		return turn(vec, angle);
+	}
 }

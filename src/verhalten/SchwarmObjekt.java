@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.opengl.GL20;
 
+import math.LineareAlgebra;
 import math.Vektor2D;
 
 public class SchwarmObjekt extends BeweglichesObjekt {
@@ -37,13 +38,20 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 		glBegin(GL_TRIANGLE_FAN);
 		glColor3f(1, (float) (this.maxSpeed - this.speed.length()), (float) (this.maxSpeed - this.speed.length()));
 		// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
-		
-
+		Vektor2D front;
 		try {
-			glVertex2f((float) (pos.getX() + 10f * speed.normalize().getElem(0)),
-					(float) (pos.getY() + 10f * speed.normalize().getElem(1)));
-			glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
-			glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
+			front = (Vektor2D) LineareAlgebra.normalize(speed).mult(15);
+		} catch (Exception e) {
+			front = null;
+			e.printStackTrace();
+		}
+		try {
+			glVertex2f((float) (pos.getX() + front.getX()), (float) (pos.getY() + front.getY()));
+			front.div(2);
+			glVertex2f((float) (pos.getX() + LineareAlgebra.turn(front, 2 * Math.PI / 3).getElem(0)),
+					(float) (pos.getY() + LineareAlgebra.turn(front, 2 * Math.PI / 3).getElem(1)));
+			glVertex2f((float) (pos.getX() + LineareAlgebra.turn(front, -2 * Math.PI / 3).getElem(0)),
+					(float) (pos.getY() + LineareAlgebra.turn(front, -2 * Math.PI / 3).getElem(1)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
