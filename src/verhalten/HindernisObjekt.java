@@ -1,7 +1,6 @@
 package verhalten;
 
 import static org.lwjgl.opengl.GL11.*;
-
 import math.Vektor2D;
 
 public class HindernisObjekt extends StatischesObjekt {
@@ -29,7 +28,7 @@ public class HindernisObjekt extends StatischesObjekt {
 	@Override
 	public void render() {
 		glBegin(GL_LINE_LOOP);
-		glColor3d(1, 1, 1);
+		glColor3d(0, 0, 0);
 		glVertex2f((float) pos.getX(), (float) pos.getY() - 5);
 		glVertex2f((float) pos.getX() + 5, (float) pos.getY() + 5);
 		glVertex2f((float) pos.getX() - 5, (float) pos.getY() + 5);

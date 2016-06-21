@@ -141,7 +141,7 @@ public class ObjektManager {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
 		for (int i = 0; i < count; i++) {
-			if (LineareAlgebra.sub(obj.pos, objects[i].pos).lengthsquare() < abstand * abstand) {
+			if (obj.abstand[i] < abstand) {
 				average.add(objects[i].speed);
 				anzahl++;
 			}
@@ -151,12 +151,11 @@ public class ObjektManager {
 
 	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
 		Vektor2D result = new Vektor2D();
-		double diflength;
 		for (int i = 0; i < count; i++) {
 			if (obj.id != objects[i].id) {
 				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
-				if (((diflength = dif.lengthsquare()) < abstand * abstand)) {
-					result.add(dif.div(diflength));
+				if (obj.abstand[i] < abstand) {
+					result.add(dif.div(obj.abstand[i] * obj.abstand[i]));
 				}
 			}
 		}
@@ -170,7 +169,6 @@ public class ObjektManager {
 			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, obstacles[i].pos);
 			if (((diflength = dif.lengthsquare()) < abstand * abstand)) {
 				result.add(dif.div(diflength));
-
 			}
 		}
 		return result;
@@ -226,5 +224,16 @@ public class ObjektManager {
 			result[2 * i + 1] = (float) obstacles[i].pos.getY();
 		}
 		return result;
+	}
+
+	public void calculateDistance(SchwarmObjekt obj) {
+		obj.abstand = new double[count];
+		for (int i = 0; i < count; i++) {
+			try {
+				obj.abstand[i] = LineareAlgebra.euklDistance(obj.pos, objects[i].pos);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -8,6 +8,7 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 	public double masse;
 	public double maxSpeed;
 	Behavior behavior;
+	public double[] abstand;
 
 	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed,
 			Behavior behavior) {
