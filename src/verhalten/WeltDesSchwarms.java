@@ -2,8 +2,6 @@ package verhalten;
 
 import math.Vektor2D;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL20;
-
 import static org.lwjgl.opengl.GL11.*;
 
 public class WeltDesSchwarms extends BasisFenster {

@@ -1,15 +1,7 @@
 package verhalten;
 
 import help.Function;
-import math.*;
-
 import static org.lwjgl.opengl.GL20.*;
-
-import java.nio.*;
-
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
 
 public class Shader {
 

@@ -1,9 +1,6 @@
 package verhalten;
 
 import static org.lwjgl.opengl.GL11.*;
-
-import org.lwjgl.opengl.GL20;
-
 import math.LineareAlgebra;
 import math.Vektor2D;
 
