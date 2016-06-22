@@ -5,6 +5,7 @@ import math.*;
 
 public class ObjektManager {
 	protected BeweglichesObjekt[] objects;
+	protected BeweglichesObjekt[] alphas;
 	protected int count;
 	protected StatischesObjekt[] obstacles;
 
@@ -13,6 +14,7 @@ public class ObjektManager {
 	private ObjektManager() {
 		objects = new BeweglichesObjekt[10];
 		count = 0;
+		alphas = new BeweglichesObjekt[0];
 		obstacles = new StatischesObjekt[1];
 		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
 	}
@@ -23,7 +25,7 @@ public class ObjektManager {
 		return instance;
 	}
 
-	public void add(BeweglichesObjekt obj) {
+	public void add(SchwarmObjekt obj) {
 		BeweglichesObjekt[] array = new BeweglichesObjekt[count + 1];
 		for (int i = 0; i < count; i++) {
 			array[i] = objects[i];
@@ -31,6 +33,17 @@ public class ObjektManager {
 		}
 		array[count++] = obj;
 		objects = array;
+	}
+
+	public void add(AlphaObjekt obj) {
+		int count = alphas.length;
+		BeweglichesObjekt[] array = new BeweglichesObjekt[count + 1];
+		for (int i = 0; i < count; i++) {
+			array[i] = alphas[i];
+			array[i].id = i;
+		}
+		array[count++] = obj;
+		alphas = array;
 	}
 
 	public boolean check(BeweglichesObjekt obj) {
@@ -173,9 +186,22 @@ public class ObjektManager {
 		return result;
 	}
 
+	public Vektor getAlphaCohesion(BeweglichesObjekt obj, double abstand) throws Exception {
+		Vektor2D result = new Vektor2D();
+		for (int i = 0; i < alphas.length; i++) {
+			if (LineareAlgebra.manhattanDistance(obj.pos, alphas[i].pos) < abstand) {
+				result.add(LineareAlgebra.sub(alphas[i].pos, obj.pos));
+			}
+		}
+		return result;
+	}
+
 	public void render() {
 		for (int i = 0; i < obstacles.length; i++) {
 			obstacles[i].render();
+		}
+		for (int i = 0; i < alphas.length; i++) {
+			alphas[i].render();
 		}
 		for (int i = 0; i < count; i++) {
 			objects[i].render();
@@ -194,6 +220,9 @@ public class ObjektManager {
 		if (count > 0) {
 			for (int i = 0; i < count; i++) {
 				objects[i].behavior.update();
+			}
+			for (int i = 0; i < alphas.length; i++) {
+				alphas[i].behavior.update();
 			}
 		}
 	}

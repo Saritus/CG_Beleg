@@ -54,7 +54,7 @@ public class AlphaObjekt extends BeweglichesObjekt {
 		// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
 		Vektor2D front;
 		try {
-			front = (Vektor2D) LineareAlgebra.normalize(speed).mult(30);
+			front = (Vektor2D) LineareAlgebra.normalize(speed).mult(25);
 		} catch (Exception e) {
 			front = null;
 			e.printStackTrace();
