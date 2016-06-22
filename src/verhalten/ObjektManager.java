@@ -64,7 +64,7 @@ public class ObjektManager {
 	}
 
 	public void add(StatischesObjekt obj) throws Exception {
-		if (!check(obj, 10)) {
+		if (!check(obj, 15)) {
 			StatischesObjekt[] array = new StatischesObjekt[obstacles.length + 1];
 			for (int i = 0; i < obstacles.length; i++) {
 				array[i] = obstacles[i];
