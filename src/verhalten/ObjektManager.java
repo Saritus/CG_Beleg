@@ -5,7 +5,7 @@ import math.*;
 
 public class ObjektManager {
 	protected BeweglichesObjekt[] objects;
-	protected BeweglichesObjekt[] alphas;
+	protected AlphaObjekt[] alphas;
 	protected int count;
 	protected StatischesObjekt[] obstacles;
 
@@ -14,7 +14,7 @@ public class ObjektManager {
 	private ObjektManager() {
 		objects = new BeweglichesObjekt[10];
 		count = 0;
-		alphas = new BeweglichesObjekt[0];
+		alphas = new AlphaObjekt[0];
 		obstacles = new StatischesObjekt[1];
 		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
 	}
@@ -37,7 +37,7 @@ public class ObjektManager {
 
 	public void add(AlphaObjekt obj) {
 		int count = alphas.length;
-		BeweglichesObjekt[] array = new BeweglichesObjekt[count + 1];
+		AlphaObjekt[] array = new AlphaObjekt[count + 1];
 		for (int i = 0; i < count; i++) {
 			array[i] = alphas[i];
 			array[i].id = i;
@@ -117,6 +117,10 @@ public class ObjektManager {
 
 	public int getCount() {
 		return count;
+	}
+
+	public AlphaObjekt[] getAlphas() {
+		return alphas;
 	}
 
 	public Vektor2D getAveragePosition() throws Exception {

@@ -29,7 +29,7 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 		behavior = new Schwarmverhalten(this);
 	}
 
-	public Vektor3D getColor(double abstand) {
+	public Vektor3D getSchwarmColor(double abstand) {
 		float anz = 0;
 		for (int i = 0; i < this.abstand.length; i++) {
 			if (this.abstand[i] < abstand) {
@@ -44,12 +44,30 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 		}
 	}
 
+	public Vektor3D getAlphaColor(double abstand) throws Exception {
+		AlphaObjekt[] alphas = ObjektManager.getInstance().getAlphas();
+		Vektor3D color = new Vektor3D();
+		for (int i = 0; i < alphas.length; i++) {
+			if (LineareAlgebra.manhattanDistance(pos, alphas[i].pos) < abstand) {
+				color.add(alphas[i].getColor());
+			}
+		}
+		return color;
+	}
+
 	@Override
 	public void render() {
 		glBegin(GL_TRIANGLE_FAN);
 		// glColor3f(1, 1f - (float) (this.speed.length() / this.maxSpeed),1f -
 		// (float) (this.speed.length() / this.maxSpeed));
-		Vektor3D color = getColor(200);
+		Vektor3D color;
+		try {
+			color = getAlphaColor(200);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			color = new Vektor3D();
+		}
 		glColor3f((float) color.getX(), (float) color.getY(), (float) color.getZ());
 		// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
 		Vektor2D front;
