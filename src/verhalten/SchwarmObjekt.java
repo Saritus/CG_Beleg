@@ -29,7 +29,7 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 		behavior = new Schwarmverhalten(this);
 	}
 
-	public Vektor3D getSchwarmColor(double abstand) {
+	public Vektor3D setSchwarmColor(double abstand) {
 		float anz = 0;
 		for (int i = 0; i < this.abstand.length; i++) {
 			if (this.abstand[i] < abstand) {
@@ -38,59 +38,54 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 		}
 		float anteil = anz / this.abstand.length;
 		if (anteil > 0.5) {
-			return new Vektor3D(2 * anteil - 1, 2 - 2 * anteil, 0);
+			return color = new Vektor3D(2 * anteil - 1, 2 - 2 * anteil, 0);
 		} else {
-			return new Vektor3D(0, 2 * anteil, 1 - 2 * anteil);
+			return color = new Vektor3D(0, 2 * anteil, 1 - 2 * anteil);
 		}
 	}
 
-	public Vektor3D getAlphaColor(double abstand) throws Exception {
+	public Vektor3D setAlphaColor(double abstand) throws Exception {
 		AlphaObjekt[] alphas = ObjektManager.getInstance().getAlphas();
-		Vektor3D color = new Vektor3D();
+
 		for (int i = 0; i < alphas.length; i++) {
 			if (LineareAlgebra.manhattanDistance(pos, alphas[i].pos) < abstand) {
 				color.add(alphas[i].getColor());
 			}
 		}
+
+		for (int i = 0; i < this.abstand.length; i++) {
+			if (this.abstand[i] < abstand) {
+				color.add(ObjektManager.getInstance().getObjects()[i].getColor());
+			}
+		}
+
+		if (!color.isNullVector()) {
+			color.normalize();
+		}
+
 		return color;
 	}
 
 	@Override
 	public void render() {
-		glBegin(GL_TRIANGLE_FAN);
-		// glColor3f(1, 1f - (float) (this.speed.length() / this.maxSpeed),1f -
-		// (float) (this.speed.length() / this.maxSpeed));
-		Vektor3D color;
-		try {
-			color = getAlphaColor(200);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			color = new Vektor3D();
-		}
-		glColor3f((float) color.getX(), (float) color.getY(), (float) color.getZ());
-		// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
 		Vektor2D front;
+		Vektor2D right;
+		Vektor2D left;
 		try {
+			setAlphaColor(200);
 			front = (Vektor2D) LineareAlgebra.normalize(speed).mult(15);
+			right = (Vektor2D) LineareAlgebra.turn(front, 2 * Math.PI / 3).div(2);
+			left = (Vektor2D) LineareAlgebra.turn(front, -2 * Math.PI / 3).div(2);
 		} catch (Exception e) {
-			front = null;
-			e.printStackTrace();
-		}
-		try {
-			glVertex2f((float) (pos.getX() + front.getX()), (float) (pos.getY() + front.getY()));
-			front.div(2);
-			glVertex2f((float) (pos.getX() + LineareAlgebra.turn(front, 2 * Math.PI / 3).getElem(0)),
-					(float) (pos.getY() + LineareAlgebra.turn(front, 2 * Math.PI / 3).getElem(1)));
-			glVertex2f((float) (pos.getX() + LineareAlgebra.turn(front, -2 * Math.PI / 3).getElem(0)),
-					(float) (pos.getY() + LineareAlgebra.turn(front, -2 * Math.PI / 3).getElem(1)));
-			// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
-			// glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
-			// glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
-		} catch (Exception e) {
+			front = right = left = new Vektor2D();
 			e.printStackTrace();
 		}
 
+		glBegin(GL_TRIANGLE_FAN);
+		glColor3f((float) color.getX(), (float) color.getY(), (float) color.getZ());
+		glVertex2f((float) (pos.getX() + front.getX()), (float) (pos.getY() + front.getY()));
+		glVertex2f((float) (pos.getX() + right.getX()), (float) (pos.getY() + right.getY()));
+		glVertex2f((float) (pos.getX() + left.getX()), (float) (pos.getY() + left.getY()));
 		glEnd();
 	}
 }

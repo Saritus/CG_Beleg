@@ -28,7 +28,7 @@ public class HindernisObjekt extends StatischesObjekt {
 	@Override
 	public void render() {
 		glBegin(GL_POLYGON);
-		glColor3d(0.3, 0.3, 0.3);
+		glColor3d(0., 0., 0.);
 		glVertex2f((float) pos.getX() + 2.5f, (float) pos.getY() + 6.0355f);
 		glVertex2f((float) pos.getX() + 6.0355f, (float) pos.getY() + 2.5f);
 		glVertex2f((float) pos.getX() + 6.0355f, (float) pos.getY() - 2.5f);

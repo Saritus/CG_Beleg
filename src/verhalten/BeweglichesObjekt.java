@@ -1,6 +1,6 @@
 package verhalten;
 
-import math.Vektor2D;
+import math.*;
 
 public abstract class BeweglichesObjekt extends BasisObjekt {
 
@@ -9,6 +9,7 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 	public double maxSpeed;
 	Behavior behavior;
 	public double[] abstand;
+	public Vektor3D color = new Vektor3D();
 
 	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed,
 			Behavior behavior) {
@@ -45,6 +46,10 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 
 	protected BeweglichesObjekt(Vektor2D pos, Vektor2D speed, double masse) {
 		this(-1, pos, speed, masse, Double.MAX_VALUE, null);
+	}
+
+	public Vektor3D getColor() {
+		return color;
 	}
 
 }

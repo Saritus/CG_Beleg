@@ -204,13 +204,12 @@ public class ObjektManager {
 		for (int i = 0; i < obstacles.length; i++) {
 			obstacles[i].render();
 		}
-		for (int i = 0; i < alphas.length; i++) {
-			alphas[i].render();
-		}
 		for (int i = 0; i < count; i++) {
 			objects[i].render();
 		}
-
+		for (int i = 0; i < alphas.length; i++) {
+			alphas[i].render();
+		}
 	}
 
 	public void update() throws Exception {

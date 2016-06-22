@@ -5,8 +5,6 @@ import math.*;
 
 public class AlphaObjekt extends BeweglichesObjekt {
 
-	Vektor3D color;
-
 	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, Vektor3D color) {
 		this(id, pos, speed, masse, maxSpeed);
 		this.color = color;
@@ -71,10 +69,6 @@ public class AlphaObjekt extends BeweglichesObjekt {
 		color = new Vektor3D(0, 0, 0);
 	}
 
-	public Vektor3D getColor() {
-		return color;
-	}
-
 	public static Vektor3D getColorFromChar(char color) {
 		Vektor3D result;
 		switch (color) {
@@ -96,33 +90,31 @@ public class AlphaObjekt extends BeweglichesObjekt {
 
 	@Override
 	public void render() {
-		glBegin(GL_TRIANGLE_FAN);
-		// glColor3f(1, 1f - (float) (this.speed.length() / this.maxSpeed),1f -
-		// (float) (this.speed.length() / this.maxSpeed));
-		// Vektor3D color = getColor(200);
-		glColor3f((float) color.getX(), (float) color.getY(), (float) color.getZ());
-		// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
+
 		Vektor2D front;
+		Vektor2D right;
+		Vektor2D left;
 		try {
 			front = (Vektor2D) LineareAlgebra.normalize(speed).mult(25);
+			right = (Vektor2D) LineareAlgebra.turn(front, 2 * Math.PI / 3).div(2);
+			left = (Vektor2D) LineareAlgebra.turn(front, -2 * Math.PI / 3).div(2);
 		} catch (Exception e) {
-			front = null;
-			e.printStackTrace();
-		}
-		try {
-			glVertex2f((float) (pos.getX() + front.getX()), (float) (pos.getY() + front.getY()));
-			front.div(2);
-			glVertex2f((float) (pos.getX() + LineareAlgebra.turn(front, 2 * Math.PI / 3).getElem(0)),
-					(float) (pos.getY() + LineareAlgebra.turn(front, 2 * Math.PI / 3).getElem(1)));
-			glVertex2f((float) (pos.getX() + LineareAlgebra.turn(front, -2 * Math.PI / 3).getElem(0)),
-					(float) (pos.getY() + LineareAlgebra.turn(front, -2 * Math.PI / 3).getElem(1)));
-			// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
-			// glVertex2f((float) pos.getX() - 10, (float) pos.getY() + 10);
-			// glVertex2f((float) pos.getX() + 10, (float) pos.getY() + 10);
-		} catch (Exception e) {
+			front = right = left = new Vektor2D();
 			e.printStackTrace();
 		}
 
+		glBegin(GL_TRIANGLE_FAN);
+		glColor3f((float) color.getX(), (float) color.getY(), (float) color.getZ());
+		glVertex2f((float) (pos.getX() + front.getX()), (float) (pos.getY() + front.getY()));
+		glVertex2f((float) (pos.getX() + right.getX()), (float) (pos.getY() + right.getY()));
+		glVertex2f((float) (pos.getX() + left.getX()), (float) (pos.getY() + left.getY()));
+		glEnd();
+
+		glBegin(GL_LINE_LOOP);
+		glColor3f(0, 0, 0);
+		glVertex2f((float) (pos.getX() + front.getX()), (float) (pos.getY() + front.getY()));
+		glVertex2f((float) (pos.getX() + right.getX()), (float) (pos.getY() + right.getY()));
+		glVertex2f((float) (pos.getX() + left.getX()), (float) (pos.getY() + left.getY()));
 		glEnd();
 	}
 }
