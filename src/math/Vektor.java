@@ -5,7 +5,6 @@ import help.*;
 public class Vektor {
 	protected double[] array;
 	protected int dimension;
-	protected double length;
 
 	@SuppressWarnings("unused")
 	private Vektor() {
@@ -51,7 +50,6 @@ public class Vektor {
 		} else {
 			throw new Exception("Array does not have the right length");
 		}
-		this.length = clength();
 	}
 
 	public boolean isNullVector() {
@@ -101,14 +99,6 @@ public class Vektor {
 
 	public boolean isNotEqual(Vektor vec) {
 		return !isEqual(vec);
-	}
-
-	public double clength() {
-		return length;
-	}
-
-	public double clengthsquare() {
-		return length * length;
 	}
 
 	public double length() {

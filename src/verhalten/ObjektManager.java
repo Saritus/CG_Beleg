@@ -1,7 +1,6 @@
 package verhalten;
 
 import org.lwjgl.input.Mouse;
-
 import math.*;
 
 public class ObjektManager {
@@ -226,7 +225,7 @@ public class ObjektManager {
 		return result;
 	}
 
-	public void calculateDistance(SchwarmObjekt obj) {
+	public void calculateDistances(SchwarmObjekt obj) {
 		obj.abstand = new double[count];
 		for (int i = 0; i < count; i++) {
 			try {

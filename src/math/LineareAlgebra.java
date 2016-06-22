@@ -181,6 +181,10 @@ public abstract class LineareAlgebra {
 		return truncate(vec, maxLength);
 	}
 
+	public static Vektor modulo(Vektor vec, double... values) throws Exception {
+		return (vec.clone()).modulo(values);
+	}
+
 	public static Vektor turn(Vektor vec, double angle) {
 		return vec.clone().turn(angle);
 	}
