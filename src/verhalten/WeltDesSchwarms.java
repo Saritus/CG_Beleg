@@ -20,6 +20,7 @@ public class WeltDesSchwarms extends BasisFenster {
 				new SchwarmObjekt(new Vektor2D(50 * i, 50 * j), new Vektor2D(), 20000, 0.25 * Math.random() + 0.25);
 			}
 		}
+		new AlphaObjekt(new Vektor2D(700, 700), new Vektor2D(1, 1), 20000, 0.25 * Math.random() + 0.25);
 	}
 
 	@Override

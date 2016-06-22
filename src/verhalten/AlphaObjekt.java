@@ -3,27 +3,27 @@ package verhalten;
 import static org.lwjgl.opengl.GL11.*;
 import math.*;
 
-public class SchwarmObjekt extends BeweglichesObjekt {
+public class AlphaObjekt extends BeweglichesObjekt {
 
-	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
+	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
 		super(id, pos, speed, masse, maxSpeed);
 		ObjektManager.getInstance().add(this);
 		behavior = new Schwarmverhalten(this);
 	}
 
-	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse) {
+	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse) {
 		super(id, pos, speed, masse);
 		ObjektManager.getInstance().add(this);
 		behavior = new Schwarmverhalten(this);
 	}
 
-	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
+	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
 		super(pos, speed, masse, maxSpeed);
 		ObjektManager.getInstance().add(this);
-		behavior = new Schwarmverhalten(this);
+		behavior = new Alphaverhalten(this);
 	}
 
-	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse) {
+	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse) {
 		super(pos, speed, masse);
 		ObjektManager.getInstance().add(this);
 		behavior = new Schwarmverhalten(this);
@@ -49,12 +49,12 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 		glBegin(GL_TRIANGLE_FAN);
 		// glColor3f(1, 1f - (float) (this.speed.length() / this.maxSpeed),1f -
 		// (float) (this.speed.length() / this.maxSpeed));
-		Vektor3D color = getColor(200);
-		glColor3f((float) color.getX(), (float) color.getY(), (float) color.getZ());
+		// Vektor3D color = getColor(200);
+		glColor3f(0, 0, 0);
 		// glVertex2f((float) pos.getX(), (float) pos.getY() - 10);
 		Vektor2D front;
 		try {
-			front = (Vektor2D) LineareAlgebra.normalize(speed).mult(15);
+			front = (Vektor2D) LineareAlgebra.normalize(speed).mult(30);
 		} catch (Exception e) {
 			front = null;
 			e.printStackTrace();

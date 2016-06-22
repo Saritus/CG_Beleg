@@ -225,7 +225,7 @@ public class ObjektManager {
 		return result;
 	}
 
-	public void calculateDistances(SchwarmObjekt obj) {
+	public void calculateDistances(BeweglichesObjekt obj) {
 		obj.abstand = new double[count];
 		for (int i = 0; i < count; i++) {
 			try {
