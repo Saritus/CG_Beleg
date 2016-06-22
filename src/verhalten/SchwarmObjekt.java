@@ -41,15 +41,12 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 				anz++;
 			}
 		}
-		float prozent = anz / this.abstand.length;
-		if (prozent > 0.75) {
-			return new Vektor3D(1 - 4 * (1 - prozent), 4 * (1 - prozent), 0);
-		} else if (prozent > 0.25) {
-			return new Vektor3D(0, 2 * (prozent - 0.25), 1 - (2 * (prozent - 0.25)));
+		float anteil = anz / this.abstand.length;
+		if (anteil > 0.5) {
+			return new Vektor3D(2 * anteil - 1, 2 - 2 * anteil, 0);
 		} else {
-			return new Vektor3D(0, 0, 4 * prozent);
+			return new Vektor3D(0, 2 * anteil, 1 - 2 * anteil);
 		}
-		// return (float) Math.sqrt(anz / this.abstand.length);
 	}
 
 	@Override

@@ -106,11 +106,11 @@ public class Vektor {
 	}
 
 	public double lengthsquare() {
-		double length = 0;
+		double lengthsquare = 0;
 		for (int i = 0; i < dimension; i++) {
-			length += array[i] * array[i];
+			lengthsquare += array[i] * array[i];
 		}
-		return length;
+		return lengthsquare;
 	}
 
 	public Vektor normalize() throws Exception {
