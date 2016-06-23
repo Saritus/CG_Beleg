@@ -44,14 +44,14 @@ public class AlphaObjekt extends BeweglichesObjekt {
 	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
 		super(id, pos, speed, masse, maxSpeed);
 		ObjektManager.getInstance().add(this);
-		behavior = new Schwarmverhalten(this);
+		behavior = new Alphaverhalten(this);
 		color = new Vektor3D(0, 0, 0);
 	}
 
 	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse) {
 		super(id, pos, speed, masse);
 		ObjektManager.getInstance().add(this);
-		behavior = new Schwarmverhalten(this);
+		behavior = new Alphaverhalten(this);
 		color = new Vektor3D(0, 0, 0);
 	}
 
@@ -65,7 +65,7 @@ public class AlphaObjekt extends BeweglichesObjekt {
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse) {
 		super(pos, speed, masse);
 		ObjektManager.getInstance().add(this);
-		behavior = new Schwarmverhalten(this);
+		behavior = new Alphaverhalten(this);
 		color = new Vektor3D(0, 0, 0);
 	}
 

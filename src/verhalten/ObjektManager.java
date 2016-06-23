@@ -256,15 +256,4 @@ public class ObjektManager {
 		}
 		return result;
 	}
-
-	public void calculateDistances(BeweglichesObjekt obj) {
-		obj.abstand = new double[count];
-		for (int i = 0; i < count; i++) {
-			try {
-				obj.abstand[i] = LineareAlgebra.manhattanDistance(obj.pos, objects[i].pos);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
 }
