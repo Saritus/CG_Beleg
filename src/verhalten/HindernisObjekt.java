@@ -2,6 +2,7 @@ package verhalten;
 
 import static org.lwjgl.opengl.GL11.*;
 import math.Vektor2D;
+import math.Vektor3D;
 
 public class HindernisObjekt extends StatischesObjekt {
 
@@ -9,34 +10,43 @@ public class HindernisObjekt extends StatischesObjekt {
 		super();
 	}
 
+	public HindernisObjekt(int id, Vektor2D pos, Vektor3D color) {
+		super(id, pos, color);
+	}
+
 	public HindernisObjekt(int id, Vektor2D pos) {
 		super(id, pos);
+	}
+
+	public HindernisObjekt(int id, Vektor3D color) {
+		super(id, color);
 	}
 
 	public HindernisObjekt(int id) {
 		super(id);
 	}
 
+	public HindernisObjekt(Vektor2D pos, Vektor3D color) {
+		super(pos, color);
+	}
+
 	public HindernisObjekt(Vektor2D pos) {
 		super(pos);
 	}
 
-	public HindernisObjekt(double x, double y) {
+	public HindernisObjekt(int x, int y) {
 		super(new Vektor2D(x, y));
+	}
+
+	public HindernisObjekt(Vektor3D color) {
+		super(color);
 	}
 
 	@Override
 	public void render() {
 		glBegin(GL_POLYGON);
-		glColor3d(0., 0., 0.);
-		glVertex2f((float) pos.getX() + 2.5f, (float) pos.getY() + 6.0355f);
-		glVertex2f((float) pos.getX() + 6.0355f, (float) pos.getY() + 2.5f);
-		glVertex2f((float) pos.getX() + 6.0355f, (float) pos.getY() - 2.5f);
-		glVertex2f((float) pos.getX() + 2.5f, (float) pos.getY() - 6.0355f);
-		glVertex2f((float) pos.getX() - 2.5f, (float) pos.getY() - 6.0355f);
-		glVertex2f((float) pos.getX() - 6.0355f, (float) pos.getY() - 2.5f);
-		glVertex2f((float) pos.getX() - 6.0355f, (float) pos.getY() + 2.5f);
-		glVertex2f((float) pos.getX() - 2.5f, (float) pos.getY() + 6.0355f);
+		glColor3d(0, 0, 0);
+		drawStaticTriangle();
 		glEnd();
 	}
 }

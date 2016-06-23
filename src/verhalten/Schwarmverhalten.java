@@ -6,6 +6,12 @@ public class Schwarmverhalten implements Behavior {
 
 	public BeweglichesObjekt obj;
 
+	private static double alignment_value = 225.5;
+	private static double cohesion_value = 1.;
+	private static double separation_value = 2000.;
+	private static double obstacles_value = 10000;
+	private static double alpha_value = 2.;
+
 	Schwarmverhalten(BeweglichesObjekt obj) {
 		this.obj = obj;
 	}
@@ -21,9 +27,6 @@ public class Schwarmverhalten implements Behavior {
 
 		Vektor2D force = (Vektor2D) LineareAlgebra.add(alignment, cohesion, separation, obstacles, alpha);
 
-		obj.speed.add(force.div(obj.masse));
-		obj.speed.truncate(obj.maxSpeed);
-		obj.pos.add(obj.speed);
-		obj.pos.modulo(1024, 768);
+		obj.eulerMethod(force);
 	}
 }

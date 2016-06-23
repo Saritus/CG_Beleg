@@ -38,7 +38,7 @@ public class WeltDesSchwarms extends BasisFenster {
 			glMatrixMode(GL_MODELVIEW);
 			glDisable(GL_DEPTH_TEST);
 
-			shader.createShaderProgramm();
+			shader.createShaderProgram();
 			om.update();
 			om.render();
 

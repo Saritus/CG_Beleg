@@ -1,23 +1,40 @@
 package verhalten;
 
 import math.Vektor2D;
+import math.Vektor3D;
 
 public abstract class StatischesObjekt extends BasisObjekt {
 
-	public StatischesObjekt() {
+	protected StatischesObjekt() {
 		super();
 	}
 
-	public StatischesObjekt(int id, Vektor2D pos) {
+	protected StatischesObjekt(int id, Vektor2D pos, Vektor3D color) {
+		super(id, pos, color);
+	}
+
+	protected StatischesObjekt(int id, Vektor2D pos) {
 		super(id, pos);
 	}
 
-	public StatischesObjekt(int id) {
+	protected StatischesObjekt(int id, Vektor3D color) {
+		super(id, color);
+	}
+
+	protected StatischesObjekt(int id) {
 		super(id);
 	}
 
-	public StatischesObjekt(Vektor2D pos) {
+	protected StatischesObjekt(Vektor2D pos, Vektor3D color) {
+		super(pos, color);
+	}
+
+	protected StatischesObjekt(Vektor2D pos) {
 		super(pos);
+	}
+
+	protected StatischesObjekt(Vektor3D color) {
+		super(color);
 	}
 
 }

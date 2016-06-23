@@ -220,13 +220,13 @@ public class ObjektManager {
 			removeAllObstacles();
 		}
 
-		if (count > 0) {
-			for (int i = 0; i < count; i++) {
-				objects[i].behavior.update();
-			}
-			for (int i = 0; i < alphas.length; i++) {
-				alphas[i].behavior.update();
-			}
+		for (int i = 0; i < count; i++) {
+			objects[i].calculateDistances();
+			objects[i].behavior.update();
+		}
+		for (int i = 0; i < alphas.length; i++) {
+			alphas[i].calculateDistances();
+			alphas[i].behavior.update();
 		}
 	}
 

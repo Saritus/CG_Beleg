@@ -8,7 +8,7 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 	protected double masse;
 	protected double maxSpeed;
 	protected Behavior behavior;
-	public double abstand[];
+	protected double abstand[];
 
 	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor3D color, Vektor2D speed, double masse, double maxSpeed) {
 		super(id, pos, color);
@@ -122,6 +122,13 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void eulerMethod(Vektor2D force) throws Exception {
+		speed.add(force.div(masse));
+		speed.truncate(maxSpeed);
+		pos.add(speed);
+		pos.modulo(1024, 768);
 	}
 
 }

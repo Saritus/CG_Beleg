@@ -33,29 +33,25 @@ public class Shader {
 		return fragmentShader;
 	}
 
-	public void createShaderProgramm() {
+	public void createShaderProgram() {
 
 		shaderProgramm = glCreateProgram();
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-		String vertexShaderSource = Function.readFromFile("src/verhalten/anzeige.vshader");
-		String fragmentShaderSource = Function.readFromFile("src/verhalten/anzeige.fshader");
-
-		glShaderSource(vertexShader, vertexShaderSource);
-		glCompileShader(vertexShader);
-		System.out.println(glGetShaderInfoLog(vertexShader, 1024));
-
-		glShaderSource(fragmentShader, fragmentShaderSource);
-		glCompileShader(fragmentShader);
-		System.out.println(glGetShaderInfoLog(fragmentShader, 1024));
-
-		glAttachShader(shaderProgramm, vertexShader);
-		glAttachShader(shaderProgramm, fragmentShader);
-
+		
+		attachShader("src/verhalten/anzeige.vshader", vertexShader);
+		attachShader("src/verhalten/anzeige.fshader", fragmentShader);
+		
 		glLinkProgram(shaderProgramm);
 		glValidateProgram(shaderProgramm);
 		glUseProgram(shaderProgramm);
+	}
+
+	private void attachShader(String path, int shader) {
+		glShaderSource(shader, Function.readFromFile(path));
+		glCompileShader(shader);
+		System.err.println(glGetShaderInfoLog(shader, 1024));
+		glAttachShader(shaderProgramm, shader);
 	}
 
 	public void useShaderBeforeGL_Begin() {

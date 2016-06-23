@@ -1,5 +1,7 @@
 package verhalten;
 
+import static org.lwjgl.opengl.GL11.glVertex2f;
+
 import math.Vektor2D;
 import math.Vektor3D;
 
@@ -68,4 +70,21 @@ public abstract class BasisObjekt {
 	}
 
 	public abstract void render();
+	
+	protected void drawOctagon() {
+		glVertex2f((float) pos.getX() + 2.5f, (float) pos.getY() + 6.0355f);
+		glVertex2f((float) pos.getX() + 6.0355f, (float) pos.getY() + 2.5f);
+		glVertex2f((float) pos.getX() + 6.0355f, (float) pos.getY() - 2.5f);
+		glVertex2f((float) pos.getX() + 2.5f, (float) pos.getY() - 6.0355f);
+		glVertex2f((float) pos.getX() - 2.5f, (float) pos.getY() - 6.0355f);
+		glVertex2f((float) pos.getX() - 6.0355f, (float) pos.getY() - 2.5f);
+		glVertex2f((float) pos.getX() - 6.0355f, (float) pos.getY() + 2.5f);
+		glVertex2f((float) pos.getX() - 2.5f, (float) pos.getY() + 6.0355f);
+	}
+
+	protected void drawStaticTriangle() {
+		glVertex2f((float) pos.getX(), (float) pos.getY() - 5f);
+		glVertex2f((float) pos.getX() + 5f, (float) pos.getY() + 5f);
+		glVertex2f((float) pos.getX() - 5f, (float) pos.getY() + 5f);
+	}
 }
