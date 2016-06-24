@@ -1,8 +1,9 @@
 package math;
 
-import help.*;
-
 public abstract class LineareAlgebra {
+
+	private LineareAlgebra() {
+	}
 
 	public static Vektor add(Vektor v1, Vektor v2) throws Exception {
 		return (v1.clone()).add(v2);

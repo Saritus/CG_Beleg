@@ -4,7 +4,8 @@ import math.*;
 
 public class Schwarmverhalten implements Behavior {
 
-	public BeweglichesObjekt obj;
+	private BeweglichesObjekt obj;
+	protected static ObjektManager om = ObjektManager.getInstance();
 
 	private static final double alignment_value = 225.5;
 	private static final double cohesion_value = 1.;

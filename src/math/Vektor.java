@@ -1,10 +1,8 @@
 package math;
 
-import help.*;
-
 public class Vektor {
 	protected double[] array;
-	protected int dimension;
+	private int dimension;
 
 	@SuppressWarnings("unused")
 	private Vektor() {

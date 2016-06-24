@@ -4,7 +4,8 @@ import math.*;
 
 public class Alphaverhalten implements Behavior {
 
-	public BeweglichesObjekt obj;
+	private BeweglichesObjekt obj;
+	protected static ObjektManager om = ObjektManager.getInstance();
 
 	private static final double separation_value = 500.;
 	private static final double obstacles_value = 10000;

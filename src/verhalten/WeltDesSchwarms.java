@@ -6,7 +6,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class WeltDesSchwarms extends BasisFenster {
 	private ObjektManager om;
-	public Shader shader;
+	private Shader shader;
 
 	public WeltDesSchwarms() {
 		super("Welt des Schwarms", 1024, 768);

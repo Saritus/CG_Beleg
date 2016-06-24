@@ -1,7 +1,8 @@
 package verhalten;
 
-import help.Function;
 import static org.lwjgl.opengl.GL20.*;
+
+import math.Function;
 
 public class Shader {
 

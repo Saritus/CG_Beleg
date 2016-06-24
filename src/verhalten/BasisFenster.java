@@ -8,11 +8,11 @@ public abstract class BasisFenster {
 	protected int width, height;
 	protected String title;
 
-	public BasisFenster() {
+	protected BasisFenster() {
 		this("BasisFenster", 640, 480);
 	}
 
-	public BasisFenster(String title, int width, int height) {
+	protected BasisFenster(String title, int width, int height) {
 		this.setWidth(width);
 		this.setHeight(height);
 		this.title = title;
