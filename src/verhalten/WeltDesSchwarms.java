@@ -5,7 +5,6 @@ import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
 
 public final class WeltDesSchwarms extends BasisFenster {
-	private Shader shader;
 
 	public WeltDesSchwarms() {
 		super("Welt des Schwarms", 1024, 768);
@@ -27,14 +26,13 @@ public final class WeltDesSchwarms extends BasisFenster {
 
 	@Override
 	public void renderLoop() {
-		shader = Shader.getInstance();
 		while (!Display.isCloseRequested()) {
 			clearDisplay();
-			shader.createShaderProgram();
+			Shader.getInstance().createShaderProgram();
 			ObjektManager.getInstance().update();
 			ObjektManager.getInstance().render();
 			Display.update();
-			shader.deleteShader();
+			Shader.getInstance().deleteShader();
 		}
 	}
 
