@@ -4,20 +4,20 @@ import org.lwjgl.input.Mouse;
 import math.*;
 
 public class ObjektManager {
+
 	protected BeweglichesObjekt[] objects;
 	protected AlphaObjekt[] alphas;
-	protected int count;
 	protected StatischesObjekt[] obstacles;
-
 	private static ObjektManager instance;
 
 	private ObjektManager() {
-		objects = new BeweglichesObjekt[10];
-		count = 0;
+		objects = new BeweglichesObjekt[0];
 		alphas = new AlphaObjekt[0];
 		obstacles = new StatischesObjekt[1];
 		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
 	}
+
+	// Getter
 
 	public static ObjektManager getInstance() {
 		if (instance == null)
@@ -25,55 +25,62 @@ public class ObjektManager {
 		return instance;
 	}
 
+	public BeweglichesObjekt[] getObjects() {
+		return objects;
+	}
+
+	public BeweglichesObjekt getObject(int id) {
+		return objects[id];
+	}
+
+	public int getObjectCount() {
+		return objects.length;
+	}
+
+	public AlphaObjekt[] getAlphas() {
+		return alphas;
+	}
+
+	public AlphaObjekt getAlpha(int id) {
+		return alphas[id];
+	}
+
+	public int getAlphaCount() {
+		return alphas.length;
+	}
+
+	public StatischesObjekt[] getObstacles() {
+		return obstacles;
+	}
+
+	public StatischesObjekt getObstacle(int id) {
+		return obstacles[id];
+	}
+
+	public int getObstacleCount() {
+		return obstacles.length;
+	}
+
+	// Setter
+
 	public void add(SchwarmObjekt obj) {
-		BeweglichesObjekt[] array = new BeweglichesObjekt[count + 1];
-		for (int i = 0; i < count; i++) {
+		BeweglichesObjekt[] array = new BeweglichesObjekt[objects.length + 1];
+		for (int i = 0; i < objects.length; i++) {
 			array[i] = objects[i];
 			array[i].id = i;
 		}
-		array[count++] = obj;
+		array[objects.length] = obj;
 		objects = array;
 	}
 
 	public void add(AlphaObjekt obj) {
-		int count = alphas.length;
-		AlphaObjekt[] array = new AlphaObjekt[count + 1];
-		for (int i = 0; i < count; i++) {
+		AlphaObjekt[] array = new AlphaObjekt[alphas.length + 1];
+		for (int i = 0; i < alphas.length; i++) {
 			array[i] = alphas[i];
 			array[i].id = i;
 		}
-		array[count++] = obj;
+		array[alphas.length] = obj;
 		alphas = array;
-	}
-
-	public boolean check(BeweglichesObjekt obj) {
-		if ((obj.id < 0) || (obj.id >= objects.length))
-			return false;
-		else if (obj.pos.isEqual(objects[obj.id].pos))
-			return true;
-		else
-			return false;
-	}
-
-	public void remove(BeweglichesObjekt obj) {
-		remove(obj.id);
-	}
-
-	public void remove(int id) {
-		if ((id < 0) || (id >= count)) {
-			return;
-		}
-		BeweglichesObjekt[] array = new BeweglichesObjekt[count - 1];
-		for (int i = 0; i < id; i++) {
-			array[i] = objects[i];
-			array[i].id = i;
-		}
-		for (int i = id; i < count; i++) {
-			array[i] = objects[i + 1];
-			array[i].id = i;
-		}
-		objects = array;
-		count--;
 	}
 
 	public void add(StatischesObjekt obj) {
@@ -85,6 +92,15 @@ public class ObjektManager {
 			array[obstacles.length] = obj;
 			obstacles = array;
 		}
+	}
+
+	public boolean check(BeweglichesObjekt obj) {
+		if ((obj.id < 0) || (obj.id >= objects.length))
+			return false;
+		else if (obj.pos.isEqual(objects[obj.id].pos))
+			return true;
+		else
+			return false;
 	}
 
 	public boolean check(StatischesObjekt obj) {
@@ -105,37 +121,38 @@ public class ObjektManager {
 		return false;
 	}
 
+	public void remove(int id) {
+		if ((id < 0) || (id >= objects.length)) {
+			return;
+		}
+		BeweglichesObjekt[] array = new BeweglichesObjekt[objects.length - 1];
+		for (int i = 0; i < id; i++) {
+			array[i] = objects[i];
+			array[i].id = i;
+		}
+		for (int i = id; i < objects.length; i++) {
+			array[i] = objects[i + 1];
+			array[i].id = i;
+		}
+		objects = array;
+	}
+
+	public void remove(BeweglichesObjekt obj) {
+		remove(obj.id);
+	}
+
 	public void removeAllObstacles() {
 		StatischesObjekt mouse = obstacles[0];
 		obstacles = new StatischesObjekt[1];
 		obstacles[0] = mouse;
 	}
 
-	public BeweglichesObjekt[] getObjects() {
-		return objects;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public AlphaObjekt[] getAlphas() {
-		return alphas;
-	}
-
-	public Vektor2D getAveragePosition() {
-		Vektor2D avgpos = new Vektor2D();
-		for (int i = 0; i < this.count; i++) {
-			avgpos.add(this.objects[i].pos);
-		}
-		avgpos.div(count);
-		return avgpos;
-	}
+	// Erweiterte Getter
 
 	public Vektor getCohesion(BeweglichesObjekt obj, double abstand) {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < objects.length; i++) {
 			if (obj.abstand[i] < abstand) {
 				average.add(objects[i].pos);
 				anzahl++;
@@ -144,19 +161,10 @@ public class ObjektManager {
 		return average.div(anzahl).sub(obj.pos);
 	}
 
-	public Vektor getAverageSpeed() {
-		Vektor2D avgspeed = new Vektor2D();
-		for (int i = 0; i < this.count; i++) {
-			avgspeed.add(this.objects[i].speed);
-		}
-		avgspeed.div(count);
-		return avgspeed;
-	}
-
 	public Vektor getAlignment(BeweglichesObjekt obj, double abstand) {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < objects.length; i++) {
 			if (obj.abstand[i] < abstand) {
 				average.add(objects[i].speed);
 				anzahl++;
@@ -167,7 +175,7 @@ public class ObjektManager {
 
 	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) {
 		Vektor2D result = new Vektor2D();
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < objects.length; i++) {
 			if (obj.id != objects[i].id) {
 				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
 				if ((obj.abstand[i] < abstand) && (obj.abstand[i] > 0)) {
@@ -204,7 +212,7 @@ public class ObjektManager {
 		for (int i = 0; i < obstacles.length; i++) {
 			obstacles[i].render();
 		}
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < objects.length; i++) {
 			objects[i].render();
 		}
 		for (int i = 0; i < alphas.length; i++) {
@@ -220,7 +228,7 @@ public class ObjektManager {
 			removeAllObstacles();
 		}
 
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < objects.length; i++) {
 			objects[i].calculateDistances();
 			objects[i].behavior.update();
 		}
@@ -228,32 +236,5 @@ public class ObjektManager {
 			alphas[i].calculateDistances();
 			alphas[i].behavior.update();
 		}
-	}
-
-	public float[] getPosArray() {
-		float[] result = new float[count * 2];
-		for (int i = 0; i < count; i++) {
-			result[2 * i] = (float) objects[i].pos.getX();
-			result[2 * i + 1] = (float) objects[i].pos.getY();
-		}
-		return result;
-	}
-
-	public float[] getSpeedArray() {
-		float[] result = new float[count * 2];
-		for (int i = 0; i < count; i++) {
-			result[2 * i] = (float) objects[i].speed.getX();
-			result[2 * i + 1] = (float) objects[i].speed.getY();
-		}
-		return result;
-	}
-
-	public float[] getObstacleArray() {
-		float[] result = new float[obstacles.length * 2];
-		for (int i = 0; i < obstacles.length; i++) {
-			result[2 * i] = (float) obstacles[i].pos.getX();
-			result[2 * i + 1] = (float) obstacles[i].pos.getY();
-		}
-		return result;
 	}
 }

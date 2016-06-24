@@ -24,9 +24,7 @@ public final class Schwarmverhalten extends Verhalten implements Behavior {
 		Vektor2D separation = (Vektor2D) om.getSeparation(obj, 30).mult(separation_value);
 		Vektor2D obstacles = (Vektor2D) om.getObstacleSeparation(obj, 50).mult(obstacles_value);
 		Vektor2D alpha = (Vektor2D) om.getAlphaCohesion(obj, 300).mult(alpha_value);
-
 		Vektor2D force = (Vektor2D) LineareAlgebra.add(alignment, cohesion, separation, obstacles, alpha);
-
 		obj.eulerMethod(force);
 	}
 }
