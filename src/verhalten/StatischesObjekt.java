@@ -5,10 +5,6 @@ import math.Vektor3D;
 
 public abstract class StatischesObjekt extends BasisObjekt {
 
-	protected StatischesObjekt() {
-		super();
-	}
-
 	protected StatischesObjekt(Vektor2D pos, Vektor3D color) {
 		super(pos, color);
 	}
@@ -17,8 +13,15 @@ public abstract class StatischesObjekt extends BasisObjekt {
 		super(pos);
 	}
 
+	protected StatischesObjekt(int x, int y) {
+		super(new Vektor2D(x, y));
+	}
+
 	protected StatischesObjekt(Vektor3D color) {
 		super(color);
 	}
 
+	protected StatischesObjekt() {
+		super();
+	}
 }

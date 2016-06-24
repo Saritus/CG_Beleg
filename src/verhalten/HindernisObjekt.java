@@ -6,10 +6,6 @@ import math.Vektor3D;
 
 public final class HindernisObjekt extends StatischesObjekt {
 
-	public HindernisObjekt() {
-		super();
-	}
-
 	public HindernisObjekt(Vektor2D pos, Vektor3D color) {
 		super(pos, color);
 	}
@@ -24,6 +20,10 @@ public final class HindernisObjekt extends StatischesObjekt {
 
 	public HindernisObjekt(Vektor3D color) {
 		super(color);
+	}
+
+	public HindernisObjekt() {
+		super();
 	}
 
 	@Override

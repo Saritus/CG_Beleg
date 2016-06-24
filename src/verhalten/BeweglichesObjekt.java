@@ -98,5 +98,4 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 		pos.add(speed);
 		pos.modulo(1024, 768);
 	}
-
 }
