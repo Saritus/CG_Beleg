@@ -1,0 +1,1221 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+% Farben fuer Programmlisting
+\usepackage{listings,xcolor}
+\definecolor{pl_background}{rgb}{0.95,0.95,0.95}
+\definecolor{pl_comment}{rgb}{0.12, 0.38, 0.18 }
+\definecolor{pl_ifelse}{rgb}{0.74,0.74,.29}
+\definecolor{pl_keyword}{rgb}{0.37, 0.08, 0.25}
+\definecolor{pl_string}{rgb}{0.06, 0.10, 0.98}
+% Vordefiniertes Programmlisting
+\lstset{
+language = java,
+basicstyle = \small\sffamily,
+backgroundcolor = \color{pl_background},
+stringstyle = \color{pl_string},
+keywordstyle = \color{pl_keyword}\bfseries,
+commentstyle = \color{pl_comment}\itshape,
+frame = lrbt,
+numbers = left,
+showstringspaces = false,
+breaklines = true,
+xleftmargin = 15pt,
+emph = [1]{java},
+emphstyle = [1]\color{black},
+}
+\setcounter{page}{0}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language ngerman
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language german
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Computergrafik und Visualisierung II
+\end_layout
+
+\begin_layout Author
+Marilena Froehlich, Mathias Gewissen, Sebastian Mischke
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Vektor, Vektor2D und Vektor3D
+\end_layout
+
+\begin_layout Section
+Klassen
+\end_layout
+
+\begin_layout Standard
+Gearbeitet wird mit drei Klassen: der Basisklasse Vektor und den abgeleiteten
+ Klassen Vektor2D und Vektor3D.
+ In Vektor werden sämtliche Methoden implementiert, sodass die Klassen Vektor2D
+ und Vektor3D lediglich aus Konstruktoren bestehen.
+ Außerdem enthält die Klasse Vektor ein double-Array, in dem die Komponenten
+ gespeichert werden, sowie einen int-Wert, in welchem die Anzahl an Komponenten
+ gespeichert wird.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public class Vektor {
+\end_layout
+
+\begin_layout Plain Layout
+
+	protected double[] array;
+\end_layout
+
+\begin_layout Plain Layout
+
+	protected int dimension;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	public Vektor(int dimension, double[] array) throws Exception {
+\end_layout
+
+\begin_layout Plain Layout
+
+		this.dimension = dimension;
+\end_layout
+
+\begin_layout Plain Layout
+
+		this.array = new double[dimension];
+\end_layout
+
+\begin_layout Plain Layout
+
+		setPosition(array);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Konstruktoren
+\end_layout
+
+\begin_layout Subsection
+Standard-Konstruktor
+\end_layout
+
+\begin_layout Standard
+Der Standard-Konstruktor der Klasse Vektor ist private, damit diese von
+ außerhalb der Klasse nicht aufgerufen werden kann.
+ Die von Vektor abgeleiteten Klassen hingegen erzeugen beim Aufruf des Standard-
+Konstruktors einen Nullvektor mit der zugehörigen Dimension.
+\end_layout
+
+\begin_layout Subsection
+Weitere Konstruktoren
+\end_layout
+
+\begin_layout Standard
+Es werden verschiedene Eingabemöglichkeiten zugelassen, mit welchen der
+ Konstruktor aufgerufen werden kann: 
+\end_layout
+
+\begin_layout Itemize
+ein double-Array, das die Koordinaten des Vektors enthält
+\end_layout
+
+\begin_layout Itemize
+einzelne double-Werte
+\end_layout
+
+\begin_layout Itemize
+eine Dimension und ein Array bzw.
+ ein Array und eine Dimension (hierbei wird die Dimension des Vektors in
+ einer int-Variable dimension gespeichert)
+\end_layout
+
+\begin_layout Subsection
+Kopierkonstruktor
+\end_layout
+
+\begin_layout Standard
+Der Kopierkonstruktor nimmt einen Vektor als Eingabeparameter und erzeugt
+ einen neuen Vektor mit den gleichen Komponenten.
+ Die clone()-Funktion ruft den Kopierkonstruktor für einen Vektor auf und
+ gibt das neu erzeugte Objekt zurück.
+ Dadurch können die Funktionen der Vektor-Klasse genutzt werden, ohne den
+ Vektor dabei zu verändern.
+\end_layout
+
+\begin_layout Section
+Getter und Setter
+\end_layout
+
+\begin_layout Standard
+Der Zustand eines Vektors (Komponenten, Dimension, Länge) kann abgefragt
+ und teilweise verändert werden
+\end_layout
+
+\begin_layout Subsection
+getDimension()
+\end_layout
+
+\begin_layout Standard
+getDimension() gibt den Wert der Variable dimension, also die Dimension
+ des Vektors zurück.
+\end_layout
+
+\begin_layout Subsection
+getArray()
+\end_layout
+
+\begin_layout Standard
+getArray() gibt das Array, das die Komponenten des Vektors enthält, zurück.
+\end_layout
+
+\begin_layout Subsection
+getElem()
+\end_layout
+
+\begin_layout Standard
+Erhält einen int-Wert und gibt das Element, das sich an dieser Position
+ im Array befindet zurück.
+ Eine einzelne Koordinate des Vektors wird zurückgegeben.
+ Bei einem Übergabewert, der kleiner 0 oder größer als die Dimension-1 ist,
+ wird eine Exception geworfen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public double getElem(int dimension) throws Exception {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if ((dimension >= this.dimension) || (dimension < 0)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		throw new Exception("Invalid dimension");
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return array[dimension];
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+length()
+\end_layout
+
+\begin_layout Standard
+Zunächst existiert eine Funktion lengthsquare(), welche das Quadrat der
+ Länge eines Vektors liefert.
+ Dafür werden die Komponenten jeweils quadriert und aufsummiert.
+ length() liefert dann die Länge des Vektors, indem die Wurzel des Returnwertes
+ von lengthsquare() zurückgegeben wird.
+\end_layout
+
+\begin_layout Subsection
+toString()
+\end_layout
+
+\begin_layout Standard
+Es wird ein String angelegt, der aus einer öffnenden Klammer sowie dem ersten
+ Element des Vektors besteht.
+ Durch eine for-Schleife werden alle weiteren Komponente konkateniert, jeweils
+ mit Komma getrennt.
+ Daraufhin wird eine schließenden Klammer angehängt und der String zurückgegeben.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public String toString() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	StringBuilder result = new StringBuilder("( " + array[0]);
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (int i = 1; i < dimension; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		result.append(", " + array[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	result.append(" )");
+\end_layout
+
+\begin_layout Plain Layout
+
+	return (result.toString());
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+setPosition()
+\end_layout
+
+\begin_layout Standard
+Die Koordinaten des Vektors werden beliebig verändert.
+ Hierbei ist wichtig, dass die Länge des Eingabearrays der Dimension des
+ Vektors entspricht.
+ Andernfalls wird eine Exception geworfen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void setPosition(double...
+ array) throws Exception {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (array.length == dimension) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		for (int i = 0; i < dimension; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			this.array[i] = array[i];
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		throw new Exception("Array does not have the right length");
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Vergleiche
+\end_layout
+
+\begin_layout Standard
+Die folgenden Funktionen vergleichen den ursprünglichen Vektor mit einem
+ Wert oder einem gegebenen Vektor und liefern als Rückgabewert des Typs
+ boolean.
+ Der Vektor wird hierbei nicht verändert.
+\end_layout
+
+\begin_layout Subsection
+isNullVector()
+\end_layout
+
+\begin_layout Standard
+isNullVector() liefert true, wenn es sich bei dem Vektor um einen Nullvektor
+ handelt, ansonsten false.
+ Dafür wird die Funktion lenghtsquare() aufgerufen.
+ Ist der Returnwert 0, so handelt es sich um einen Nullvektor.
+ Im Vergleich zur Benutzung der Funktion length() spart man sich das aufwendige
+ Wurzelziehen.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public boolean isNullVector() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	return lengthsquare() == 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+isEqual()
+\end_layout
+
+\begin_layout Standard
+isEqual() vergleicht komponentenweise den übergebenen Vektor mit dem ursprünglic
+hen Vektor.
+ Zunächst wird geprüft, ob beide Vektoren die gleiche Dimension besitzen.
+ Trifft dies nicht zu, wird ein false zurückgegeben.
+ Ansonsten werden in einer for-Schleife die Komponenten verglichen.
+ Sollte irgendwo eine Ungleichheit auftreten, wird sofort abgebrochen und
+ ebenfalls ein false zurückgeben.
+ Kommt die for-Schleife an ihr Ende, ohne eine Ungleichheit zu finden, wird
+ ein true zurückgegeben.Bei paarweiser Übereinstimmung aller Werte wird true
+ zurückgeliefert.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public boolean isEqual(Vektor vec) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (this.dimension != vec.dimension) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		return false;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (int i = 0; i < dimension; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if (this.array[i] != vec.array[i]) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			return false;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return true;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+isNotEqual()
+\end_layout
+
+\begin_layout Standard
+Die Funktion isNotEqual() gibt den negierten Wert der Funktion isEqual()
+ zurück.
+\end_layout
+
+\begin_layout Section
+Mathematische Operationen
+\end_layout
+
+\begin_layout Standard
+Die mathematischen Operationen verändern den ursprünglichen Vektor, indem
+ sie eine Rechenoperation auf diesen anwenden.
+ Der Rückgabewert ist der Vektor selbst, um eine Hintereinanderausführung
+ mehrerer Operationen zu ermöglichen.
+\end_layout
+
+\begin_layout Subsection
+add()
+\end_layout
+
+\begin_layout Standard
+add() verändert den ursprünglichen Vektor, indem er auf diesen einen zweiten
+ Vektor komponentenweise aufaddiert.
+ Als Returnwert gibt der Vektor sich selbst zurück, um eine Verkettung mehrerer
+ Operationen zu ermöglichen.
+ Vor der Ausführung wird mit Hilfe der Funktion CheckDimension() überprüft,
+ ob die beiden Vektoren die gleiche Länge haben.
+ Außerdem wird durch Aufruf der Funktion CheckAddOverflow auf einen Überlauf
+ getestet.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public Vektor add(Vektor vec) throws Exception {
+\end_layout
+
+\begin_layout Plain Layout
+
+	Function.CheckDimensions(vec.dimension, dimension);
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (int i = 0; i < dimension; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		Function.CheckAddOverflow(array[i], vec.array[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+		array[i] += vec.array[i];
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return this;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+mult()
+\end_layout
+
+\begin_layout Standard
+mult() verändert den ursprünglichen Vektor indem er jede Komponente mit
+ einem double-Wert, dem Skalar, multipliziert.
+ Auch hierbei ist wieder zu beachten, das kein Überlauf entsteht.
+ Dies wird mit Hilfe von CheckMultOverflow gewährleistet.
+\end_layout
+
+\begin_layout Subsection
+negate()
+\end_layout
+
+\begin_layout Standard
+Um einen Vektor zu negieren, wird die mult()-Funktion mit dem Wert -1 aufgerufen.
+\end_layout
+
+\begin_layout Subsection
+div()
+\end_layout
+
+\begin_layout Standard
+div() dividiert komponentenweise durch einen double-Wert d.
+ Die Division erfolgt indirekt durch eine Multiplikation der Komponenten
+ mit dem Reziproken von d.
+ Dafür wird die Funktion mult() aufgerufen.
+ Vor der Ausführung wird überprüft, dass d ungleich 0 ist, also nicht durch
+ 0 geteilt wird.
+ Ist dies der Fall, wird eine Exception geworfen.
+\end_layout
+
+\begin_layout Title
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public Vektor div(double d) throws Exception {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (d == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		throw new Exception("Cannot divide by zero");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		return mult(1.
+ / d);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+sub()
+\end_layout
+
+\begin_layout Standard
+Die Funktion sub() subtrahiert komponentenweise einen zweiten, übergebenen
+ Vektor vom ursprünglichen Vektor.
+ Dazu wird der übergebene Vektor mit Hilfe von negate() negiert und durch
+ den Aufruf von add() komponentenweise auf den ursprünglichen Vektor addiert.
+ 
+\end_layout
+
+\begin_layout Subsection
+normalize()
+\end_layout
+
+\begin_layout Standard
+normalize() ändert die Länge des Vektors auf 1.
+ Hierzu wird mit Hilfe von length() die Länge des Vektors berechnet und
+ durch Aufruf der Funktion div() der Vektor durch diese Länge dividiert.
+ Vor der Ausführung wird ausgeschlossen, dass es sich um einen Nullvektor
+ handelt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public Vektor normalize() throws Exception {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (!isNullVector())
+\end_layout
+
+\begin_layout Plain Layout
+
+		return div(length());
+\end_layout
+
+\begin_layout Plain Layout
+
+	else
+\end_layout
+
+\begin_layout Plain Layout
+
+		throw new Exception("Nullvector cannot be normalized");
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+abs()
+\end_layout
+
+\begin_layout Standard
+In Funktion abs() wird in einer for-Schleife von alle Komponenten eines
+ Vektors der Betrag gebildet.
+\end_layout
+
+\begin_layout Author
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Lineare Algebra
+\end_layout
+
+\begin_layout Section
+Basisoperationen 
+\end_layout
+
+\begin_layout Standard
+Die Funktionen add(), sub(), mult(), div(), negate(), normalize(), abs()
+ werden alle auf die gleiche Weise implementiert.
+ Über die clone()-Funktion wird ein neues Objekt der Klasse Vektor erzeugt.
+ Dann wird die zugehörige Funktion aus der Klasse Vektor aufgerufen und
+ das neu instanziierte Objekt zurückgegeben.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public static Vektor add(Vektor v1, Vektor v2) throws Exception {
+\end_layout
+
+\begin_layout Plain Layout
+
+	return (v1.clone()).add(v2);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Erweiterte Operationen 
+\end_layout
+
+\begin_layout Standard
+Die Funktionen manhattanDistance(), euklDistance(), dotProduct() und crossProduc
+t() werden mit 2 Vektoren als Übergabeparameter aufgerufen.
+ Dabei wird stets am Anfang der Funktion geprüft, ob die übergebenen Vektoren
+ die gleiche Dimension besitzen.
+ Ist dies nicht der Fall, wird eine Exception geworfen.
+\end_layout
+
+\begin_layout Subsection
+Manhattan-Distanz
+\end_layout
+
+\begin_layout Standard
+Die Differenzen der Komponenten werden in einer for-Schleife berechnet und
+ aufaddiert.
+ Die Summe wird anschließend zurückgegeben.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public static double manhattanDistance(Vektor v1, Vektor v2) throws Exception
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+	Function.CheckDimensions(v1.getDimension(), v2.getDimension());
+\end_layout
+
+\begin_layout Plain Layout
+
+	double result = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (int i = 0; i < v1.getDimension(); i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		result += Math.abs(v1.getElem(i) - v2.getElem(i));
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return result;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Euklidischer Abstand
+\end_layout
+
+\begin_layout Standard
+Die Differenzen der Komponenten werden in einer for-Schleife quadriert und
+ aufaddiert.
+ Die Wurzel der Summe wird anschließend zurückgegeben.
+\end_layout
+
+\begin_layout Subsection
+Determinante
+\end_layout
+
+\begin_layout Standard
+Die Funktion determinante() bekommt ein Array an Vektoren übergeben und
+ überprüft in einer for-Schleife, dass die Anzahl der Vektoren im Array
+ auch mit der Dimension der übergebenen Vektoren übereinstimmt.
+ Eine Switch-Case-Anweisung entscheidet welche Formel zur Berechnung der
+ Determinante ausgeführt wird.
+\end_layout
+
+\begin_layout Subsection
+Skalarprodukt
+\end_layout
+
+\begin_layout Standard
+In der Funktion dotProduct() werden die Produkte der Komponenten in einer
+ for-Schleife berechnet und aufaddiert.
+ Die Summe wird anschließend zurückgegeben.
+ 
+\end_layout
+
+\begin_layout Subsection
+Kreuzprodukt
+\end_layout
+
+\begin_layout Standard
+In der Funktion crossProduct() wird in einer Switch-Case-Anweisung entschieden,
+ welche Formel zur Berechnung des Ergebnisvektors ausgeführt wird.
+\end_layout
+
+\begin_layout Standard
+Wenn es sich um zweidimensionale Vektoren handelt, wird die Funktion determinant
+e mit den beiden Vektoren ausgeführt und das Ergebnis als eindimensionaler
+ Vektor zurückgegeben.
+ Wenn es sich um dreidimensionale Vektoren handelt, ergibt sich die Berechnung
+ wie folgt, wobei v1, v2 und v3 um die eingegebenen Vektoren handelt:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $det\left(\begin{array}{ccc}
+v1{}_{x} & v2{}_{x} & v3{}_{x}\\
+v1{}_{y} & v2{}_{y} & v3{}_{y}\\
+v1{}_{z} & v2{}_{z} & v3{}_{z}
+\end{array}\right)=v1{}_{x}v2{}_{y}v3{}_{z}+v2{}_{x}v3{}_{y}v1{}_{z}+v3{}_{x}v1{}_{y}v2{}_{z}-v3{}_{x}v2{}_{y}v1{}_{z}-v1{}_{x}v3{}_{y}v2{}_{z}-v2{}_{x}v1{}_{y}v3{}_{z}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Trigonometrische Funktionen
+\end_layout
+
+\begin_layout Subsection
+cosEquation() 
+\end_layout
+
+\begin_layout Standard
+Ruft die Funktion dotProduct() mit den eingegebenen Vektoren auf und teilt
+ das Ergebnis durch das Produkt der beiden Längen der Vektoren.
+ 
+\end_layout
+
+\begin_layout Subsection
+sinEquation() 
+\end_layout
+
+\begin_layout Standard
+Ruft die Funktion crossProduct() mit den eingegebenen Vektoren auf und teilt
+ die Länge des Ergebnisvektors durch die Summe der beiden übergebenen Vektoren.
+\end_layout
+
+\begin_layout Subsection
+Grad- und Bogenmaß
+\end_layout
+
+\begin_layout Standard
+Die Funktionen radToDegree() und degreeToRad() erhalten einen double-Wert
+ der entweder für ein Bogenmaß oder ein Gradmaß steht und geben das jeweilige
+ Pendant zurück.
+ Dabei gilt 
+\begin_inset Formula $\frac{Degree}{180}=\frac{Rad}{\pi}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Arcus-Funktionen
+\end_layout
+
+\begin_layout Standard
+Die Funktionen angleRad und angleDegree bekommen einen double-Wert, sowie
+ einen String, der angibt, ob es sich beim übergebenen Wert um einen sin-,
+ cos- oder tan-Wert handelt.
+ Auf diesen übergebenen Wert wird dann die zugehörige Arcus-Funktion angewendet
+ und das Ergebnis zurückgegeben.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public static double angleRad(double d, String trig) throws Exception {
+\end_layout
+
+\begin_layout Plain Layout
+
+	switch (trig) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	case "sin":
+\end_layout
+
+\begin_layout Plain Layout
+
+		return Math.asin(d);
+\end_layout
+
+\begin_layout Plain Layout
+
+	case "cos":
+\end_layout
+
+\begin_layout Plain Layout
+
+		return Math.acos(d);
+\end_layout
+
+\begin_layout Plain Layout
+
+	case "tan":
+\end_layout
+
+\begin_layout Plain Layout
+
+		return Math.atan(d);
+\end_layout
+
+\begin_layout Plain Layout
+
+	default:
+\end_layout
+
+\begin_layout Plain Layout
+
+		throw new Exception("Invalid trigonometric function");
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Ausgabe
+\end_layout
+
+\begin_layout Subsection
+show() 
+\end_layout
+
+\begin_layout Standard
+Die Funktion bekommt einen Vektor übergeben und gibt dessen Ergebnis der
+ toString()-Funktion auf der Konsole aus.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public static void show(Vektor vec) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	System.out.println(vec.toString());
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
