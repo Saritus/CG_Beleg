@@ -10,22 +10,6 @@ public final class HindernisObjekt extends StatischesObjekt {
 		super();
 	}
 
-	public HindernisObjekt(int id, Vektor2D pos, Vektor3D color) {
-		super(id, pos, color);
-	}
-
-	public HindernisObjekt(int id, Vektor2D pos) {
-		super(id, pos);
-	}
-
-	public HindernisObjekt(int id, Vektor3D color) {
-		super(id, color);
-	}
-
-	public HindernisObjekt(int id) {
-		super(id);
-	}
-
 	public HindernisObjekt(Vektor2D pos, Vektor3D color) {
 		super(pos, color);
 	}

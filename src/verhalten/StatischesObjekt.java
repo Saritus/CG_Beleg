@@ -9,22 +9,6 @@ public abstract class StatischesObjekt extends BasisObjekt {
 		super();
 	}
 
-	protected StatischesObjekt(int id, Vektor2D pos, Vektor3D color) {
-		super(id, pos, color);
-	}
-
-	protected StatischesObjekt(int id, Vektor2D pos) {
-		super(id, pos);
-	}
-
-	protected StatischesObjekt(int id, Vektor3D color) {
-		super(id, color);
-	}
-
-	protected StatischesObjekt(int id) {
-		super(id);
-	}
-
 	protected StatischesObjekt(Vektor2D pos, Vektor3D color) {
 		super(pos, color);
 	}

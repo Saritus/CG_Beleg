@@ -10,71 +10,39 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 	protected Behavior behavior;
 	protected double abstand[];
 
-	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor3D color, Vektor2D speed, double masse, double maxSpeed) {
-		super(id, pos, color);
+	protected BeweglichesObjekt(Vektor2D pos, Vektor3D color, Vektor2D speed, double masse, double maxSpeed) {
+		super(pos, color);
 		setSpeed(speed);
 		setMasse(masse);
 		setMaxSpeed(maxSpeed);
 	}
 
-	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor3D color, Vektor2D speed, double masse) {
-		this(id, pos, color, speed, masse, Double.MAX_VALUE);
-	}
-
-	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor3D color, Vektor2D speed) {
-		this(id, pos, color, speed, 1);
-	}
-
-	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor3D color) {
-		this(id, pos, color, new Vektor2D());
-	}
-
-	protected BeweglichesObjekt(Vektor2D pos, Vektor3D color, Vektor2D speed, double masse, double maxSpeed) {
-		this(-1, pos, color, speed, masse, maxSpeed);
-	}
-
 	protected BeweglichesObjekt(Vektor2D pos, Vektor3D color, Vektor2D speed, double masse) {
-		this(-1, pos, color, speed, masse, Double.MAX_VALUE);
+		this(pos, color, speed, masse, Double.MAX_VALUE);
 	}
 
 	protected BeweglichesObjekt(Vektor2D pos, Vektor3D color, Vektor2D speed) {
-		this(-1, pos, color, speed, 1);
+		this(pos, color, speed, 1);
 	}
 
 	protected BeweglichesObjekt(Vektor2D pos, Vektor3D color) {
-		this(-1, pos, color, new Vektor2D());
+		this(pos, color, new Vektor2D());
 	}
 
 	protected BeweglichesObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
-		this(-1, pos, new Vektor3D(), speed, masse, maxSpeed);
+		this(pos, new Vektor3D(), speed, masse, maxSpeed);
 	}
 
 	protected BeweglichesObjekt(Vektor2D pos, Vektor2D speed, double masse) {
-		this(-1, pos, new Vektor3D(), speed, masse, Double.MAX_VALUE);
+		this(pos, new Vektor3D(), speed, masse, Double.MAX_VALUE);
 	}
 
 	protected BeweglichesObjekt(Vektor2D pos, Vektor2D speed) {
-		this(-1, pos, new Vektor3D(), speed, 1);
+		this(pos, new Vektor3D(), speed, 1);
 	}
 
 	protected BeweglichesObjekt(Vektor2D pos) {
-		this(-1, pos, new Vektor3D(), new Vektor2D());
-	}
-
-	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
-		this(id, pos, new Vektor3D(), speed, masse, maxSpeed);
-	}
-
-	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor2D speed, double masse) {
-		this(id, pos, new Vektor3D(), speed, masse, Double.MAX_VALUE);
-	}
-
-	protected BeweglichesObjekt(int id, Vektor2D pos, Vektor2D speed) {
-		this(id, pos, new Vektor3D(), speed, 1);
-	}
-
-	protected BeweglichesObjekt(int id, Vektor2D pos) {
-		this(id, pos, new Vektor3D(), new Vektor2D());
+		this(pos, new Vektor3D(), new Vektor2D());
 	}
 
 	protected BeweglichesObjekt() {

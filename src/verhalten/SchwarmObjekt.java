@@ -5,18 +5,6 @@ import math.*;
 
 public final class SchwarmObjekt extends BeweglichesObjekt {
 
-	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
-		super(id, pos, speed, masse, maxSpeed);
-		ObjektManager.getInstance().add(this);
-		behavior = new Schwarmverhalten(this);
-	}
-
-	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse) {
-		super(id, pos, speed, masse);
-		ObjektManager.getInstance().add(this);
-		behavior = new Schwarmverhalten(this);
-	}
-
 	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
 		super(pos, speed, masse, maxSpeed);
 		ObjektManager.getInstance().add(this);

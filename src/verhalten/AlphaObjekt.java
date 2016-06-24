@@ -5,16 +5,6 @@ import math.*;
 
 public final class AlphaObjekt extends BeweglichesObjekt {
 
-	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, Vektor3D color) {
-		this(id, pos, speed, masse, maxSpeed);
-		this.color = color;
-	}
-
-	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, Vektor3D color) {
-		this(id, pos, speed, masse);
-		this.color = color;
-	}
-
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, Vektor3D color) {
 		this(pos, speed, masse, maxSpeed);
 		this.color = color;
@@ -25,34 +15,12 @@ public final class AlphaObjekt extends BeweglichesObjekt {
 		this.color = color;
 	}
 
-	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, char color) {
-		this(id, pos, speed, masse, maxSpeed, getColorFromChar(color));
-	}
-
-	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, char color) {
-		this(id, pos, speed, masse, getColorFromChar(color));
-	}
-
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, char color) {
 		this(pos, speed, masse, maxSpeed, getColorFromChar(color));
 	}
 
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, char color) {
 		this(pos, speed, masse, getColorFromChar(color));
-	}
-
-	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
-		super(id, pos, speed, masse, maxSpeed);
-		ObjektManager.getInstance().add(this);
-		behavior = new Alphaverhalten(this);
-		color = new Vektor3D(0, 0, 0);
-	}
-
-	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse) {
-		super(id, pos, speed, masse);
-		ObjektManager.getInstance().add(this);
-		behavior = new Alphaverhalten(this);
-		color = new Vektor3D(0, 0, 0);
 	}
 
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
