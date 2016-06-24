@@ -28,7 +28,7 @@
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry true
+\use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -648,11 +648,107 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Section
+Überblick
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/overview.png
+	lyxscale 15
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Überblick
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Überblick"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Vektor
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Vektor.png
+	lyxscale 40
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vektor
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vektor"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Vektor
 \end_layout
 
 \begin_layout Subsection
-Vektor, Vektor2D und Vektor3D
+Vektor2D
+\end_layout
+
+\begin_layout Subsection
+Vektor3D
 \end_layout
 
 \begin_layout Subsection
@@ -663,80 +759,236 @@ LineareAlgebra
 Objekte
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Objekte.png
+	lyxscale 30
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Objekte
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Objekte"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+BasisObjekt
+\end_layout
+
+\begin_layout Subsection
+Statisches Objekt
+\end_layout
+
+\begin_layout Subsection
+HindernisObjekt
+\end_layout
+
+\begin_layout Subsection
+BeweglichesObjekt
+\end_layout
+
+\begin_layout Subsection
+SchwarmObjekt
+\end_layout
+
+\begin_layout Subsection
+AlphaObjekt
+\end_layout
+
+\begin_layout Subsection
+ObjektManager
+\end_layout
+
 \begin_layout Section
 Verhalten
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Verhalten.png
+	lyxscale 75
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verhalten
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Verhalten"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
-Behavior und Verhalten
-\end_layout
-
-\begin_layout Subsection
-Schwarmverhalten
-\end_layout
-
-\begin_layout Subsection
-Alphaverhalten
-\end_layout
-
-\begin_layout Section
-Anzeige und Shader
-\end_layout
-
-\begin_layout Standard
-AlphaObjekt
-\end_layout
-
-\begin_layout Standard
-Alphaverhalten
-\end_layout
-
-\begin_layout Standard
-BasisFenster
-\end_layout
-
-\begin_layout Standard
-BasisObjekt
-\end_layout
-
-\begin_layout Standard
 Behavior
 \end_layout
 
-\begin_layout Standard
-BeweglichesObjekt
+\begin_layout Subsection
+BasisVerhalten
+\end_layout
+
+\begin_layout Subsection
+SchwarmVerhalten
+\end_layout
+
+\begin_layout Subsection
+AlphaVerhalten
 \end_layout
 
 \begin_layout Standard
-HindernisObjekt
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/ObjektUndVerhalten.png
+	lyxscale 30
+	height 5cm
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-ObjektManager
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Objekte und Verhalten
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ObjekteUndVerhalten"
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-SchwarmObjekt
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-Schwarmverhalten
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
+Anzeige
+\end_layout
+
+\begin_layout Subsection
+BasisFenster
+\end_layout
+
+\begin_layout Subsection
+WeltDesSchwarms
+\end_layout
+
+\begin_layout Subsection
 Shader
 \end_layout
 
 \begin_layout Standard
-StatischesObjekt
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Fenster.png
+	lyxscale 75
+	height 5cm
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-Verhalten
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fenster
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fenster"
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-WeltDesSchwarms
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
