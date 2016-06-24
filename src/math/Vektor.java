@@ -33,20 +33,20 @@ public class Vektor {
 		return array;
 	}
 
-	public double getElem(int dimension) throws Exception {
+	public double getElem(int dimension) {
 		if ((this.dimension <= dimension) || (dimension < 0)) {
-			throw new Exception("Invalid dimension");
+			throw new RuntimeException("Invalid dimension");
 		}
 		return array[dimension];
 	}
 
-	public void setPosition(double... array) throws Exception {
+	public void setPosition(double... array) {
 		if (array.length == dimension) {
 			for (int i = 0; i < dimension; i++) {
 				this.array[i] = array[i];
 			}
 		} else {
-			throw new Exception("Array does not have the right length");
+			throw new RuntimeException("Array does not have the right length");
 		}
 	}
 
@@ -54,7 +54,7 @@ public class Vektor {
 		return lengthsquare() == 0;
 	}
 
-	public Vektor add(Vektor vec) throws Exception {
+	public Vektor add(Vektor vec) {
 		Function.checkDimensions(vec.dimension, dimension);
 		for (int i = 0; i < dimension; i++) {
 			Function.checkAddOverflow(array[i], vec.array[i]);
@@ -63,11 +63,11 @@ public class Vektor {
 		return this;
 	}
 
-	public Vektor sub(Vektor vec) throws Exception {
+	public Vektor sub(Vektor vec) {
 		return add((vec.clone()).negate());
 	}
 
-	public Vektor mult(double d) throws Exception {
+	public Vektor mult(double d) {
 		for (int i = 0; i < dimension; i++) {
 			Function.checkMultOverflow(array[i], d);
 			array[i] *= d;
@@ -75,9 +75,9 @@ public class Vektor {
 		return this;
 	}
 
-	public Vektor div(double d) throws Exception {
+	public Vektor div(double d) {
 		if (d == 0) {
-			throw new Exception("Cannot divide by zero");
+			throw new RuntimeException("Cannot divide by zero");
 		} else {
 			return mult(1. / d);
 		}
@@ -111,11 +111,11 @@ public class Vektor {
 		return lengthsquare;
 	}
 
-	public Vektor normalize() throws Exception {
+	public Vektor normalize() {
 		if (!isNullVector())
 			return div(length());
 		else
-			throw new Exception("Nullvector cannot be normalized");
+			throw new RuntimeException("Nullvector cannot be normalized");
 	}
 
 	public String toString() {
@@ -142,11 +142,11 @@ public class Vektor {
 		return this;
 	}
 
-	public Vektor negate() throws Exception {
+	public Vektor negate() {
 		return mult(-1);
 	}
 
-	public Vektor truncate(double maxLength) throws Exception {
+	public Vektor truncate(double maxLength) {
 		if (length() > maxLength) {
 			normalize();
 			mult(maxLength);
@@ -154,7 +154,7 @@ public class Vektor {
 		return this;
 	}
 
-	public Vektor truncate(double... maxValues) throws Exception {
+	public Vektor truncate(double... maxValues) {
 		Function.checkDimensions(dimension, maxValues.length);
 		for (int i = 0; i < dimension; i++) {
 			array[i] = array[i] > maxValues[i] ? maxValues[i] : array[i];
@@ -162,7 +162,7 @@ public class Vektor {
 		return this;
 	}
 
-	public Vektor modulo(double... values) throws Exception {
+	public Vektor modulo(double... values) {
 		Function.checkDimensions(dimension, values.length);
 		for (int i = 0; i < dimension; i++) {
 			while (array[i] < 0) {

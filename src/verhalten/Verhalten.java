@@ -1,0 +1,69 @@
+package verhalten;
+
+import math.LineareAlgebra;
+import math.Vektor;
+import math.Vektor2D;
+
+public abstract class Verhalten implements Behavior {
+	protected BeweglichesObjekt obj;
+	protected static ObjektManager om = ObjektManager.getInstance();
+
+	public Vektor getCohesion(BeweglichesObjekt obj, double abstand) {
+		Vektor2D average = new Vektor2D();
+		int anzahl = 0;
+		for (int i = 0; i < om.getObjectCount(); i++) {
+			if (obj.abstand[i] < abstand) {
+				average.add(om.getObjects()[i].pos);
+				anzahl++;
+			}
+		}
+		return average.div(anzahl).sub(obj.pos);
+	}
+
+	public Vektor getAlignment(BeweglichesObjekt obj, double abstand) {
+		Vektor2D average = new Vektor2D();
+		int anzahl = 0;
+		for (int i = 0; i < om.getObjectCount(); i++) {
+			if (obj.abstand[i] < abstand) {
+				average.add(om.getObjects()[i].speed);
+				anzahl++;
+			}
+		}
+		return average.div(anzahl);
+	}
+
+	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) {
+		Vektor2D result = new Vektor2D();
+		for (int i = 0; i < om.getObjectCount(); i++) {
+			if (obj.id != om.getObjects()[i].id) {
+				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, om.getObjects()[i].pos);
+				if ((obj.abstand[i] < abstand) && (obj.abstand[i] > 0)) {
+					result.add(dif.div(obj.abstand[i] * obj.abstand[i]));
+				}
+			}
+		}
+		return result;
+	}
+
+	public Vektor getObstacleSeparation(BeweglichesObjekt obj, double abstand) {
+		Vektor2D result = new Vektor2D();
+		double diflength;
+		for (int i = 0; i < om.getObstacles().length; i++) {
+			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, om.getObstacles()[i].pos);
+			if (((diflength = dif.lengthsquare()) < abstand * abstand) && (diflength > 0)) {
+				result.add(dif.div(diflength));
+			}
+		}
+		return result;
+	}
+
+	public Vektor getAlphaCohesion(BeweglichesObjekt obj, double abstand) {
+		Vektor2D result = new Vektor2D();
+		for (int i = 0; i < om.getAlphas().length; i++) {
+			if (LineareAlgebra.manhattanDistance(obj.pos, om.getAlphas()[i].pos) < abstand) {
+				result.add(LineareAlgebra.sub(om.getAlphas()[i].pos, obj.pos));
+			}
+		}
+		return result;
+	}
+}

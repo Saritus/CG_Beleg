@@ -4,24 +4,24 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Function {
-	public static void checkOverflow(double d) throws Exception {
+	public static void checkOverflow(double d) {
 		if (d == Double.POSITIVE_INFINITY)
-			throw new Exception("Positive double overflow");
+			throw new RuntimeException("Positive double overflow");
 		if (d == Double.NEGATIVE_INFINITY)
-			throw new Exception("Negative double overflow");
+			throw new RuntimeException("Negative double overflow");
 	}
 
-	public static void checkAddOverflow(double d1, double d2) throws Exception {
+	public static void checkAddOverflow(double d1, double d2) {
 		checkOverflow(d1 + d2);
 	}
 
-	public static void checkMultOverflow(double d1, double d2) throws Exception {
+	public static void checkMultOverflow(double d1, double d2) {
 		checkOverflow(d1 * d2);
 	}
 
-	public static void checkDimensions(int d1, int d2) throws Exception {
+	public static void checkDimensions(int d1, int d2) {
 		if (d1 != d2) {
-			throw new Exception("Vectors do not have the same dimension");
+			throw new RuntimeException("Vectors do not have the same dimension");
 		}
 	}
 

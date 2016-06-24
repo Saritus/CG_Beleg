@@ -2,10 +2,7 @@ package verhalten;
 
 import math.*;
 
-public final class Alphaverhalten implements Behavior {
-
-	private BeweglichesObjekt obj;
-	private static ObjektManager om = ObjektManager.getInstance();
+public final class Alphaverhalten extends Verhalten {
 
 	private static final double separation_value = 500.;
 	private static final double obstacles_value = 10000;
@@ -15,10 +12,12 @@ public final class Alphaverhalten implements Behavior {
 	}
 
 	@Override
-	public void update() throws Exception {
-		Vektor2D separation = (Vektor2D) om.getSeparation(obj, 30).mult(separation_value);
-		Vektor2D obstacles = (Vektor2D) om.getObstacleSeparation(obj, 50).mult(obstacles_value);
+	public void update()  {
+		obj.calculateDistances();
+		Vektor2D separation = (Vektor2D) getSeparation(obj, 30).mult(separation_value);
+		Vektor2D obstacles = (Vektor2D) getObstacleSeparation(obj, 50).mult(obstacles_value);
 		Vektor2D stop = (Vektor2D) LineareAlgebra.mult(obj.speed, -3);
+
 		Vektor2D force = (Vektor2D) LineareAlgebra.add(separation, obstacles, stop);
 		obj.eulerMethod(force);
 	}

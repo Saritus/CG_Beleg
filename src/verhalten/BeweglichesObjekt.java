@@ -114,8 +114,8 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 	}
 
 	public void calculateDistances() {
-		abstand = new double[ObjektManager.getInstance().getCount()];
-		for (int i = 0; i < ObjektManager.getInstance().getCount(); i++) {
+		abstand = new double[ObjektManager.getInstance().getObjectCount()];
+		for (int i = 0; i < ObjektManager.getInstance().getObjectCount(); i++) {
 			try {
 				abstand[i] = LineareAlgebra.manhattanDistance(pos, ObjektManager.getInstance().objects[i].pos);
 			} catch (Exception e) {
@@ -124,7 +124,7 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 		}
 	}
 
-	public void eulerMethod(Vektor2D force) throws Exception {
+	public void eulerMethod(Vektor2D force)  {
 		speed.add(force.div(masse));
 		speed.truncate(maxSpeed);
 		pos.add(speed);

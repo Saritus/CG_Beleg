@@ -29,7 +29,7 @@ public final class SchwarmObjekt extends BeweglichesObjekt {
 		behavior = new Schwarmverhalten(this);
 	}
 
-	public Vektor3D getSchwarmColor(double abstand) throws Exception {
+	public Vektor3D getSchwarmColor(double abstand)  {
 		Vektor3D result = new Vektor3D();
 		result.add(getAlphaColor(abstand));
 		result.add(getNearColor(abstand));
@@ -39,7 +39,7 @@ public final class SchwarmObjekt extends BeweglichesObjekt {
 		return result;
 	}
 
-	public Vektor3D getAlphaColor(double abstand) throws Exception {
+	public Vektor3D getAlphaColor(double abstand)  {
 		Vektor3D result = new Vektor3D();
 		AlphaObjekt[] alphas = ObjektManager.getInstance().getAlphas();
 		for (int i = 0; i < alphas.length; i++) {
@@ -50,7 +50,7 @@ public final class SchwarmObjekt extends BeweglichesObjekt {
 		return result;
 	}
 
-	public Vektor3D getNearColor(double abstand) throws Exception {
+	public Vektor3D getNearColor(double abstand)  {
 		Vektor3D result = new Vektor3D();
 		for (int i = 0; i < this.abstand.length; i++) {
 			if (this.abstand[i] < abstand) {
