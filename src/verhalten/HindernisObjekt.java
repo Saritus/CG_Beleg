@@ -46,7 +46,7 @@ public class HindernisObjekt extends StatischesObjekt {
 	public void render() {
 		glBegin(GL_POLYGON);
 		glColor3d(0, 0, 0);
-		drawStaticTriangle();
+		drawOctagon(10);
 		glEnd();
 	}
 }

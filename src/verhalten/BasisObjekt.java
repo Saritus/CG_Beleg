@@ -2,6 +2,7 @@ package verhalten;
 
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
+import math.LineareAlgebra;
 import math.Vektor2D;
 import math.Vektor3D;
 
@@ -70,21 +71,37 @@ public abstract class BasisObjekt {
 	}
 
 	public abstract void render();
-	
-	protected void drawOctagon() {
-		glVertex2f((float) pos.getX() + 2.5f, (float) pos.getY() + 6.0355f);
-		glVertex2f((float) pos.getX() + 6.0355f, (float) pos.getY() + 2.5f);
-		glVertex2f((float) pos.getX() + 6.0355f, (float) pos.getY() - 2.5f);
-		glVertex2f((float) pos.getX() + 2.5f, (float) pos.getY() - 6.0355f);
-		glVertex2f((float) pos.getX() - 2.5f, (float) pos.getY() - 6.0355f);
-		glVertex2f((float) pos.getX() - 6.0355f, (float) pos.getY() - 2.5f);
-		glVertex2f((float) pos.getX() - 6.0355f, (float) pos.getY() + 2.5f);
-		glVertex2f((float) pos.getX() - 2.5f, (float) pos.getY() + 6.0355f);
+
+	protected void drawOctagon(float size) {
+		glVertex2f((float) pos.getX() + size / 4, (float) pos.getY() + 0.60355f * size);
+		glVertex2f((float) pos.getX() + 0.60355f * size, (float) pos.getY() + size / 4);
+		glVertex2f((float) pos.getX() + 0.60355f * size, (float) pos.getY() - size / 4);
+		glVertex2f((float) pos.getX() + size / 4, (float) pos.getY() - 0.60355f * size);
+		glVertex2f((float) pos.getX() - size / 4, (float) pos.getY() - 0.60355f * size);
+		glVertex2f((float) pos.getX() - 0.60355f * size, (float) pos.getY() - size / 4);
+		glVertex2f((float) pos.getX() - 0.60355f * size, (float) pos.getY() + size / 4);
+		glVertex2f((float) pos.getX() - size / 4, (float) pos.getY() + 0.60355f * size);
 	}
 
-	protected void drawStaticTriangle() {
-		glVertex2f((float) pos.getX(), (float) pos.getY() - 5f);
-		glVertex2f((float) pos.getX() + 5f, (float) pos.getY() + 5f);
-		glVertex2f((float) pos.getX() - 5f, (float) pos.getY() + 5f);
+	protected void drawStaticTriangle(float size) {
+		glVertex2f((float) pos.getX(), (float) pos.getY() - size);
+		glVertex2f((float) pos.getX() + 0.866f * size, (float) pos.getY() + size / 2);
+		glVertex2f((float) pos.getX() - 0.866f * size, (float) pos.getY() + size / 2);
+	}
+
+	protected void drawDynamicTriangle(float size, Vektor2D direction) {
+		Vektor2D right, left, front;
+		try {
+			front = (Vektor2D) LineareAlgebra.normalize(direction).mult(size);
+			right = (Vektor2D) LineareAlgebra.turn120(front).div(2);
+			left = (Vektor2D) LineareAlgebra.turn240(front).div(2);
+		} catch (Exception e) {
+			front = right = left = new Vektor2D();
+			e.printStackTrace();
+		}
+
+		glVertex2f((float) (pos.getX() + front.getX()), (float) (pos.getY() + front.getY()));
+		glVertex2f((float) (pos.getX() + right.getX()), (float) (pos.getY() + right.getY()));
+		glVertex2f((float) (pos.getX() + left.getX()), (float) (pos.getY() + left.getY()));
 	}
 }

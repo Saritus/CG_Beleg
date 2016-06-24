@@ -26,6 +26,14 @@ public class Vektor3D extends Vektor {
 		}
 	}
 
+	public void setPosition(double x, double y, double z) {
+		try {
+			super.setPosition(x, y, z);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public double getX() {
 		return array[0];
 	}

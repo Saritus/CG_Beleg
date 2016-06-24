@@ -68,24 +68,16 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 
 	@Override
 	public void render() {
-		Vektor2D front;
-		Vektor2D right;
-		Vektor2D left;
+
 		try {
 			setAlphaColor(200);
-			front = (Vektor2D) LineareAlgebra.normalize(speed).mult(15);
-			right = (Vektor2D) LineareAlgebra.turn(front, 2 * Math.PI / 3).div(2);
-			left = (Vektor2D) LineareAlgebra.turn(front, -2 * Math.PI / 3).div(2);
 		} catch (Exception e) {
-			front = right = left = new Vektor2D();
 			e.printStackTrace();
 		}
 
 		glBegin(GL_TRIANGLE_FAN);
 		glColor3f((float) color.getX(), (float) color.getY(), (float) color.getZ());
-		glVertex2f((float) (pos.getX() + front.getX()), (float) (pos.getY() + front.getY()));
-		glVertex2f((float) (pos.getX() + right.getX()), (float) (pos.getY() + right.getY()));
-		glVertex2f((float) (pos.getX() + left.getX()), (float) (pos.getY() + left.getY()));
+		drawDynamicTriangle(15, speed);
 		glEnd();
 	}
 }

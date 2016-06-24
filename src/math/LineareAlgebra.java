@@ -185,11 +185,19 @@ public abstract class LineareAlgebra {
 		return (vec.clone()).modulo(values);
 	}
 
-	public static Vektor turn(Vektor vec, double angle) {
+	public static Vektor2D turn(Vektor2D vec, double angle) {
 		return vec.clone().turn(angle);
 	}
 
-	public static Vektor turn(double angle, Vektor vec) {
+	public static Vektor2D turn(double angle, Vektor2D vec) {
 		return turn(vec, angle);
+	}
+
+	public static Vektor2D turn120(Vektor2D vec) {
+		return vec.clone().turn120();
+	}
+
+	public static Vektor2D turn240(Vektor2D vec) {
+		return vec.clone().turn240();
 	}
 }

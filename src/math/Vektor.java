@@ -174,22 +174,4 @@ public class Vektor {
 		}
 		return this;
 	}
-
-	public Vektor turn(double angle) {
-		Vektor result;
-		switch (dimension) {
-		case 2:
-			double x = array[0] * Math.cos(angle) - array[1] * Math.sin(angle);
-			double y = array[0] * Math.sin(angle) + array[1] * Math.cos(angle);
-			result = new Vektor2D(x, y);
-			break;
-		case 3:
-			result = null;
-			break;
-		default:
-			result = null;
-			break;
-		}
-		return result;
-	}
 }
