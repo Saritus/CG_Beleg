@@ -8,13 +8,13 @@ public final class SchwarmObjekt extends BeweglichesObjekt {
 	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
 		super(pos, speed, masse, maxSpeed);
 		ObjektManager.getInstance().add(this);
-		behavior = new Schwarmverhalten(this);
+		behavior = new SchwarmVerhalten(this);
 	}
 
 	public SchwarmObjekt(Vektor2D pos, Vektor2D speed, double masse) {
 		super(pos, speed, masse);
 		ObjektManager.getInstance().add(this);
-		behavior = new Schwarmverhalten(this);
+		behavior = new SchwarmVerhalten(this);
 	}
 
 	public Vektor3D getSchwarmColor(double abstand) {

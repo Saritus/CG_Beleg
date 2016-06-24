@@ -2,12 +2,12 @@ package verhalten;
 
 import math.*;
 
-public final class Alphaverhalten extends BasisVerhalten {
+public final class AlphaVerhalten extends BasisVerhalten {
 
 	private static final double separation_value = 500.;
 	private static final double obstacles_value = 10000;
 
-	Alphaverhalten(BeweglichesObjekt obj) {
+	AlphaVerhalten(BeweglichesObjekt obj) {
 		super(obj);
 	}
 

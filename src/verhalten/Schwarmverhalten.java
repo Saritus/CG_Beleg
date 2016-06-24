@@ -2,7 +2,7 @@ package verhalten;
 
 import math.*;
 
-public final class Schwarmverhalten extends BasisVerhalten {
+public final class SchwarmVerhalten extends BasisVerhalten {
 
 	private static final double alignment_value = 225.5;
 	private static final double cohesion_value = 1.;
@@ -10,7 +10,7 @@ public final class Schwarmverhalten extends BasisVerhalten {
 	private static final double obstacles_value = 10000;
 	private static final double alpha_value = 2.;
 
-	Schwarmverhalten(BeweglichesObjekt obj) {
+	SchwarmVerhalten(BeweglichesObjekt obj) {
 		super(obj);
 	}
 

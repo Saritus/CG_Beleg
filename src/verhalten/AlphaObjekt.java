@@ -26,14 +26,14 @@ public final class AlphaObjekt extends BeweglichesObjekt {
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
 		super(pos, speed, masse, maxSpeed);
 		ObjektManager.getInstance().add(this);
-		behavior = new Alphaverhalten(this);
+		behavior = new AlphaVerhalten(this);
 		color = new Vektor3D(0, 0, 0);
 	}
 
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse) {
 		super(pos, speed, masse);
 		ObjektManager.getInstance().add(this);
-		behavior = new Alphaverhalten(this);
+		behavior = new AlphaVerhalten(this);
 		color = new Vektor3D(0, 0, 0);
 	}
 
