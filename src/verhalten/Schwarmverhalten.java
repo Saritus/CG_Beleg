@@ -4,8 +4,6 @@ import math.*;
 
 public final class Schwarmverhalten extends Verhalten implements Behavior {
 
-	private static ObjektManager om = ObjektManager.getInstance();
-
 	private static final double alignment_value = 225.5;
 	private static final double cohesion_value = 1.;
 	private static final double separation_value = 2000.;
@@ -19,11 +17,11 @@ public final class Schwarmverhalten extends Verhalten implements Behavior {
 	@Override
 	public void update() {
 		obj.calculateDistances();
-		Vektor2D alignment = (Vektor2D) om.getAlignment(obj, 200).mult(alignment_value);
-		Vektor2D cohesion = (Vektor2D) om.getCohesion(obj, 200).mult(cohesion_value);
-		Vektor2D separation = (Vektor2D) om.getSeparation(obj, 30).mult(separation_value);
-		Vektor2D obstacles = (Vektor2D) om.getObstacleSeparation(obj, 50).mult(obstacles_value);
-		Vektor2D alpha = (Vektor2D) om.getAlphaCohesion(obj, 300).mult(alpha_value);
+		Vektor2D alignment = (Vektor2D) getAlignment(200).mult(alignment_value);
+		Vektor2D cohesion = (Vektor2D) getCohesion(200).mult(cohesion_value);
+		Vektor2D separation = (Vektor2D) getSeparation(50).mult(separation_value);
+		Vektor2D obstacles = (Vektor2D) getObstacleSeparation(50).mult(obstacles_value);
+		Vektor2D alpha = (Vektor2D) getAlphaCohesion(300).mult(alpha_value);
 		Vektor2D force = (Vektor2D) LineareAlgebra.add(alignment, cohesion, separation, obstacles, alpha);
 		obj.eulerMethod(force);
 	}

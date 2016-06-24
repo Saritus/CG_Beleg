@@ -147,78 +147,7 @@ public class ObjektManager {
 		obstacles[0] = mouse;
 	}
 
-	// Erweiterte Getter
-
-	public Vektor getCohesion(BeweglichesObjekt obj, double abstand) {
-		Vektor2D average = new Vektor2D();
-		int anzahl = 0;
-		for (int i = 0; i < objects.length; i++) {
-			if (obj.abstand[i] < abstand) {
-				average.add(objects[i].pos);
-				anzahl++;
-			}
-		}
-		return average.div(anzahl).sub(obj.pos);
-	}
-
-	public Vektor getAlignment(BeweglichesObjekt obj, double abstand) {
-		Vektor2D average = new Vektor2D();
-		int anzahl = 0;
-		for (int i = 0; i < objects.length; i++) {
-			if (obj.abstand[i] < abstand) {
-				average.add(objects[i].speed);
-				anzahl++;
-			}
-		}
-		return average.div(anzahl);
-	}
-
-	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) {
-		Vektor2D result = new Vektor2D();
-		for (int i = 0; i < objects.length; i++) {
-			if (obj.id != objects[i].id) {
-				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, objects[i].pos);
-				if ((obj.abstand[i] < abstand) && (obj.abstand[i] > 0)) {
-					result.add(dif.div(obj.abstand[i] * obj.abstand[i]));
-				}
-			}
-		}
-		return result;
-	}
-
-	public Vektor getObstacleSeparation(BeweglichesObjekt obj, double abstand) {
-		Vektor2D result = new Vektor2D();
-		double diflength;
-		for (int i = 0; i < obstacles.length; i++) {
-			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, obstacles[i].pos);
-			if (((diflength = dif.lengthsquare()) < abstand * abstand) && (diflength > 0)) {
-				result.add(dif.div(diflength));
-			}
-		}
-		return result;
-	}
-
-	public Vektor getAlphaCohesion(BeweglichesObjekt obj, double abstand) {
-		Vektor2D result = new Vektor2D();
-		for (int i = 0; i < alphas.length; i++) {
-			if (LineareAlgebra.manhattanDistance(obj.pos, alphas[i].pos) < abstand) {
-				result.add(LineareAlgebra.sub(alphas[i].pos, obj.pos));
-			}
-		}
-		return result;
-	}
-
-	public void render() {
-		for (int i = 0; i < obstacles.length; i++) {
-			obstacles[i].render();
-		}
-		for (int i = 0; i < objects.length; i++) {
-			objects[i].render();
-		}
-		for (int i = 0; i < alphas.length; i++) {
-			alphas[i].render();
-		}
-	}
+	// Prozeduren
 
 	public void update() {
 		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
@@ -235,6 +164,18 @@ public class ObjektManager {
 		for (int i = 0; i < alphas.length; i++) {
 			alphas[i].calculateDistances();
 			alphas[i].behavior.update();
+		}
+	}
+
+	public void render() {
+		for (int i = 0; i < obstacles.length; i++) {
+			obstacles[i].render();
+		}
+		for (int i = 0; i < objects.length; i++) {
+			objects[i].render();
+		}
+		for (int i = 0; i < alphas.length; i++) {
+			alphas[i].render();
 		}
 	}
 }
