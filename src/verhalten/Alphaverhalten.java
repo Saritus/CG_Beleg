@@ -2,7 +2,7 @@ package verhalten;
 
 import math.*;
 
-public final class Alphaverhalten extends Verhalten {
+public final class Alphaverhalten extends BasisVerhalten {
 
 	private static final double separation_value = 500.;
 	private static final double obstacles_value = 10000;

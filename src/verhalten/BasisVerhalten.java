@@ -4,12 +4,12 @@ import math.LineareAlgebra;
 import math.Vektor;
 import math.Vektor2D;
 
-public abstract class Verhalten implements Behavior {
+public abstract class BasisVerhalten implements Behavior {
 
 	protected BeweglichesObjekt obj;
 	protected static ObjektManager om = ObjektManager.getInstance();
 
-	public Verhalten(BeweglichesObjekt obj) {
+	public BasisVerhalten(BeweglichesObjekt obj) {
 		this.obj = obj;
 	}
 
