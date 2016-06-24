@@ -2,7 +2,7 @@ package verhalten;
 
 import math.*;
 
-public final class Schwarmverhalten extends Verhalten implements Behavior {
+public final class Schwarmverhalten extends Verhalten {
 
 	private static final double alignment_value = 225.5;
 	private static final double cohesion_value = 1.;
