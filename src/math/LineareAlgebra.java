@@ -57,7 +57,7 @@ public abstract class LineareAlgebra {
 	}
 
 	public static double manhattanDistance(Vektor v1, Vektor v2) throws Exception {
-		Function.CheckDimensions(v1.getDimension(), v2.getDimension());
+		Function.checkDimensions(v1.getDimension(), v2.getDimension());
 		double result = 0;
 		for (int i = 0; i < v1.getDimension(); i++) {
 			result += Math.abs(v1.getElem(i) - v2.getElem(i));
@@ -66,7 +66,7 @@ public abstract class LineareAlgebra {
 	}
 
 	public static Vektor crossProduct(Vektor u, Vektor v) throws Exception {
-		Function.CheckDimensions(u.getDimension(), v.getDimension());
+		Function.checkDimensions(u.getDimension(), v.getDimension());
 		int dim = u.getDimension();
 		double[] values;
 		switch (dim) {
@@ -88,12 +88,12 @@ public abstract class LineareAlgebra {
 	}
 
 	public static double dotProduct(Vektor v1, Vektor v2) throws Exception {
-		Function.CheckDimensions(v1.getDimension(), v2.getDimension());
+		Function.checkDimensions(v1.getDimension(), v2.getDimension());
 		double result = 0;
 		for (int i = 0; i < v1.getDimension(); i++) {
 			result += v1.getElem(i) * v2.getElem(i);
 		}
-		Function.CheckOverflow(result);
+		Function.checkOverflow(result);
 		return result;
 	}
 
@@ -140,7 +140,7 @@ public abstract class LineareAlgebra {
 
 	public static double determinante(Vektor... vec) throws Exception {
 		for (int i = 0; i < vec.length; i++) {
-			Function.CheckDimensions(vec[i].getDimension(), vec.length);
+			Function.checkDimensions(vec[i].getDimension(), vec.length);
 		}
 		double result = 0;
 		switch (vec.length) {

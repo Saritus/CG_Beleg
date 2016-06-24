@@ -6,11 +6,11 @@ public class Schwarmverhalten implements Behavior {
 
 	public BeweglichesObjekt obj;
 
-	private static double alignment_value = 225.5;
-	private static double cohesion_value = 1.;
-	private static double separation_value = 2000.;
-	private static double obstacles_value = 10000;
-	private static double alpha_value = 2.;
+	private static final double alignment_value = 225.5;
+	private static final double cohesion_value = 1.;
+	private static final double separation_value = 2000.;
+	private static final double obstacles_value = 10000;
+	private static final double alpha_value = 2.;
 
 	Schwarmverhalten(BeweglichesObjekt obj) {
 		this.obj = obj;

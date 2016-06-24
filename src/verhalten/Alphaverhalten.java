@@ -6,8 +6,8 @@ public class Alphaverhalten implements Behavior {
 
 	public BeweglichesObjekt obj;
 
-	private static double separation_value = 500.;
-	private static double obstacles_value = 10000;
+	private static final double separation_value = 500.;
+	private static final double obstacles_value = 10000;
 
 	Alphaverhalten(BeweglichesObjekt obj) {
 		this.obj = obj;

@@ -57,9 +57,9 @@ public class Vektor {
 	}
 
 	public Vektor add(Vektor vec) throws Exception {
-		Function.CheckDimensions(vec.dimension, dimension);
+		Function.checkDimensions(vec.dimension, dimension);
 		for (int i = 0; i < dimension; i++) {
-			Function.CheckAddOverflow(array[i], vec.array[i]);
+			Function.checkAddOverflow(array[i], vec.array[i]);
 			array[i] += vec.array[i];
 		}
 		return this;
@@ -71,7 +71,7 @@ public class Vektor {
 
 	public Vektor mult(double d) throws Exception {
 		for (int i = 0; i < dimension; i++) {
-			Function.CheckMultOverflow(array[i], d);
+			Function.checkMultOverflow(array[i], d);
 			array[i] *= d;
 		}
 		return this;
@@ -157,7 +157,7 @@ public class Vektor {
 	}
 
 	public Vektor truncate(double... maxValues) throws Exception {
-		Function.CheckDimensions(dimension, maxValues.length);
+		Function.checkDimensions(dimension, maxValues.length);
 		for (int i = 0; i < dimension; i++) {
 			array[i] = array[i] > maxValues[i] ? maxValues[i] : array[i];
 		}
@@ -165,7 +165,7 @@ public class Vektor {
 	}
 
 	public Vektor modulo(double... values) throws Exception {
-		Function.CheckDimensions(dimension, values.length);
+		Function.checkDimensions(dimension, values.length);
 		for (int i = 0; i < dimension; i++) {
 			while (array[i] < 0) {
 				array[i] += values[i];
