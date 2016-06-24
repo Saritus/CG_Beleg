@@ -1,6 +1,6 @@
 package math;
 
-public class Vektor3D extends Vektor {
+public final class Vektor3D extends Vektor {
 
 	public Vektor3D(double[] array) {
 		super(3, array);

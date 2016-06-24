@@ -2,10 +2,10 @@ package verhalten;
 
 import math.*;
 
-public class Schwarmverhalten implements Behavior {
+public final class Schwarmverhalten implements Behavior {
 
 	private BeweglichesObjekt obj;
-	protected static ObjektManager om = ObjektManager.getInstance();
+	private static ObjektManager om = ObjektManager.getInstance();
 
 	private static final double alignment_value = 225.5;
 	private static final double cohesion_value = 1.;

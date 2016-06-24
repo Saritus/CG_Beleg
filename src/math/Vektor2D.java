@@ -1,6 +1,6 @@
 package math;
 
-public class Vektor2D extends Vektor {
+public final class Vektor2D extends Vektor {
 
 	public Vektor2D(double[] array) {
 		super(2, array);

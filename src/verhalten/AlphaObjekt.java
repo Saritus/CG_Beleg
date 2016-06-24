@@ -3,7 +3,7 @@ package verhalten;
 import static org.lwjgl.opengl.GL11.*;
 import math.*;
 
-public class AlphaObjekt extends BeweglichesObjekt {
+public final class AlphaObjekt extends BeweglichesObjekt {
 
 	public AlphaObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, Vektor3D color) {
 		this(id, pos, speed, masse, maxSpeed);

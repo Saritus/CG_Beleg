@@ -3,7 +3,7 @@ package verhalten;
 import static org.lwjgl.opengl.GL11.*;
 import math.*;
 
-public class SchwarmObjekt extends BeweglichesObjekt {
+public final class SchwarmObjekt extends BeweglichesObjekt {
 
 	public SchwarmObjekt(int id, Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
 		super(id, pos, speed, masse, maxSpeed);
@@ -29,48 +29,42 @@ public class SchwarmObjekt extends BeweglichesObjekt {
 		behavior = new Schwarmverhalten(this);
 	}
 
-	public Vektor3D setSchwarmColor(double abstand) {
-		float anz = 0;
-		for (int i = 0; i < this.abstand.length; i++) {
-			if (this.abstand[i] < abstand) {
-				anz++;
-			}
+	public Vektor3D getSchwarmColor(double abstand) throws Exception {
+		Vektor3D result = new Vektor3D();
+		result.add(getAlphaColor(abstand));
+		result.add(getNearColor(abstand));
+		if (!result.isNullVector()) {
+			result.normalize();
 		}
-		float anteil = anz / this.abstand.length;
-		if (anteil > 0.5) {
-			return color = new Vektor3D(2 * anteil - 1, 2 - 2 * anteil, 0);
-		} else {
-			return color = new Vektor3D(0, 2 * anteil, 1 - 2 * anteil);
-		}
+		return result;
 	}
 
-	public Vektor3D setAlphaColor(double abstand) throws Exception {
+	public Vektor3D getAlphaColor(double abstand) throws Exception {
+		Vektor3D result = new Vektor3D();
 		AlphaObjekt[] alphas = ObjektManager.getInstance().getAlphas();
-
 		for (int i = 0; i < alphas.length; i++) {
 			if (LineareAlgebra.manhattanDistance(pos, alphas[i].pos) < abstand) {
-				color.add(alphas[i].getColor());
+				result.add(alphas[i].getColor());
 			}
 		}
+		return result;
+	}
 
+	public Vektor3D getNearColor(double abstand) throws Exception {
+		Vektor3D result = new Vektor3D();
 		for (int i = 0; i < this.abstand.length; i++) {
 			if (this.abstand[i] < abstand) {
-				color.add(ObjektManager.getInstance().getObjects()[i].getColor());
+				result.add(ObjektManager.getInstance().getObjects()[i].getColor());
 			}
 		}
-
-		if (!color.isNullVector()) {
-			color.normalize();
-		}
-
-		return color;
+		return result;
 	}
 
 	@Override
 	public void render() {
 
 		try {
-			setAlphaColor(200);
+			setColor(getSchwarmColor(200));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

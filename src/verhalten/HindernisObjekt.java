@@ -4,7 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 import math.Vektor2D;
 import math.Vektor3D;
 
-public class HindernisObjekt extends StatischesObjekt {
+public final class HindernisObjekt extends StatischesObjekt {
 
 	public HindernisObjekt() {
 		super();

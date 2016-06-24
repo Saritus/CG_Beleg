@@ -4,7 +4,7 @@ import math.Vektor2D;
 import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
 
-public class WeltDesSchwarms extends BasisFenster {
+public final class WeltDesSchwarms extends BasisFenster {
 	private ObjektManager om;
 	private Shader shader;
 
