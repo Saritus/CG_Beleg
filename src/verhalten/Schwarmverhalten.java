@@ -11,7 +11,7 @@ public final class Schwarmverhalten extends Verhalten {
 	private static final double alpha_value = 2.;
 
 	Schwarmverhalten(BeweglichesObjekt obj) {
-		this.obj = obj;
+		super(obj);
 	}
 
 	@Override

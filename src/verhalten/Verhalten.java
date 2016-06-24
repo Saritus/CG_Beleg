@@ -9,6 +9,10 @@ public abstract class Verhalten implements Behavior {
 	protected BeweglichesObjekt obj;
 	protected static ObjektManager om = ObjektManager.getInstance();
 
+	public Verhalten(BeweglichesObjekt obj) {
+		this.obj = obj;
+	}
+
 	public Vektor getCohesion(double abstand) {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;

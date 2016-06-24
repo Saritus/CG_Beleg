@@ -8,7 +8,7 @@ public final class Alphaverhalten extends Verhalten {
 	private static final double obstacles_value = 10000;
 
 	Alphaverhalten(BeweglichesObjekt obj) {
-		this.obj = obj;
+		super(obj);
 	}
 
 	public void update() {
