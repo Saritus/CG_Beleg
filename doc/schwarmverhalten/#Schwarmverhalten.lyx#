@@ -651,36 +651,12 @@ LatexCommand tableofcontents
 Vektor
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
 Vektor, Vektor2D und Vektor3D
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
 LineareAlgebra
-\end_layout
-
-\begin_layout Section
-Objekte
-\end_layout
-
-\begin_layout Section
-Verhalten
-\end_layout
-
-\begin_layout Subsection
-Behavior und Verhalten
-\end_layout
-
-\begin_layout Subsection
-Schwarmverhalten
-\end_layout
-
-\begin_layout Subsection
-Alphaverhalten
-\end_layout
-
-\begin_layout Section
-Anzeige und Shader
 \end_layout
 
 \begin_layout Standard
