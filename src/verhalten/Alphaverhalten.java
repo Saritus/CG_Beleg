@@ -2,9 +2,8 @@ package verhalten;
 
 import math.*;
 
-public final class Alphaverhalten implements Behavior {
+public final class Alphaverhalten extends Verhalten implements Behavior {
 
-	private BeweglichesObjekt obj;
 	private static ObjektManager om = ObjektManager.getInstance();
 
 	private static final double separation_value = 500.;
@@ -14,7 +13,6 @@ public final class Alphaverhalten implements Behavior {
 		this.obj = obj;
 	}
 
-	@Override
 	public void update() {
 		Vektor2D separation = (Vektor2D) om.getSeparation(obj, 30).mult(separation_value);
 		Vektor2D obstacles = (Vektor2D) om.getObstacleSeparation(obj, 50).mult(obstacles_value);
