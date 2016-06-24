@@ -5,11 +5,11 @@ public abstract class LineareAlgebra {
 	private LineareAlgebra() {
 	}
 
-	public static Vektor add(Vektor v1, Vektor v2) {
+	public static Vektor add(Vektor v1, Vektor v2) throws Exception {
 		return (v1.clone()).add(v2);
 	}
 
-	public static Vektor add(Vektor v1, Vektor... v2) {
+	public static Vektor add(Vektor v1, Vektor... v2) throws Exception {
 		Vektor result = v1.clone();
 		for (int i = 0; i < v2.length; i++) {
 			result.add(v2[i]);
@@ -17,23 +17,23 @@ public abstract class LineareAlgebra {
 		return result;
 	}
 
-	public static Vektor sub(Vektor v1, Vektor v2) {
+	public static Vektor sub(Vektor v1, Vektor v2) throws Exception {
 		return add(v1, negate(v2));
 	}
 
-	public static Vektor mult(Vektor vec, double d) {
+	public static Vektor mult(Vektor vec, double d) throws Exception {
 		return (vec.clone()).mult(d);
 	}
 
-	public static Vektor mult(double d, Vektor vec) {
+	public static Vektor mult(double d, Vektor vec) throws Exception {
 		return mult(vec, d);
 	}
 
-	public static Vektor div(Vektor vec, double d) {
+	public static Vektor div(Vektor vec, double d) throws Exception {
 		return (vec.clone()).div(d);
 	}
 
-	public static Vektor div(double d, Vektor vec) {
+	public static Vektor div(double d, Vektor vec) throws Exception {
 		return div(vec, d);
 	}
 
@@ -49,15 +49,15 @@ public abstract class LineareAlgebra {
 		return vec.length();
 	}
 
-	public static Vektor normalize(Vektor vec) {
+	public static Vektor normalize(Vektor vec) throws Exception {
 		return (vec.clone()).normalize();
 	}
 
-	public static double euklDistance(Vektor v1, Vektor v2) {
+	public static double euklDistance(Vektor v1, Vektor v2) throws Exception {
 		return sub(v1, v2).length();
 	}
 
-	public static double manhattanDistance(Vektor v1, Vektor v2) {
+	public static double manhattanDistance(Vektor v1, Vektor v2) throws Exception {
 		Function.checkDimensions(v1.getDimension(), v2.getDimension());
 		double result = 0;
 		for (int i = 0; i < v1.getDimension(); i++) {
@@ -66,7 +66,7 @@ public abstract class LineareAlgebra {
 		return result;
 	}
 
-	public static Vektor crossProduct(Vektor u, Vektor v) {
+	public static Vektor crossProduct(Vektor u, Vektor v) throws Exception {
 		Function.checkDimensions(u.getDimension(), v.getDimension());
 		int dim = u.getDimension();
 		double[] values;
@@ -83,12 +83,12 @@ public abstract class LineareAlgebra {
 			values[2] = u.getElem(0) * v.getElem(1) - u.getElem(1) * v.getElem(0);
 			return new Vektor3D(values);
 		default:
-			throw new RuntimeException("crossProduct is only implemented for 2x2 and 3x3 matrices");
+			throw new Exception("crossProduct is only implemented for 2x2 and 3x3 matrices");
 		}
 
 	}
 
-	public static double dotProduct(Vektor v1, Vektor v2) {
+	public static double dotProduct(Vektor v1, Vektor v2) throws Exception {
 		Function.checkDimensions(v1.getDimension(), v2.getDimension());
 		double result = 0;
 		for (int i = 0; i < v1.getDimension(); i++) {
@@ -98,15 +98,15 @@ public abstract class LineareAlgebra {
 		return result;
 	}
 
-	public static double cosEquation(Vektor v1, Vektor v2) {
+	public static double cosEquation(Vektor v1, Vektor v2) throws Exception {
 		return dotProduct(v1, v2) / (v1.length() * v2.length());
 	}
 
-	public static double sinEquation(Vektor v1, Vektor v2) {
+	public static double sinEquation(Vektor v1, Vektor v2) throws Exception {
 		return crossProduct(v1, v2).length() / (v1.length() * v2.length());
 	}
 
-	public static double angleRad(double d, String trig) {
+	public static double angleRad(double d, String trig) throws Exception {
 		switch (trig) {
 		case "sin":
 			return Math.asin(d);
@@ -115,19 +115,19 @@ public abstract class LineareAlgebra {
 		case "tan":
 			return Math.atan(d);
 		default:
-			throw new RuntimeException("Invalid trigonometric function");
+			throw new Exception("Invalid trigonometric function");
 		}
 	}
 
-	public static double angleRad(String trig, double d) {
+	public static double angleRad(String trig, double d) throws Exception {
 		return angleRad(d, trig);
 	}
 
-	public static double angleDegree(double d, String trig) {
+	public static double angleDegree(double d, String trig) throws Exception {
 		return radToDegree(angleRad(d, trig));
 	}
 
-	public static double angleDegree(String trig, double d) {
+	public static double angleDegree(String trig, double d) throws Exception {
 		return angleDegree(d, trig);
 	}
 
@@ -139,7 +139,7 @@ public abstract class LineareAlgebra {
 		return degree * Math.PI / 180;
 	}
 
-	public static double determinante(Vektor... vec) {
+	public static double determinante(Vektor... vec) throws Exception {
 		for (int i = 0; i < vec.length; i++) {
 			Function.checkDimensions(vec[i].getDimension(), vec.length);
 		}
@@ -157,7 +157,7 @@ public abstract class LineareAlgebra {
 					* (vec[0].getElem(1) * vec[1].getElem(2) - vec[1].getElem(1) * vec[0].getElem(2));
 			break;
 		default:
-			throw new RuntimeException("Determinante is only implemented for 2x2 and 3x3 matrices");
+			throw new Exception("Determinante is only implemented for 2x2 and 3x3 matrices");
 		}
 		return result;
 	}
@@ -170,19 +170,19 @@ public abstract class LineareAlgebra {
 		System.out.println(vec.toString());
 	}
 
-	public static Vektor negate(Vektor vec) {
+	public static Vektor negate(Vektor vec) throws Exception {
 		return (vec.clone()).negate();
 	}
 
-	public static Vektor truncate(Vektor vec, double maxLength) {
+	public static Vektor truncate(Vektor vec, double maxLength) throws Exception {
 		return (vec.clone()).truncate(maxLength);
 	}
 
-	public static Vektor truncate(double maxLength, Vektor vec) {
+	public static Vektor truncate(double maxLength, Vektor vec) throws Exception {
 		return truncate(vec, maxLength);
 	}
 
-	public static Vektor modulo(Vektor vec, double... values) {
+	public static Vektor modulo(Vektor vec, double... values) throws Exception {
 		return (vec.clone()).modulo(values);
 	}
 
