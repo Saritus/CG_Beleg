@@ -26,7 +26,7 @@ public final class WeltDesSchwarms extends BasisFenster {
 	}
 
 	@Override
-	public void renderLoop() throws Exception {
+	public void renderLoop() {
 		shader = Shader.getInstance();
 		while (!Display.isCloseRequested()) {
 			glClearColor(0.8f, 0.8f, 0.8f, 1);
@@ -47,7 +47,7 @@ public final class WeltDesSchwarms extends BasisFenster {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		new WeltDesSchwarms().start();
 	}
 }

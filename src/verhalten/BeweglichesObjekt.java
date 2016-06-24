@@ -124,7 +124,7 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 		}
 	}
 
-	public void eulerMethod(Vektor2D force) throws Exception {
+	public void eulerMethod(Vektor2D force) {
 		speed.add(force.div(masse));
 		speed.truncate(maxSpeed);
 		pos.add(speed);

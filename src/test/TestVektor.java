@@ -6,7 +6,7 @@ import math.*;
 public class TestVektor {
 
 	@Test
-	public void testGetDimension() throws Exception {
+	public void testGetDimension() {
 		// Test for Vektor2D
 		Vektor2D v2d = new Vektor2D();
 		Assert.assertEquals(v2d.getDimension(), 2);
@@ -17,7 +17,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testGetArray() throws Exception {
+	public void testGetArray() {
 		// Test for Vektor2D
 		double[] expecteds = { 2, 3 };
 		Vektor2D v2d = new Vektor2D(expecteds);
@@ -30,7 +30,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testGetElemPositive() throws Exception {
+	public void testGetElemPositive() {
 		// Test for Vektor2D
 		Vektor2D v2d = new Vektor2D(2, 3);
 		Assert.assertEquals(2, v2d.getElem(0), 0.01);
@@ -44,7 +44,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testGetElemNegative() throws Exception {
+	public void testGetElemNegative() {
 		// Test for Vektor2D
 		Vektor2D v2d = new Vektor2D(2, 3);
 		try {
@@ -81,7 +81,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testSetPositionPositive() throws Exception {
+	public void testSetPositionPositive() {
 		// Test for Vektor2D
 		Vektor2D v2d = new Vektor2D();
 		double[] expecteds = { 2., 3. };
@@ -96,7 +96,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testSetPositionNegative() throws Exception {
+	public void testSetPositionNegative() {
 		// Test for Vektor2D
 		try {
 			Vektor2D v2d = new Vektor2D();
@@ -117,7 +117,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testIsNullVector() throws Exception {
+	public void testIsNullVector() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(0, 0);
 		Vektor2D v2 = new Vektor2D(0, 3);
@@ -140,7 +140,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testAddPositive() throws Exception {
+	public void testAddPositive() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(2, 3);
 		Vektor2D v2 = new Vektor2D(5, 7);
@@ -158,7 +158,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testAddNegative() throws Exception {
+	public void testAddNegative() {
 		// Test for Vektor2D
 		try {
 			// Positive Overflow
@@ -201,7 +201,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testSub() throws Exception {
+	public void testSub() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(2, 3);
 		Vektor2D v2 = new Vektor2D(5, 7);
@@ -219,7 +219,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testMultPositive() throws Exception {
+	public void testMultPositive() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(2, 3);
 		v1.mult(3);
@@ -274,7 +274,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testDivPositive() throws Exception {
+	public void testDivPositive() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(6, 8);
 		v1.div(2);
@@ -290,13 +290,13 @@ public class TestVektor {
 	}
 
 	@Test(expected = Exception.class)
-	public void testDivNegative() throws Exception {
+	public void testDivNegative() {
 		Vektor2D v1 = new Vektor2D(6, 8);
 		v1.div(0);
 	}
 
 	@Test
-	public void testIsEqual() throws Exception {
+	public void testIsEqual() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(1, 2);
@@ -321,7 +321,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testIsNotEqual() throws Exception {
+	public void testIsNotEqual() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(1, 2);
@@ -346,7 +346,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testLength() throws Exception {
+	public void testLength() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(2, 2);
 		Assert.assertEquals(Math.sqrt(8), v1.length(), 0.01);
@@ -357,7 +357,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testLengthsquare() throws Exception {
+	public void testLengthsquare() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(2, 2);
 		Assert.assertEquals(8, v1.lengthsquare(), 0.01);
@@ -368,7 +368,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testNormalizePositive() throws Exception {
+	public void testNormalizePositive() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(0, 3);
 		v1.normalize();
@@ -386,7 +386,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testNormalizeNegative() throws Exception {
+	public void testNormalizeNegative() {
 		// Test for Vektor2D
 		try {
 			Vektor2D v1 = new Vektor2D(0, 0);
@@ -407,7 +407,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testNegate() throws Exception {
+	public void testNegate() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(2, 3);
 		v1.negate();
@@ -423,7 +423,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testClone() throws Exception {
+	public void testClone() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = v1.clone();
@@ -439,7 +439,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testAbs() throws Exception {
+	public void testAbs() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(-1, -2);
 		v1.abs();
@@ -455,7 +455,7 @@ public class TestVektor {
 	}
 
 	@Test
-	public void testToString() throws Exception {
+	public void testToString() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(-1, -2);
 		Vektor2D v2 = new Vektor2D(-1.333, Math.PI);

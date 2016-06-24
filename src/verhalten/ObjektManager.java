@@ -76,7 +76,7 @@ public class ObjektManager {
 		count--;
 	}
 
-	public void add(StatischesObjekt obj) throws Exception {
+	public void add(StatischesObjekt obj) {
 		if (!check(obj, 20)) {
 			StatischesObjekt[] array = new StatischesObjekt[obstacles.length + 1];
 			for (int i = 0; i < obstacles.length; i++) {
@@ -96,7 +96,7 @@ public class ObjektManager {
 		return false;
 	}
 
-	public boolean check(StatischesObjekt obj, double abstand) throws Exception {
+	public boolean check(StatischesObjekt obj, double abstand) {
 		for (int i = 1; i < obstacles.length; i++) {
 			if (LineareAlgebra.manhattanDistance(obj.pos, obstacles[i].pos) < abstand) {
 				return true;
@@ -123,7 +123,7 @@ public class ObjektManager {
 		return alphas;
 	}
 
-	public Vektor2D getAveragePosition() throws Exception {
+	public Vektor2D getAveragePosition() {
 		Vektor2D avgpos = new Vektor2D();
 		for (int i = 0; i < this.count; i++) {
 			avgpos.add(this.objects[i].pos);
@@ -132,7 +132,7 @@ public class ObjektManager {
 		return avgpos;
 	}
 
-	public Vektor getCohesion(BeweglichesObjekt obj, double abstand) throws Exception {
+	public Vektor getCohesion(BeweglichesObjekt obj, double abstand) {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
 		for (int i = 0; i < count; i++) {
@@ -144,7 +144,7 @@ public class ObjektManager {
 		return average.div(anzahl).sub(obj.pos);
 	}
 
-	public Vektor getAverageSpeed() throws Exception {
+	public Vektor getAverageSpeed() {
 		Vektor2D avgspeed = new Vektor2D();
 		for (int i = 0; i < this.count; i++) {
 			avgspeed.add(this.objects[i].speed);
@@ -153,7 +153,7 @@ public class ObjektManager {
 		return avgspeed;
 	}
 
-	public Vektor getAlignment(BeweglichesObjekt obj, double abstand) throws Exception {
+	public Vektor getAlignment(BeweglichesObjekt obj, double abstand) {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
 		for (int i = 0; i < count; i++) {
@@ -165,7 +165,7 @@ public class ObjektManager {
 		return average.div(anzahl);
 	}
 
-	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
+	public Vektor getSeparation(BeweglichesObjekt obj, double abstand) {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < count; i++) {
 			if (obj.id != objects[i].id) {
@@ -178,7 +178,7 @@ public class ObjektManager {
 		return result;
 	}
 
-	public Vektor getObstacleSeparation(BeweglichesObjekt obj, double abstand) throws Exception {
+	public Vektor getObstacleSeparation(BeweglichesObjekt obj, double abstand) {
 		Vektor2D result = new Vektor2D();
 		double diflength;
 		for (int i = 0; i < obstacles.length; i++) {
@@ -190,7 +190,7 @@ public class ObjektManager {
 		return result;
 	}
 
-	public Vektor getAlphaCohesion(BeweglichesObjekt obj, double abstand) throws Exception {
+	public Vektor getAlphaCohesion(BeweglichesObjekt obj, double abstand) {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < alphas.length; i++) {
 			if (LineareAlgebra.manhattanDistance(obj.pos, alphas[i].pos) < abstand) {
@@ -212,7 +212,7 @@ public class ObjektManager {
 		}
 	}
 
-	public void update() throws Exception {
+	public void update() {
 		obstacles[0] = new HindernisObjekt(Mouse.getX(), 768 - Mouse.getY());
 		if (Mouse.isButtonDown(0)) {
 			add(obstacles[0]);

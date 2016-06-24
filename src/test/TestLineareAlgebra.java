@@ -7,7 +7,7 @@ import math.*;
 public class TestLineareAlgebra {
 
 	@Test
-	public void testIsEqual() throws Exception {
+	public void testIsEqual() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(1, 2);
@@ -32,7 +32,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testIsNotEqual() throws Exception {
+	public void testIsNotEqual() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(1, 2);
@@ -57,7 +57,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testAdd() throws Exception {
+	public void testAdd() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(3, 4);
@@ -75,7 +75,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testSub() throws Exception {
+	public void testSub() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(3, 4);
@@ -93,7 +93,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testMult() throws Exception {
+	public void testMult() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = (Vektor2D) LineareAlgebra.mult(v1, 2);
@@ -109,7 +109,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testDiv() throws Exception {
+	public void testDiv() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = (Vektor2D) LineareAlgebra.div(v1, 2);
@@ -125,7 +125,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testNegate() throws Exception {
+	public void testNegate() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = (Vektor2D) LineareAlgebra.negate(v1);
@@ -141,7 +141,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testLength() throws Exception {
+	public void testLength() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Assert.assertEquals(Math.sqrt(5), v1.length(), 0.01);
@@ -152,7 +152,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testNormalize() throws Exception {
+	public void testNormalize() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(0, 3);
 		Vektor2D v2 = (Vektor2D) LineareAlgebra.normalize(v1);
@@ -170,7 +170,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testAbs() throws Exception {
+	public void testAbs() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(-3, -5);
 		Vektor2D v2 = (Vektor2D) LineareAlgebra.abs(v1);
@@ -186,7 +186,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testDeterminante() throws Exception {
+	public void testDeterminante() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(3, 4);
@@ -200,7 +200,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testEuklDistance() throws Exception {
+	public void testEuklDistance() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(3, 4);
@@ -213,7 +213,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testManhattenDistance() throws Exception {
+	public void testManhattenDistance() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(3, 4);
@@ -226,7 +226,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testDotProduct() throws Exception {
+	public void testDotProduct() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 2);
 		Vektor2D v2 = new Vektor2D(3, 4);
@@ -239,7 +239,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testCrossProduct() throws Exception {
+	public void testCrossProduct() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(1, 4);
 		Vektor2D v2 = new Vektor2D(3, 4);
@@ -253,7 +253,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testCosEquation() throws Exception {
+	public void testCosEquation() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(0, 4);
 		Vektor2D v2 = new Vektor2D(3, 0);
@@ -266,7 +266,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testSinEquation() throws Exception {
+	public void testSinEquation() {
 		// Test for Vektor2D
 		Vektor2D v1 = new Vektor2D(0, 4);
 		Vektor2D v2 = new Vektor2D(3, 0);
@@ -279,7 +279,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testAngleDegree() throws Exception {
+	public void testAngleDegree() {
 		Assert.assertEquals(30, LineareAlgebra.angleDegree(0.5, "sin"), 0.01);
 		Assert.assertEquals(45, LineareAlgebra.angleDegree(1. / Math.sqrt(2), "sin"), 0.01);
 		Assert.assertEquals(60, LineareAlgebra.angleDegree(0.5, "cos"), 0.01);
@@ -288,7 +288,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testAngleRad() throws Exception {
+	public void testAngleRad() {
 		Assert.assertEquals(Math.PI / 6, LineareAlgebra.angleRad(0.5, "sin"), 0.01);
 		Assert.assertEquals(Math.PI / 4, LineareAlgebra.angleRad(1. / Math.sqrt(2), "sin"), 0.01);
 		Assert.assertEquals(Math.PI / 3, LineareAlgebra.angleRad(0.5, "cos"), 0.01);
@@ -297,7 +297,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testRadToDegree() throws Exception {
+	public void testRadToDegree() {
 		Assert.assertEquals(0, LineareAlgebra.radToDegree(0), 0.01);
 		Assert.assertEquals(90, LineareAlgebra.radToDegree(Math.PI / 2), 0.01);
 		Assert.assertEquals(180, LineareAlgebra.radToDegree(Math.PI), 0.01);
@@ -305,7 +305,7 @@ public class TestLineareAlgebra {
 	}
 
 	@Test
-	public void testDegreeToRad() throws Exception {
+	public void testDegreeToRad() {
 		Assert.assertEquals(0, LineareAlgebra.degreeToRad(0), 0.01);
 		Assert.assertEquals(Math.PI / 2, LineareAlgebra.degreeToRad(90), 0.01);
 		Assert.assertEquals(Math.PI, LineareAlgebra.degreeToRad(180), 0.01);

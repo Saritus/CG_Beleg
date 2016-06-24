@@ -18,7 +18,7 @@ public final class Schwarmverhalten implements Behavior {
 	}
 
 	@Override
-	public void update() throws Exception {
+	public void update() {
 		obj.calculateDistances();
 		Vektor2D alignment = (Vektor2D) om.getAlignment(obj, 200).mult(alignment_value);
 		Vektor2D cohesion = (Vektor2D) om.getCohesion(obj, 200).mult(cohesion_value);

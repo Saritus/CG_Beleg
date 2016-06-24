@@ -15,7 +15,7 @@ public final class Alphaverhalten implements Behavior {
 	}
 
 	@Override
-	public void update() throws Exception {
+	public void update() {
 		Vektor2D separation = (Vektor2D) om.getSeparation(obj, 30).mult(separation_value);
 		Vektor2D obstacles = (Vektor2D) om.getObstacleSeparation(obj, 50).mult(obstacles_value);
 		Vektor2D stop = (Vektor2D) LineareAlgebra.mult(obj.speed, -3);
