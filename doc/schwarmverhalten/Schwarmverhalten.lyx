@@ -119,7 +119,7 @@ titlepage
 
 \lang american
 \begin_inset Graphics
-	filename D:/Documents/Studium/CG 2/CG_Beleg/doc/schwarmverhalten/images/Htw-dresden-logo.svg.png
+	filename images/htw-dresden.png
 	lyxscale 25
 	width 40text%
 
