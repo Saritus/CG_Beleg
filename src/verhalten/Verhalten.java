@@ -21,7 +21,7 @@ public abstract class Verhalten implements Behavior {
 		return average.div(anzahl).sub(obj.pos);
 	}
 
-	public Vektor getAlignment(double abstand) {
+	public Vektor2D getAlignment(double abstand) {
 		Vektor2D average = new Vektor2D();
 		int anzahl = 0;
 		for (int i = 0; i < om.getObjectCount(); i++) {
@@ -30,10 +30,10 @@ public abstract class Verhalten implements Behavior {
 				anzahl++;
 			}
 		}
-		return average.div(anzahl);
+		return anzahl == 0 ? average : (Vektor2D) average.div(anzahl);
 	}
 
-	public Vektor getSeparation(double abstand) {
+	public Vektor2D getSeparation(double abstand) {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < om.getObjectCount(); i++) {
 			if (obj.id != i) {
@@ -46,7 +46,7 @@ public abstract class Verhalten implements Behavior {
 		return result;
 	}
 
-	public Vektor getObstacleSeparation(double abstand) {
+	public Vektor2D getObstacleSeparation(double abstand) {
 		Vektor2D result = new Vektor2D();
 		double diflength;
 		for (int i = 0; i < om.getObstacleCount(); i++) {
@@ -58,7 +58,7 @@ public abstract class Verhalten implements Behavior {
 		return result;
 	}
 
-	public Vektor getAlphaCohesion(double abstand) {
+	public Vektor2D getAlphaCohesion(double abstand) {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < om.getAlphaCount(); i++) {
 			if (LineareAlgebra.manhattanDistance(obj.pos, om.getAlpha(i).pos) < abstand) {

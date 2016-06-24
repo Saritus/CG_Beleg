@@ -158,11 +158,9 @@ public class ObjektManager {
 		}
 
 		for (int i = 0; i < objects.length; i++) {
-			objects[i].calculateDistances();
 			objects[i].behavior.update();
 		}
 		for (int i = 0; i < alphas.length; i++) {
-			alphas[i].calculateDistances();
 			alphas[i].behavior.update();
 		}
 	}

@@ -13,11 +13,13 @@ public final class Alphaverhalten extends Verhalten implements Behavior {
 
 	public void update() {
 		obj.calculateDistances();
-		Vektor2D separation = (Vektor2D) getSeparation(30).mult(separation_value);
-		Vektor2D obstacles = (Vektor2D) getObstacleSeparation(50).mult(obstacles_value);
-		Vektor2D stop = (Vektor2D) LineareAlgebra.mult(obj.speed, -3);
-		Vektor2D force = (Vektor2D) LineareAlgebra.add(separation, obstacles, stop);
-		obj.eulerMethod(force);
+		obj.eulerMethod(getForce());
 	}
 
+	public Vektor2D getForce() {
+		Vektor2D force = new Vektor2D();
+		force.add(getSeparation(30).mult(separation_value));
+		force.add(getObstacleSeparation(50).mult(obstacles_value));
+		return force;
+	}
 }
