@@ -1,0 +1,1658 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language ngerman
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language german
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+titlepage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang german
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hochschule für Technik und Wirtschaft Dresden
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="right" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/htw-dresden.png
+	lyxscale 25
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fakultät Informatik/Mathematik
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Computergrafik/Visualisierung II
+\begin_inset space \hspace{}
+\length 3cm
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset VSpace 7cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+
+\series bold
+\size larger
+Schwarmverhalten und Schwarmerkennung
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+
+\size larger
+\begin_inset VSpace 2.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Submitted by:
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Marilena Fröhlich (s72794)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mathias Gewissen (s72749)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sebastian Mischke (s72682)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Supervised by:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Prof.
+ Dr.
+ Marco Block-Berlitz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dresden, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/signum.png
+	lyxscale 10
+	width 25text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Überblick
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/overview.png
+	lyxscale 15
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Überblick
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Überblick"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Vektor
+\end_layout
+
+\begin_layout Standard
+Vektoren dienen zur Speicherung von Daten und als Grundlage für Berechnungen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Vektor.png
+	lyxscale 75
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vektor
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Vektor"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Vektor
+\end_layout
+
+\begin_layout Standard
+Die Klasse Vektor repräsentiert einen Vektor.
+ Sie besitzt grundlegende Operationen, die auf Vektoren angewendet werden.
+\end_layout
+
+\begin_layout Subsection
+Vektor2D
+\end_layout
+
+\begin_layout Standard
+Die Klasse Vektor2D wird von Vektor abgeleitet und repräsentiert einen zweidimen
+sionalen Vektor.
+\end_layout
+
+\begin_layout Subsection
+Vektor3D
+\end_layout
+
+\begin_layout Standard
+Die Klasse Vektor3D wird von Vektor abgeleitet und repräsentiert einen dreidimen
+sionalen Vektor.
+\end_layout
+
+\begin_layout Subsection
+LineareAlgebra
+\end_layout
+
+\begin_layout Standard
+Die Klasse LineareAlgebra beinhaltet mathematische Operationen die auf Vektoren
+ ausgeführt werden.
+\end_layout
+
+\begin_layout Section
+Objekte
+\end_layout
+
+\begin_layout Standard
+Im Programm gibt es verschiedene Objekte, die sich im Raum aufhalten und
+ aufeinander wirken.
+ Hierbei werden unterschiedliche Arten von Objekten unterschieden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Objekte.png
+	lyxscale 85
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Objekte
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Objekte"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+BasisObjekt
+\end_layout
+
+\begin_layout Standard
+Die Grundlage der Objekte bildet die Klasse BasisObjekt.
+ Sie ist 
+\shape italic
+abstract
+\shape default
+ und besitzt 
+\shape italic
+protected
+\shape default
+ Konstruktoren.
+ Es nicht gewollt ist, eine Instanz von ihr zu erzeugen, allerdings soll
+ es möglich sein, Subklassen von ihr zu erstellen.
+ Die Klasse hat mehrere Attribute - eine ID vom Datentyp 
+\shape italic
+Integer
+\shape default
+, eine Position vom Typ
+\shape italic
+ Vektor2D
+\shape default
+ und eine Farbe vom Typ 
+\shape italic
+Vektor3D
+\shape default
+ gespeichert.
+ Der Konstruktor wird überladen und bekommt als Parameter Farbe und/oder
+ Position übergeben.
+ Die Zuordnung einer ID erfolgt gesondert im ObjektManager (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ObjektManager"
+
+\end_inset
+
+).
+ Außerdem beinhaltet die Klasse 
+\shape italic
+BasisObjekt
+\shape default
+ die 
+\shape italic
+abstracte
+\shape default
+ Methode 
+\shape italic
+render
+\shape default
+, die zum Anzeigen des Objektes überschrieben wird.
+ Des Weiteren enthält sie Funktionen, die für das Erzeugen der Vertices
+ und Anzeigen des Objektes aufgerufen werden können.
+\end_layout
+
+\begin_layout Subsection
+StatischesObjekt und BeweglichesObjekt
+\end_layout
+
+\begin_layout Standard
+Die Klassen 
+\shape italic
+StatischesObjekt
+\shape default
+ und 
+\shape italic
+BeweglichesObjekt
+\shape default
+ sind von
+\shape italic
+ BasisObjekt
+\shape default
+ abgeleitet und sind ebenfalls 
+\shape italic
+abstract
+\shape default
+.
+ 
+\shape italic
+StatischesObjekt
+\shape default
+ besitzt keine zusätzlichen Funktionen, lediglich Konstruktoren, die die
+ Konstruktoren der Superklasse aufrufen.
+ Ihre Aufgabe ist es, eine Unterscheidung zwischen sich bewegenden und festen
+ Objekten zu ermöglichen.
+ 
+\shape italic
+BeweglichesObjekt
+\shape default
+ enthält mehrere zusätzliche Attribute.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+speed
+\emph default
+ ist die aktuelle Geschwindigkeit des Objektes
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+masse
+\emph default
+ dient zur Anwendung des zweiten newtonschen Gesetzes 
+\begin_inset Formula $\overrightarrow{F}=m*\overrightarrow{a}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+maxSpeed
+\emph default
+ begrenzt die Geschwindigkeit eines Objektes
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+behavior
+\emph default
+ ist eine Instanz der Klasse 
+\emph on
+Behavior
+\emph default
+ (siehe 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Behavior"
+
+\end_inset
+
+) und das Verhalten des Objektes beinhaltet
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+abstand
+\emph default
+ ist ein Array mit den Abständen des Objektes zu allen anderen im Objektmanager
+ (siehe 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ObjektManager"
+
+\end_inset
+
+) registrierten Objekten
+\end_layout
+
+\begin_layout Standard
+Zu diesen Attributen beinhaltet die Klasse 
+\emph on
+BeweglichesObjekt
+\emph default
+ die Funktion 
+\emph on
+calculateDistances, 
+\emph default
+die das Array 
+\emph on
+abstand
+\emph default
+ mit den neu berechneten Werten befüllt.
+ Die Funktion 
+\emph on
+eulerMethod
+\emph default
+ nimmt eine Kraft in Form eines 
+\emph on
+Vektor2D
+\emph default
+ als Übergabeparameter und wendet das explizite Euler-Verfahren auf das
+ Objekt an.
+\end_layout
+
+\begin_layout Subsection
+SchwarmObjekt
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+SchwarmObjekt
+\emph default
+ ist eine von 
+\emph on
+BeweglichesObjekt
+\emph default
+ abgeleitete Klasse und repräsentiert ein Subjekt des Schwarms.
+ Die Konstruktoren beinhalten neben dem Aufruf des Superkonstruktors auch
+ das Einfügen des Objektes in den Objektmanager (siehe 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ObjektManager"
+
+\end_inset
+
+).
+ Außerdem wird hier das Attribut 
+\emph on
+behavior
+\emph default
+ mit einem Objekt der Klasse 
+\emph on
+SchwarmVerhalten
+\emph default
+ initialisiert (siehe 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:SchwarmVerhalten"
+
+\end_inset
+
+).
+ Für das Anzeigen der 
+\emph on
+SchwarmObjekte
+\emph default
+ wird
+\emph on
+ 
+\emph default
+die Funktion
+\emph on
+ render
+\emph default
+ überschrieben.
+ Darin wird zunächst 
+\emph on
+color
+\emph default
+ durch den Aufruf von 
+\emph on
+getSchwarmColor
+\emph default
+ geändert.
+ Danach folgt der OpenGL Aufruf mit dem setzen der Farbe der Anzeige auf
+ den im Objekt gespeicherten color Wert und anschließendem Ausführen von
+ 
+\emph on
+drawDynamicTriangle
+\emph default
+, welches ein gleichschenkliges Dreieck erzeugt, das in Richtung des eingegebene
+n Geschwindigkeitsvektors ausgerichtet ist.
+\end_layout
+
+\begin_layout Subsection
+AlphaObjekt
+\end_layout
+
+\begin_layout Subsection
+HindernisObjekt
+\end_layout
+
+\begin_layout Standard
+Die Klasse 
+\emph on
+HindernisObjekt
+\emph default
+ wird von 
+\emph on
+StatischesObjekt
+\emph default
+ abgeleitet.
+ Sie besitzt neben den Konstruktoren, welche die Konstruktoren der Superklasse
+ verwenden, eine überschriebene Funktion 
+\emph on
+render
+\emph default
+.
+ In ihr wird die Farbe für die Anzeige auf schwarz gesetzt und ein regelmäßiges
+ Achteck durch die Funktion 
+\emph on
+drawOctagon
+\emph default
+ an die Position des Objektes gezeichnet.
+\end_layout
+
+\begin_layout Subsection
+ObjektManager
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:ObjektManager"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Klasse
+\emph on
+ ObjektManager
+\emph default
+ ist als Singleton-Pattern realisiert und dient der Verwaltung der erzeugten
+ Objekte.
+ Sie beinhaltet drei Arrays, diese speichern jeweils
+\emph on
+ 
+\emph default
+Instanzen von
+\emph on
+ SchwarmObjekt
+\emph default
+, 
+\emph on
+AlphaObjekt
+\emph default
+ und 
+\emph on
+HindernisObjekt
+\emph default
+.
+ Zusätzlich gibt es Funktionen für das Hinzufügen und Entfernen von Objekten,
+ sowie das Überprüfen, ob ein Objekt bereits im ObjektManager vorhanden
+ ist.
+ Außerdem gibt es die Funktionen
+\emph on
+ update
+\emph default
+ und
+\emph on
+ render
+\emph default
+.
+ Diese rufen die
+\emph on
+ update 
+\emph default
+bzw.
+ 
+\emph on
+render
+\emph default
+-Funktion einzeln für jedes im ObjektManager befindliche Objekt auf.
+\end_layout
+
+\begin_layout Section
+Verhalten
+\end_layout
+
+\begin_layout Standard
+Verhalten ist die Art, wie sich ein bewegliches Objekt im Raum bewegt und
+ auf andere Objekte reagiert.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Verhalten.png
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verhalten
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Verhalten"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Behavior
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Behavior"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Behavior
+\emph default
+ ist ein Interface, welches die Funktion
+\emph on
+ update
+\emph default
+ bereitstellt.
+ Damit wird sichergestellt, dass in den Klassen, die Behavior implementieren,
+ die Funktion 
+\emph on
+update
+\emph default
+ aufgerufen werden kann.
+\end_layout
+
+\begin_layout Subsection
+BasisVerhalten
+\end_layout
+
+\begin_layout Standard
+Die Klasse 
+\emph on
+BasisVerhalten
+\emph default
+ ist eine 
+\emph on
+abstracte
+\emph default
+ Klasse, die 
+\emph on
+Behavior
+\emph default
+ implementiert.
+ Zudem besitzt sie als Attribut ein Objekt der Klasse 
+\emph on
+BeweglichesObjekt und die folgenden Funktionen.
+\end_layout
+
+\begin_layout Subsubsection
+Kohäsion
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Kohäsion"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jedes bewegliche Objekt hat ein festgelegtes Umfeld.
+ Alle beweglichen Objekte, die sich in diesem Umfeld befinden, nehmen Einfluss
+ auf das Objekt.
+ Die Größe des Feldes wird dem Verhalten als Parameter übergeben.
+ Für die Berechnung der Kohäsion wird für jedes im 
+\emph on
+ObjektManager
+\emph default
+ befindliche 
+\emph on
+SchwarmObjekt
+\emph default
+ überprüft, welche beweglichen Objekte sich innerhalb des Umfeldes befinden.
+ Für diese Objekte wird anschließend die durchschnittliche Position berechnet.
+ Die Differenz aus berechnetem Mittelwert und der Position des im Verhalten
+ gespeicherten Objektes liefert die Kohäsion.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Separation
+\end_layout
+
+\begin_layout Standard
+Wie bei der Kohäsion nehmen nur bewegliche Objekte in einem bestimmten Umkreis
+ eines Objektes Einfluss auf das Objekt.
+ Von diesen Objekten wird der durchschnittliche Abstand zum Ausgangsobjekt
+ berechnet.
+ Dabei wird der Abstand vorher durch das Quadrat seiner Länge geteilt.
+ Die Differenz aus berechnetem Mittelwert und der Position des im Verhalten
+ gespeicherten Objektes liefert die Separation.
+\end_layout
+
+\begin_layout Subsubsection
+Alignment
+\end_layout
+
+\begin_layout Standard
+Für die Berechnung des Alignments wird die Durchschnittsgeschwindigkeit
+ aller beweglichen Objekte, die sich in oben genanntem Umfeld (unter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Kohäsion"
+
+\end_inset
+
+) des Ausgangsobjektes befinden, berechnet.
+\end_layout
+
+\begin_layout Subsubsection
+Hindernisse-Separation
+\end_layout
+
+\begin_layout Standard
+Die Hindernisse-Separation funktioniert wie die Separation.
+ Allerdings werden zur Berechnung nur die statischen, nicht aber die beweglichen
+ Objekte mit einbezogen.
+\end_layout
+
+\begin_layout Subsubsection
+Alpha-Kohäsion
+\end_layout
+
+\begin_layout Standard
+Die Alpha-Kohäsion funktioniert wie die Kohäsion.
+ Allerdings werden zur Berechnung nur
+\emph on
+ AlphaObjekte
+\emph default
+ mit einbezogen.
+\end_layout
+
+\begin_layout Subsection
+SchwarmVerhalten
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:SchwarmVerhalten"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Klasse 
+\emph on
+Schwarmverhalten
+\emph default
+ besitzt die Funktion 
+\emph on
+getForce
+\emph default
+, die die Kräfte von 
+\emph on
+getCohesion
+\emph default
+, 
+\emph on
+getSeparation
+\emph default
+, 
+\emph on
+getAlignment
+\emph default
+, 
+\emph on
+getObstacleSeparation
+\emph default
+ und 
+\emph on
+getAlphaCohesion
+\emph default
+ aufaddiert und zurückgibt.
+ Damit berechnet sie die Gesamtkraft die auf das Objekt wirken soll.
+ Die Funktion 
+\emph on
+update
+\emph default
+ schreibt zuerst die Abstände zwischen dem Ausgangsobjekt und allen anderen
+ beweglichen Objekten im 
+\emph on
+ObjektManager 
+\emph default
+in das Array 
+\emph on
+abstand.
+ 
+\emph default
+Anschließend wird das explizite Euler-Verfahren auf die berechnete Gesamtkraft
+ ausgefüht
+\emph on
+.
+\end_layout
+
+\begin_layout Subsection
+AlphaVerhalten
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/ObjektUndVerhalten.png
+	lyxscale 30
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Objekte und Verhalten
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ObjekteUndVerhalten"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Klasse 
+\emph on
+Alphaverhalten
+\emph default
+ verhält sich ähnlich wie das 
+\emph on
+Schwarmverhalten
+\emph default
+.
+ Allerdings addiert 
+\emph on
+getForce
+\emph default
+ hier lediglich die Kräfte von 
+\emph on
+getSeparation
+\emph default
+ und 
+\emph on
+getObstacleSeparation
+\emph default
+.
+\end_layout
+
+\begin_layout Section
+Anzeige
+\end_layout
+
+\begin_layout Standard
+Die Anzeige ist verantwortlich für die Darstellung des Schwarmverhaltens.
+\end_layout
+
+\begin_layout Subsection
+BasisFenster
+\end_layout
+
+\begin_layout Standard
+Die Klasse
+\emph on
+ BasisFenster
+\emph default
+ ist 
+\emph on
+abstract
+\emph default
+ und bildet die Grundlage für die grafische Ausgabe der Objekte.
+ Sie besitzt eine Breite, eine Höhe und den Titel des Fensters als Attribute.
+ Als Methoden beinhaltet sie die Initialisierung eines LWJGL Displays und
+ das Starten des Renderloops.
+\end_layout
+
+\begin_layout Subsection
+WeltDesSchwarms
+\end_layout
+
+\begin_layout Standard
+Die Klasse 
+\emph on
+WeltDesSchwarms
+\emph default
+ wird von 
+\emph on
+BasisFenster
+\emph default
+ abgeleitet und ist Startklasse des Projektes.
+ Bei der Ausführung werden vorab zunächst sämtliche für den Programmablauf
+ relevanten Objekte erstellt.
+ Im Anschluss wird das Display erzeugt und der 
+\emph on
+renderLoop
+\emph default
+ gestartet.
+ Die Funktion 
+\emph on
+renderLoop
+\emph default
+ löscht erst den Inhalt des Displays, erzeugt dann ein Shaderprogram in
+ der Klasse Shader (siehe 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Shader"
+
+\end_inset
+
+), führt anschließend die Funktionen 
+\emph on
+update
+\emph default
+ und 
+\emph on
+render
+\emph default
+ des 
+\emph on
+ObjektManagers
+\emph default
+ aus und löscht schließlich den erzeugten Shader.
+ Dieser Ablauf wird wiederholt, solange keine Schließanfrage für das Display
+ aufgetreten ist.
+\end_layout
+
+\begin_layout Subsection
+Shader
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Shader"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Klasse 
+\emph on
+Shader
+\emph default
+ dient dazu, die Berechnung der Anzeige der Objekte auf der Grafikkarte
+ vorzunehmen.
+ Dafür wird bei der Erstellung des Shaderprogramms ein Vertex- und ein Fragments
+hader erzeugt.
+ Deren Shadercode wir aus einer externen Datei geladen, um anschließend
+ die beiden Shader mit dem Shaderprogramm zu linken.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Fenster.png
+	lyxscale 75
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fenster
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fenster"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
