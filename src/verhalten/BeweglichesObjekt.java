@@ -80,6 +80,10 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 	public void setBehavior(Behavior behavior) {
 		this.behavior = behavior;
 	}
+	
+	public double[] getAbstand() {
+		return abstand;
+	}
 
 	public void calculateDistances() {
 		abstand = new double[ObjektManager.getInstance().getObjectCount()];

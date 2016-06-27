@@ -11,6 +11,7 @@ public abstract class BasisVerhalten implements Behavior {
 
 	public BasisVerhalten(BeweglichesObjekt obj) {
 		this.obj = obj;
+		obj.behavior = this;
 	}
 
 	public Vektor getCohesion(double abstand) {

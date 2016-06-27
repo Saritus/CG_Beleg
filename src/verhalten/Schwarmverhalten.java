@@ -10,7 +10,7 @@ public final class SchwarmVerhalten extends BasisVerhalten {
 	private static final double obstacles_value = 10000;
 	private static final double alpha_value = 2.;
 
-	SchwarmVerhalten(BeweglichesObjekt obj) {
+	public SchwarmVerhalten(BeweglichesObjekt obj) {
 		super(obj);
 	}
 

@@ -7,7 +7,7 @@ public final class AlphaVerhalten extends BasisVerhalten {
 	private static final double separation_value = 500.;
 	private static final double obstacles_value = 10000;
 
-	AlphaVerhalten(BeweglichesObjekt obj) {
+	public AlphaVerhalten(BeweglichesObjekt obj) {
 		super(obj);
 	}
 
