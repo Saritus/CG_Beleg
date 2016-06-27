@@ -35,14 +35,11 @@ public class Shader {
 	}
 
 	public void createShaderProgram() {
-
 		shaderProgramm = glCreateProgram();
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
 		attachShader("src/verhalten/anzeige.vshader", vertexShader);
 		attachShader("src/verhalten/anzeige.fshader", fragmentShader);
-
 		glLinkProgram(shaderProgramm);
 		glValidateProgram(shaderProgramm);
 		glUseProgram(shaderProgramm);

@@ -215,7 +215,7 @@ Computergrafik/Visualisierung II
 
 \series bold
 \size larger
-Schwarmverhalten und Schwarmerkennung
+Schwarmverhalten
 \end_layout
 
 \begin_layout Standard
@@ -255,7 +255,7 @@ Submitted by:
 \begin_inset Text
 
 \begin_layout Plain Layout
-Marilena Fröhlich (s72794)
+Marilena Fröhlich
 \end_layout
 
 \end_inset
@@ -284,7 +284,7 @@ Marilena Fröhlich (s72794)
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mathias Gewissen (s72749)
+Mathias Gewissen
 \end_layout
 
 \end_inset
@@ -313,7 +313,7 @@ Mathias Gewissen (s72749)
 \begin_inset Text
 
 \begin_layout Plain Layout
-Sebastian Mischke (s72682)
+Sebastian Mischke
 \end_layout
 
 \end_inset
@@ -609,13 +609,6 @@ today
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename images/signum.png
-	lyxscale 10
-	width 25text%
-
-\end_inset
-
 
 \end_layout
 
@@ -719,7 +712,61 @@ Objekte
 \begin_layout Standard
 Im Programm gibt es verschiedene Objekte, die sich im Raum aufhalten und
  aufeinander wirken.
- Hierbei werden unterschiedliche Arten von Objekten unterschieden.
+ Hierbei werden unterschiedliche Arten von Objekten unterschieden (siehe
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Objekte"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Objekte.png
+	lyxscale 25
+	height 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Objekte
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Objekte"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1054,6 +1101,38 @@ n Geschwindigkeitsvektors ausgerichtet ist.
 AlphaObjekt
 \end_layout
 
+\begin_layout Standard
+Auch die Klasse 
+\family typewriter
+AlphaObjekt
+\family default
+ wurde von 
+\family typewriter
+BeweglichesObjekt
+\family default
+ abgeleitet, jedoch enthält sie, im Unterschied zum 
+\family typewriter
+SchwarmObjekt
+\family default
+, neben Konstruktoren und dem überschriebenen 
+\family typewriter
+render
+\family default
+ keine zusätzlichen Funktionen.
+ Bereits im Konstruktor wird behavior ein neues Objekt von 
+\family typewriter
+AlphaVerhalten
+\family default
+ (siehe 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:AlphaVerhalten"
+
+\end_inset
+
+) zugewiesen.
+\end_layout
+
 \begin_layout Subsection
 HindernisObjekt
 \end_layout
@@ -1316,7 +1395,7 @@ public Vektor getCohesion(double abstand) {
 
 \begin_layout Plain Layout
 
-	return average.div(count).sub(obj.pos);
+	return count == 0 ? average : average.div(count).sub(obj.pos);
 \end_layout
 
 \begin_layout Plain Layout
@@ -1712,6 +1791,13 @@ Anschließend wird das explizite Euler-Verfahren auf die berechnete Gesamtkraft
 
 \begin_layout Subsection
 AlphaVerhalten
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:AlphaVerhalten"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1765,8 +1851,15 @@ abstract
 \family default
  und bildet die Grundlage für die grafische Ausgabe der Objekte.
  Sie besitzt eine Breite, eine Höhe und den Titel des Fensters als Attribute.
- Als Methoden beinhaltet sie die Initialisierung eines LWJGL Displays und
- das Starten des Renderloops.
+ Als Methoden beinhaltet sie die Initialisierung eines LWJGL Displays (siehe
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Display"
+
+\end_inset
+
+) und das Starten des Renderloops.
 \end_layout
 
 \begin_layout Subsection
@@ -1797,7 +1890,7 @@ renderLoop
  löscht erst den Inhalt des Displays, erzeugt dann ein Shaderprogram in
  der Klasse Shader (siehe 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sub:Shader"
 
 \end_inset
@@ -1841,6 +1934,108 @@ Shader
 hader erzeugt.
  Deren Shadercode wir aus einer externen Datei geladen, um anschließend
  die beiden Shader mit dem Shaderprogramm zu linken.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void createShaderProgram() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	shaderProgramm = glCreateProgram();
+\end_layout
+
+\begin_layout Plain Layout
+
+	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+\end_layout
+
+\begin_layout Plain Layout
+
+	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+\end_layout
+
+\begin_layout Plain Layout
+
+	attachShader("src/verhalten/anzeige.vshader", vertexShader);
+\end_layout
+
+\begin_layout Plain Layout
+
+	attachShader("src/verhalten/anzeige.fshader", fragmentShader);
+\end_layout
+
+\begin_layout Plain Layout
+
+	glLinkProgram(shaderProgramm);
+\end_layout
+
+\begin_layout Plain Layout
+
+	glValidateProgram(shaderProgramm);
+\end_layout
+
+\begin_layout Plain Layout
+
+	glUseProgram(shaderProgramm);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/display.png
+	lyxscale 25
+	height 11cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Display
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Display"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
