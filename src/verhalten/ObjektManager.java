@@ -97,10 +97,7 @@ public class ObjektManager {
 	public boolean check(BeweglichesObjekt obj) {
 		if ((obj.id < 0) || (obj.id >= objects.length))
 			return false;
-		else if (obj.pos.isEqual(objects[obj.id].pos))
-			return true;
-		else
-			return false;
+		return (obj.pos.isEqual(objects[obj.id].pos));
 	}
 
 	public boolean check(StatischesObjekt obj) {

@@ -15,26 +15,26 @@ public abstract class BasisVerhalten implements Behavior {
 
 	public Vektor getCohesion(double abstand) {
 		Vektor2D average = new Vektor2D();
-		int anzahl = 0;
+		int count = 0;
 		for (int i = 0; i < om.getObjectCount(); i++) {
 			if (obj.abstand[i] < abstand) {
 				average.add(om.getObject(i).pos);
-				anzahl++;
+				count++;
 			}
 		}
-		return average.div(anzahl).sub(obj.pos);
+		return count == 0 ? average : average.div(count).sub(obj.pos);
 	}
 
 	public Vektor2D getAlignment(double abstand) {
 		Vektor2D average = new Vektor2D();
-		int anzahl = 0;
+		int count = 0;
 		for (int i = 0; i < om.getObjectCount(); i++) {
 			if (obj.abstand[i] < abstand) {
 				average.add(om.getObject(i).speed);
-				anzahl++;
+				count++;
 			}
 		}
-		return anzahl == 0 ? average : (Vektor2D) average.div(anzahl);
+		return count == 0 ? average : (Vektor2D) average.div(count);
 	}
 
 	public Vektor2D getSeparation(double abstand) {

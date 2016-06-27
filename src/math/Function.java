@@ -40,4 +40,23 @@ public class Function {
 		}
 		return source.toString();
 	}
+
+	public static Vektor3D getColorFromChar(char color) {
+		Vektor3D result;
+		switch (color) {
+		case 'r':
+			result = new Vektor3D(1, 0, 0);
+			break;
+		case 'g':
+			result = new Vektor3D(0, 1, 0);
+			break;
+		case 'b':
+			result = new Vektor3D(0, 0, 1);
+			break;
+		default:
+			result = new Vektor3D(0, 0, 0);
+			break;
+		}
+		return result;
+	}
 }

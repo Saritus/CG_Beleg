@@ -16,11 +16,11 @@ public final class AlphaObjekt extends BeweglichesObjekt {
 	}
 
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed, char color) {
-		this(pos, speed, masse, maxSpeed, getColorFromChar(color));
+		this(pos, speed, masse, maxSpeed, Function.getColorFromChar(color));
 	}
 
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, char color) {
-		this(pos, speed, masse, getColorFromChar(color));
+		this(pos, speed, masse, Function.getColorFromChar(color));
 	}
 
 	public AlphaObjekt(Vektor2D pos, Vektor2D speed, double masse, double maxSpeed) {
@@ -35,25 +35,6 @@ public final class AlphaObjekt extends BeweglichesObjekt {
 		ObjektManager.getInstance().add(this);
 		behavior = new AlphaVerhalten(this);
 		color = new Vektor3D(0, 0, 0);
-	}
-
-	public static Vektor3D getColorFromChar(char color) {
-		Vektor3D result;
-		switch (color) {
-		case 'r':
-			result = new Vektor3D(1, 0, 0);
-			break;
-		case 'g':
-			result = new Vektor3D(0, 1, 0);
-			break;
-		case 'b':
-			result = new Vektor3D(0, 0, 1);
-			break;
-		default:
-			result = new Vektor3D(0, 0, 0);
-			break;
-		}
-		return result;
 	}
 
 	@Override
