@@ -1,6 +1,8 @@
-package verhalten;
+package objekte;
 
 import math.*;
+import verhalten.Behavior;
+import verhalten.ObjektManager;
 
 public abstract class BeweglichesObjekt extends BasisObjekt {
 
@@ -80,16 +82,20 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 	public void setBehavior(Behavior behavior) {
 		this.behavior = behavior;
 	}
-	
+
 	public double[] getAbstand() {
 		return abstand;
+	}
+
+	public void update() {
+		behavior.update();
 	}
 
 	public void calculateDistances() {
 		abstand = new double[ObjektManager.getInstance().getObjectCount()];
 		for (int i = 0; i < ObjektManager.getInstance().getObjectCount(); i++) {
 			try {
-				abstand[i] = LineareAlgebra.manhattanDistance(pos, ObjektManager.getInstance().objects[i].pos);
+				abstand[i] = LineareAlgebra.manhattanDistance(pos, ObjektManager.getInstance().getObject(i).pos);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

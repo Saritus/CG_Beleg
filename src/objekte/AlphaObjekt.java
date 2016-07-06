@@ -1,7 +1,9 @@
-package verhalten;
+package objekte;
 
 import static org.lwjgl.opengl.GL11.*;
 import math.*;
+import verhalten.AlphaVerhalten;
+import verhalten.ObjektManager;
 
 public final class AlphaObjekt extends BeweglichesObjekt {
 

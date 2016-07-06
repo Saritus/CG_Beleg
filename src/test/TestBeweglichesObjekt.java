@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import math.Vektor2D;
-import verhalten.SchwarmObjekt;
+import objekte.SchwarmObjekt;
 
 public class TestBeweglichesObjekt {
 	@Test

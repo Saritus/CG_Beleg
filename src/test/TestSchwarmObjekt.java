@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import math.Vektor2D;
 import math.Vektor3D;
-import verhalten.AlphaObjekt;
-import verhalten.SchwarmObjekt;
+import objekte.AlphaObjekt;
+import objekte.SchwarmObjekt;
 
 public class TestSchwarmObjekt {
 	@Test

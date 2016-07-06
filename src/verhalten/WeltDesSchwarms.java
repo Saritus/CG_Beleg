@@ -1,6 +1,9 @@
 package verhalten;
 
 import math.Vektor2D;
+import objekte.AlphaObjekt;
+import objekte.SchwarmObjekt;
+
 import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
 

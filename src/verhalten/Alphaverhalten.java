@@ -1,6 +1,7 @@
 package verhalten;
 
 import math.*;
+import objekte.BeweglichesObjekt;
 
 public final class AlphaVerhalten extends BasisVerhalten {
 

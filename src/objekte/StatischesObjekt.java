@@ -1,4 +1,4 @@
-package verhalten;
+package objekte;
 
 import math.Vektor2D;
 import math.Vektor3D;

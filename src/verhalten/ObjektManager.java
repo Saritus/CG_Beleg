@@ -2,6 +2,11 @@ package verhalten;
 
 import org.lwjgl.input.Mouse;
 import math.*;
+import objekte.AlphaObjekt;
+import objekte.BeweglichesObjekt;
+import objekte.HindernisObjekt;
+import objekte.SchwarmObjekt;
+import objekte.StatischesObjekt;
 
 public class ObjektManager {
 
@@ -67,7 +72,7 @@ public class ObjektManager {
 		BeweglichesObjekt[] array = new BeweglichesObjekt[objects.length + 1];
 		for (int i = 0; i < objects.length; i++) {
 			array[i] = objects[i];
-			array[i].id = i;
+			array[i].setId(i);
 		}
 		array[objects.length] = obj;
 		objects = array;
@@ -77,7 +82,7 @@ public class ObjektManager {
 		AlphaObjekt[] array = new AlphaObjekt[alphas.length + 1];
 		for (int i = 0; i < alphas.length; i++) {
 			array[i] = alphas[i];
-			array[i].id = i;
+			array[i].setId(i);
 		}
 		array[alphas.length] = obj;
 		alphas = array;
@@ -95,14 +100,14 @@ public class ObjektManager {
 	}
 
 	public boolean check(BeweglichesObjekt obj) {
-		if ((obj.id < 0) || (obj.id >= objects.length))
+		if ((obj.getId() < 0) || (obj.getId() >= objects.length))
 			return false;
-		return (obj.pos.isEqual(objects[obj.id].pos));
+		return (obj.getPos().isEqual(objects[obj.getId()].getPos()));
 	}
 
 	public boolean check(StatischesObjekt obj) {
 		for (int i = 1; i < obstacles.length; i++) {
-			if (obj.pos.isEqual(obstacles[i].pos)) {
+			if (obj.getPos().isEqual(obstacles[i].getPos())) {
 				return true;
 			}
 		}
@@ -111,7 +116,7 @@ public class ObjektManager {
 
 	public boolean check(StatischesObjekt obj, double abstand) {
 		for (int i = 1; i < obstacles.length; i++) {
-			if (LineareAlgebra.manhattanDistance(obj.pos, obstacles[i].pos) < abstand) {
+			if (LineareAlgebra.manhattanDistance(obj.getPos(), obstacles[i].getPos()) < abstand) {
 				return true;
 			}
 		}
@@ -125,17 +130,17 @@ public class ObjektManager {
 		BeweglichesObjekt[] array = new BeweglichesObjekt[objects.length - 1];
 		for (int i = 0; i < id; i++) {
 			array[i] = objects[i];
-			array[i].id = i;
+			array[i].setId(i);
 		}
 		for (int i = id; i < objects.length; i++) {
 			array[i] = objects[i + 1];
-			array[i].id = i;
+			array[i].setId(i);
 		}
 		objects = array;
 	}
 
 	public void remove(BeweglichesObjekt obj) {
-		remove(obj.id);
+		remove(obj.getId());
 	}
 
 	public void removeAllObstacles() {
@@ -155,10 +160,10 @@ public class ObjektManager {
 		}
 
 		for (int i = 0; i < objects.length; i++) {
-			objects[i].behavior.update();
+			objects[i].update();
 		}
 		for (int i = 0; i < alphas.length; i++) {
-			alphas[i].behavior.update();
+			alphas[i].update();
 		}
 	}
 

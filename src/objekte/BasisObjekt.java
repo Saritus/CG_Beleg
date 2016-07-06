@@ -1,4 +1,4 @@
-package verhalten;
+package objekte;
 
 import static org.lwjgl.opengl.GL11.glVertex2f;
 

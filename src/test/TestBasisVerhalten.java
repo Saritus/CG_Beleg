@@ -4,10 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import math.Vektor2D;
-import verhalten.AlphaObjekt;
-import verhalten.HindernisObjekt;
+import objekte.AlphaObjekt;
+import objekte.HindernisObjekt;
+import objekte.SchwarmObjekt;
 import verhalten.ObjektManager;
-import verhalten.SchwarmObjekt;
 import verhalten.SchwarmVerhalten;
 
 public class TestBasisVerhalten {

@@ -3,6 +3,7 @@ package verhalten;
 import math.LineareAlgebra;
 import math.Vektor;
 import math.Vektor2D;
+import objekte.BeweglichesObjekt;
 
 public abstract class BasisVerhalten implements Behavior {
 
@@ -11,27 +12,27 @@ public abstract class BasisVerhalten implements Behavior {
 
 	public BasisVerhalten(BeweglichesObjekt obj) {
 		this.obj = obj;
-		obj.behavior = this;
+		obj.setBehavior(this);
 	}
 
 	public Vektor getCohesion(double abstand) {
 		Vektor2D average = new Vektor2D();
 		int count = 0;
 		for (int i = 0; i < om.getObjectCount(); i++) {
-			if (obj.abstand[i] < abstand) {
-				average.add(om.getObject(i).pos);
+			if (obj.getAbstand()[i] < abstand) {
+				average.add(om.getObject(i).getPos());
 				count++;
 			}
 		}
-		return count == 0 ? average : average.div(count).sub(obj.pos);
+		return count == 0 ? average : average.div(count).sub(obj.getPos());
 	}
 
 	public Vektor2D getAlignment(double abstand) {
 		Vektor2D average = new Vektor2D();
 		int count = 0;
 		for (int i = 0; i < om.getObjectCount(); i++) {
-			if (obj.abstand[i] < abstand) {
-				average.add(om.getObject(i).speed);
+			if (obj.getAbstand()[i] < abstand) {
+				average.add(om.getObject(i).getSpeed());
 				count++;
 			}
 		}
@@ -41,10 +42,10 @@ public abstract class BasisVerhalten implements Behavior {
 	public Vektor2D getSeparation(double abstand) {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < om.getObjectCount(); i++) {
-			if (obj.id != i) {
-				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, om.getObject(i).pos);
-				if ((obj.abstand[i] < abstand) && (obj.abstand[i] > 0)) {
-					result.add(dif.div(obj.abstand[i] * obj.abstand[i]));
+			if (obj.getId() != i) {
+				Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.getPos(), om.getObject(i).getPos());
+				if ((obj.getAbstand()[i] < abstand) && (obj.getAbstand()[i] > 0)) {
+					result.add(dif.div(obj.getAbstand()[i] * obj.getAbstand()[i]));
 				}
 			}
 		}
@@ -55,7 +56,7 @@ public abstract class BasisVerhalten implements Behavior {
 		Vektor2D result = new Vektor2D();
 		double diflength;
 		for (int i = 0; i < om.getObstacleCount(); i++) {
-			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, om.getObstacle(i).pos);
+			Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.getPos(), om.getObstacle(i).getPos());
 			if (((diflength = dif.lengthsquare()) < abstand * abstand) && (diflength > 0)) {
 				result.add(dif.div(diflength));
 			}
@@ -66,8 +67,8 @@ public abstract class BasisVerhalten implements Behavior {
 	public Vektor2D getAlphaCohesion(double abstand) {
 		Vektor2D result = new Vektor2D();
 		for (int i = 0; i < om.getAlphaCount(); i++) {
-			if (LineareAlgebra.manhattanDistance(obj.pos, om.getAlpha(i).pos) < abstand) {
-				result.add(LineareAlgebra.sub(om.getAlpha(i).pos, obj.pos));
+			if (LineareAlgebra.manhattanDistance(obj.getPos(), om.getAlpha(i).getPos()) < abstand) {
+				result.add(LineareAlgebra.sub(om.getAlpha(i).getPos(), obj.getPos()));
 			}
 		}
 		return result;
