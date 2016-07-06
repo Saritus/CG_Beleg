@@ -4,6 +4,8 @@
 \begin_header
 \textclass article
 \begin_preamble
+%\usepackage{multicol}
+
 %Farben fuer Programmlisting
 \usepackage{listings,xcolor}
 \definecolor{pl_background}{rgb}{0.95,0.95,0.95}
@@ -657,10 +659,6 @@ LatexCommand tableofcontents
 \end_inset
 
 
-\begin_inset Newpage newpage
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -728,14 +726,14 @@ reference "fig:Objekte"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename images/Objekte.png
 	lyxscale 25
-	height 7cm
+	width 75col%
 
 \end_inset
 
@@ -2015,7 +2013,7 @@ status open
 \begin_inset Graphics
 	filename images/display.png
 	lyxscale 25
-	height 11cm
+	width 75col%
 
 \end_inset
 
