@@ -143,10 +143,24 @@ public class ObjektManager {
 		remove(obj.getId());
 	}
 
+	public void removeAllObjects() {
+		objects = new BeweglichesObjekt[0];
+	}
+
+	public void removeAllAlphas() {
+		alphas = new AlphaObjekt[0];
+	}
+
 	public void removeAllObstacles() {
 		StatischesObjekt mouse = obstacles[0];
 		obstacles = new StatischesObjekt[1];
 		obstacles[0] = mouse;
+	}
+
+	public void removeAll() {
+		removeAllObjects();
+		removeAllAlphas();
+		removeAllObstacles();
 	}
 
 	// Prozeduren
