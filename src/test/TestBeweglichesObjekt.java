@@ -37,6 +37,8 @@ public class TestBeweglichesObjekt {
 	@Test
 	public void testEulerMethod() {
 		so1.eulerMethod(new Vektor2D(5, 4));
+		Assert.assertEquals(5., so1.getPos().getX(), 0.01);
+		Assert.assertEquals(4., so1.getPos().getY(), 0.01);
 		so1.calculateDistances();
 		so2.calculateDistances();
 		Assert.assertEquals(0., so1.getAbstand()[0], 0.01);
