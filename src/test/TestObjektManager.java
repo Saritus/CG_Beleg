@@ -16,7 +16,7 @@ public class TestObjektManager {
 
 	SchwarmObjekt so1, so2;
 	SchwarmVerhalten sv1;
-	HindernisObjekt ho;
+	HindernisObjekt ho1;
 	AlphaObjekt ao1;
 	ObjektManager om = ObjektManager.getInstance();
 
@@ -27,8 +27,8 @@ public class TestObjektManager {
 		sv1 = new SchwarmVerhalten(so1);
 		so1.calculateDistances();
 		so2.calculateDistances();
-		ho = new HindernisObjekt(5, 5);
-		om.add(ho);
+		ho1 = new HindernisObjekt(10, 10);
+		om.add(ho1);
 		ao1 = new AlphaObjekt(new Vektor2D(), new Vektor2D(), 1);
 	}
 
@@ -55,7 +55,43 @@ public class TestObjektManager {
 	}
 
 	@Test
-	public void testRemove() {
+	public void testAddObject() {
+		om.add(so1);
+		Assert.assertEquals(om.getObjectCount(), 3);
+	}
+
+	@Test
+	public void testAddAlpha() {
+		om.add(ao1);
+		Assert.assertEquals(om.getAlphaCount(), 2);
+	}
+
+	@Test
+	public void testAddObstacle() {
+		om.add(new HindernisObjekt());
+		Assert.assertEquals(om.getObstacleCount(), 3);
+	}
+
+	@Test
+	public void testRemoveAllObjects() {
+		om.removeAllObjects();
+		Assert.assertEquals(om.getObjectCount(), 0);
+	}
+
+	@Test
+	public void testRemoveAllAlphas() {
+		om.removeAllAlphas();
+		Assert.assertEquals(om.getAlphaCount(), 0);
+	}
+
+	@Test
+	public void testRemoveAllObstacles() {
+		om.removeAllObstacles();
+		Assert.assertEquals(om.getObstacleCount(), 1);
+	}
+
+	@Test
+	public void testRemoveAll() {
 		om.removeAll();
 		Assert.assertEquals(om.getObjectCount(), 0);
 		Assert.assertEquals(om.getAlphaCount(), 0);
