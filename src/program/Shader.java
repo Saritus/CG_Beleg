@@ -52,15 +52,8 @@ public class Shader {
 		glAttachShader(shaderProgramm, shader);
 	}
 
-	public void useShaderBeforeGL_Begin() {
-		glUseProgram(shaderProgramm);
-	}
-
-	public void useShaderAfterGL_End() {
-		glUseProgram(0);
-	}
-
 	public void deleteShader() {
+		glUseProgram(0);
 		glDetachShader(shaderProgramm, vertexShader);
 		glDetachShader(shaderProgramm, fragmentShader);
 		glDeleteProgram(shaderProgramm);
