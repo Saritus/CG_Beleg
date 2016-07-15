@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import math.Vektor2D;
 import objekte.SchwarmObjekt;
-import verhalten.ObjektManager;
+import program.ObjektManager;
 
 public class TestBeweglichesObjekt {
 

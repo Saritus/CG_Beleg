@@ -1,4 +1,4 @@
-package verhalten;
+package program;
 
 import math.Vektor2D;
 import objekte.AlphaObjekt;

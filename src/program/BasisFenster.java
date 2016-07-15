@@ -1,4 +1,4 @@
-package verhalten;
+package program;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;

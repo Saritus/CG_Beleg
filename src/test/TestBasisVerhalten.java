@@ -9,8 +9,8 @@ import math.Vektor2D;
 import objekte.AlphaObjekt;
 import objekte.HindernisObjekt;
 import objekte.SchwarmObjekt;
-import verhalten.ObjektManager;
-import verhalten.SchwarmVerhalten;
+import program.ObjektManager;
+import program.SchwarmVerhalten;
 
 public class TestBasisVerhalten {
 

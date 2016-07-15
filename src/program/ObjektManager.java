@@ -1,4 +1,4 @@
-package verhalten;
+package program;
 
 import org.lwjgl.input.Mouse;
 import math.*;

@@ -1,4 +1,4 @@
-package verhalten;
+package program;
 
 import math.LineareAlgebra;
 import math.Vektor;

@@ -1,8 +1,8 @@
 package objekte;
 
 import math.*;
-import verhalten.Behavior;
-import verhalten.ObjektManager;
+import program.Behavior;
+import program.ObjektManager;
 
 public abstract class BeweglichesObjekt extends BasisObjekt {
 
