@@ -29,7 +29,6 @@ public class TestBasisVerhalten {
 		ho = new HindernisObjekt(5, 5);
 		ObjektManager.getInstance().add(ho);
 		ao1 = new AlphaObjekt(new Vektor2D(), new Vektor2D(), 1);
-		ObjektManager.getInstance().add(ao1);
 	}
 
 	@After
@@ -70,9 +69,9 @@ public class TestBasisVerhalten {
 	@Test
 	public void testGetForce() {
 		so1.update();
-		Assert.assertEquals(208., so1.getPos().getX(), 0.01);
-		Assert.assertEquals(208., so1.getPos().getY(), 0.01);
-		Assert.assertEquals(3270., so1.getSpeed().getX(), 0.01);
-		Assert.assertEquals(3270., so1.getSpeed().getY(), 0.01);
+		Assert.assertEquals(228., so1.getPos().getX(), 0.01);
+		Assert.assertEquals(228., so1.getPos().getY(), 0.01);
+		Assert.assertEquals(3290., so1.getSpeed().getX(), 0.01);
+		Assert.assertEquals(3290., so1.getSpeed().getY(), 0.01);
 	}
 }
