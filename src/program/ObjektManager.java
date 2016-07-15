@@ -30,6 +30,11 @@ public class ObjektManager {
 		return instance;
 	}
 
+	@Override
+	public ObjektManager clone() {
+		throw new RuntimeException("clone is not allowed");
+	}
+
 	public BeweglichesObjekt[] getObjects() {
 		return objects;
 	}
