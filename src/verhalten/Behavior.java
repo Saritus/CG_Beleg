@@ -1,4 +1,4 @@
-package program;
+package verhalten;
 
 public interface Behavior {
 

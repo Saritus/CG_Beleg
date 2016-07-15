@@ -10,7 +10,7 @@ import math.Vektor3D;
 import objekte.AlphaObjekt;
 import objekte.SchwarmObjekt;
 import program.ObjektManager;
-import program.SchwarmVerhalten;
+import verhalten.SchwarmVerhalten;
 
 public class TestSchwarmObjekt {
 

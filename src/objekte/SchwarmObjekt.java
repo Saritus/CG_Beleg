@@ -3,7 +3,7 @@ package objekte;
 import static org.lwjgl.opengl.GL11.*;
 import math.*;
 import program.ObjektManager;
-import program.SchwarmVerhalten;
+import verhalten.SchwarmVerhalten;
 
 public final class SchwarmObjekt extends BeweglichesObjekt {
 

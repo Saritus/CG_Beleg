@@ -10,7 +10,7 @@ import objekte.AlphaObjekt;
 import objekte.HindernisObjekt;
 import objekte.SchwarmObjekt;
 import program.ObjektManager;
-import program.SchwarmVerhalten;
+import verhalten.SchwarmVerhalten;
 
 public class TestBasisVerhalten {
 

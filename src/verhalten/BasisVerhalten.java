@@ -1,9 +1,10 @@
-package program;
+package verhalten;
 
 import math.LineareAlgebra;
 import math.Vektor;
 import math.Vektor2D;
 import objekte.BeweglichesObjekt;
+import program.ObjektManager;
 
 public abstract class BasisVerhalten implements Behavior {
 

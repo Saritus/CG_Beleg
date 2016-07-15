@@ -1,4 +1,4 @@
-package program;
+package verhalten;
 
 import math.*;
 import objekte.BeweglichesObjekt;

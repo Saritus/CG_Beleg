@@ -2,8 +2,8 @@ package objekte;
 
 import static org.lwjgl.opengl.GL11.*;
 import math.*;
-import program.AlphaVerhalten;
 import program.ObjektManager;
+import verhalten.AlphaVerhalten;
 
 public final class AlphaObjekt extends BeweglichesObjekt {
 
