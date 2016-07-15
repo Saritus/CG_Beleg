@@ -10,12 +10,10 @@ import objekte.AlphaObjekt;
 import objekte.HindernisObjekt;
 import objekte.SchwarmObjekt;
 import program.ObjektManager;
-import verhalten.SchwarmVerhalten;
 
 public class TestObjektManager {
 
 	SchwarmObjekt so1, so2;
-	SchwarmVerhalten sv1;
 	HindernisObjekt ho1;
 	AlphaObjekt ao1;
 	ObjektManager om = ObjektManager.getInstance();
@@ -24,7 +22,6 @@ public class TestObjektManager {
 	public void initObjects() {
 		so1 = new SchwarmObjekt(new Vektor2D(10, 10), new Vektor2D(10, 10), 1);
 		so2 = new SchwarmObjekt(new Vektor2D(), new Vektor2D(10, 10), 1);
-		sv1 = new SchwarmVerhalten(so1);
 		so1.calculateDistances();
 		so2.calculateDistances();
 		ho1 = new HindernisObjekt(10, 10);

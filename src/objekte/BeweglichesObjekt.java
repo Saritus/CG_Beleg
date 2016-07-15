@@ -2,14 +2,14 @@ package objekte;
 
 import math.*;
 import program.ObjektManager;
-import verhalten.Behavior;
+import verhalten.BasisVerhalten;
 
 public abstract class BeweglichesObjekt extends BasisObjekt {
 
 	protected Vektor2D speed;
 	protected double masse;
 	protected double maxSpeed;
-	protected Behavior behavior;
+	protected BasisVerhalten behavior;
 	protected double abstand[];
 
 	protected BeweglichesObjekt(Vektor2D pos, Vektor3D color, Vektor2D speed, double masse, double maxSpeed) {
@@ -75,11 +75,11 @@ public abstract class BeweglichesObjekt extends BasisObjekt {
 		this.maxSpeed = maxSpeed;
 	}
 
-	public Behavior getBehavior() {
+	public BasisVerhalten getBehavior() {
 		return behavior;
 	}
 
-	public void setBehavior(Behavior behavior) {
+	public void setBehavior(BasisVerhalten behavior) {
 		this.behavior = behavior;
 	}
 

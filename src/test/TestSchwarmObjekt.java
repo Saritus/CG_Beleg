@@ -10,12 +10,10 @@ import math.Vektor3D;
 import objekte.AlphaObjekt;
 import objekte.SchwarmObjekt;
 import program.ObjektManager;
-import verhalten.SchwarmVerhalten;
 
 public class TestSchwarmObjekt {
 
 	SchwarmObjekt so1, so2, so3;
-	SchwarmVerhalten sv1;
 	AlphaObjekt ao1;
 
 	@Before

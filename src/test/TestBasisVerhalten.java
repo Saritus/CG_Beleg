@@ -10,12 +10,10 @@ import objekte.AlphaObjekt;
 import objekte.HindernisObjekt;
 import objekte.SchwarmObjekt;
 import program.ObjektManager;
-import verhalten.SchwarmVerhalten;
 
 public class TestBasisVerhalten {
 
 	SchwarmObjekt so1, so2;
-	SchwarmVerhalten sv1;
 	HindernisObjekt ho;
 	AlphaObjekt ao1;
 
@@ -23,7 +21,6 @@ public class TestBasisVerhalten {
 	public void initObjects() {
 		so1 = new SchwarmObjekt(new Vektor2D(10, 10), new Vektor2D(10, 10), 1);
 		so2 = new SchwarmObjekt(new Vektor2D(), new Vektor2D(10, 10), 1);
-		sv1 = new SchwarmVerhalten(so1);
 		so1.calculateDistances();
 		so2.calculateDistances();
 		ho = new HindernisObjekt(5, 5);
@@ -38,32 +35,32 @@ public class TestBasisVerhalten {
 
 	@Test
 	public void testGetCohesion() {
-		Assert.assertEquals(-5., sv1.getCohesion(Double.MAX_VALUE).getElem(0), 0.01);
-		Assert.assertEquals(-5, sv1.getCohesion(Double.MAX_VALUE).getElem(1), 0.01);
+		Assert.assertEquals(-5., so1.getBehavior().getCohesion(Double.MAX_VALUE).getElem(0), 0.01);
+		Assert.assertEquals(-5, so1.getBehavior().getCohesion(Double.MAX_VALUE).getElem(1), 0.01);
 	}
 
 	@Test
 	public void testGetAlignment() {
-		Assert.assertEquals(10., sv1.getAlignment(Double.MAX_VALUE).getElem(0), 0.01);
-		Assert.assertEquals(10., sv1.getAlignment(Double.MAX_VALUE).getElem(1), 0.01);
+		Assert.assertEquals(10., so1.getBehavior().getAlignment(Double.MAX_VALUE).getElem(0), 0.01);
+		Assert.assertEquals(10., so1.getBehavior().getAlignment(Double.MAX_VALUE).getElem(1), 0.01);
 	}
 
 	@Test
 	public void testGetSeparation() {
-		Assert.assertEquals(0.025, sv1.getSeparation(Double.MAX_VALUE).getElem(0), 0.01);
-		Assert.assertEquals(0.025, sv1.getSeparation(Double.MAX_VALUE).getElem(1), 0.01);
+		Assert.assertEquals(0.025, so1.getBehavior().getSeparation(Double.MAX_VALUE).getElem(0), 0.01);
+		Assert.assertEquals(0.025, so1.getBehavior().getSeparation(Double.MAX_VALUE).getElem(1), 0.01);
 	}
 
 	@Test
 	public void testGetObstacleSeparation() {
-		Assert.assertEquals(0.1, sv1.getObstacleSeparation(Double.MAX_VALUE).getElem(0), 0.01);
-		Assert.assertEquals(0.1, sv1.getObstacleSeparation(Double.MAX_VALUE).getElem(1), 0.01);
+		Assert.assertEquals(0.1, so1.getBehavior().getObstacleSeparation(Double.MAX_VALUE).getElem(0), 0.01);
+		Assert.assertEquals(0.1, so1.getBehavior().getObstacleSeparation(Double.MAX_VALUE).getElem(1), 0.01);
 	}
 
 	@Test
 	public void testGetAlphaCohesion() {
-		Assert.assertEquals(0.1, sv1.getObstacleSeparation(Double.MAX_VALUE).getElem(0), 0.01);
-		Assert.assertEquals(0.1, sv1.getObstacleSeparation(Double.MAX_VALUE).getElem(1), 0.01);
+		Assert.assertEquals(0.1, so1.getBehavior().getObstacleSeparation(Double.MAX_VALUE).getElem(0), 0.01);
+		Assert.assertEquals(0.1, so1.getBehavior().getObstacleSeparation(Double.MAX_VALUE).getElem(1), 0.01);
 	}
 
 	@Test
