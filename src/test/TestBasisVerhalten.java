@@ -59,16 +59,22 @@ public class TestBasisVerhalten {
 
 	@Test
 	public void testGetAlphaCohesion() {
-		Assert.assertEquals(0.1, so1.getBehavior().getObstacleSeparation(Double.MAX_VALUE).getElem(0), 0.01);
-		Assert.assertEquals(0.1, so1.getBehavior().getObstacleSeparation(Double.MAX_VALUE).getElem(1), 0.01);
+		Assert.assertEquals(-10, so1.getBehavior().getAlphaCohesion(Double.MAX_VALUE).getElem(0), 0.01);
+		Assert.assertEquals(-10, so1.getBehavior().getAlphaCohesion(Double.MAX_VALUE).getElem(1), 0.01);
+	}
+
+	@Test
+	public void testGetEdgeSeparation() {
+		Assert.assertEquals(0.1, so1.getBehavior().getEdgeSeparation(25).getElem(0), 0.01);
+		Assert.assertEquals(0.1, so1.getBehavior().getEdgeSeparation(25).getElem(1), 0.01);
 	}
 
 	@Test
 	public void testGetForce() {
 		so1.update();
-		Assert.assertEquals(228., so1.getPos().getX(), 0.01);
-		Assert.assertEquals(228., so1.getPos().getY(), 0.01);
-		Assert.assertEquals(3290., so1.getSpeed().getX(), 0.01);
-		Assert.assertEquals(3290., so1.getSpeed().getY(), 0.01);
+		Assert.assertEquals(328., so1.getPos().getX(), 0.01);
+		Assert.assertEquals(328., so1.getPos().getY(), 0.01);
+		Assert.assertEquals(3390., so1.getSpeed().getX(), 0.01);
+		Assert.assertEquals(3390., so1.getSpeed().getY(), 0.01);
 	}
 }

@@ -74,4 +74,19 @@ public abstract class BasisVerhalten implements Behavior {
 		}
 		return result;
 	}
+
+	public Vektor2D getEdgeSeparation(double abstand) {
+		double x = 0, y = 0;
+		if (obj.getPos().getX() < abstand) {
+			x = 1 / obj.getPos().getX();
+		} else if (obj.getPos().getX() > 1024 - abstand) {
+			x = -1 / (1024 - obj.getPos().getX());
+		}
+		if (obj.getPos().getY() < abstand) {
+			y = 1 / obj.getPos().getY();
+		} else if (obj.getPos().getY() > 768 - abstand) {
+			y = -1 / (768 - obj.getPos().getY());
+		}
+		return new Vektor2D(x, y);
+	}
 }

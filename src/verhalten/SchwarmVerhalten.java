@@ -7,9 +7,10 @@ public final class SchwarmVerhalten extends BasisVerhalten {
 
 	private static final double alignment_value = 225.5;
 	private static final double cohesion_value = 1.;
-	private static final double separation_value = 2000.;
-	private static final double obstacles_value = 10000;
+	private static final double separation_value = 5000.;
+	private static final double obstacles_value = 10000.;
 	private static final double alpha_value = 2.;
+	private static final double edge_value = 1000.;
 
 	public SchwarmVerhalten(BeweglichesObjekt obj) {
 		super(obj);
@@ -28,6 +29,7 @@ public final class SchwarmVerhalten extends BasisVerhalten {
 		force.add(getSeparation(50).mult(separation_value));
 		force.add(getObstacleSeparation(50).mult(obstacles_value));
 		force.add(getAlphaCohesion(300).mult(alpha_value));
+		force.add(getEdgeSeparation(50).mult(edge_value));
 		return force;
 	}
 }
