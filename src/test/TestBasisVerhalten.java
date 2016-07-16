@@ -64,9 +64,9 @@ public class TestBasisVerhalten {
 	}
 
 	@Test
-	public void testGetEdgeSeparation() {
-		Assert.assertEquals(0.1, so1.getBehavior().getEdgeSeparation(25).getElem(0), 0.01);
-		Assert.assertEquals(0.1, so1.getBehavior().getEdgeSeparation(25).getElem(1), 0.01);
+	public void testGetBorderSeparation() {
+		Assert.assertEquals(0.1, so1.getBehavior().getBorderSeparation(25).getElem(0), 0.01);
+		Assert.assertEquals(0.1, so1.getBehavior().getBorderSeparation(25).getElem(1), 0.01);
 	}
 
 	@Test
