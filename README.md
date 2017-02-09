@@ -1,205 +1,133 @@
-Computergrafik und Visualisierung II
+1 Vektor
 
-Marilena Froehlich, Mathias Gewissen, Sebastian Mischke
+Vektoren dienen zur Speicherung von Daten und als Grundlage für Berechnungen.
 
-\thispagestyle{empty}
+1.1 Vektor
 
+Die Klasse Vektor repräsentiert einen Vektor im mathematischen Sinne. Sie besitzt grundlegende Operationen, die auf Vektoren angewendet werden. Zusätzlich gibt es die Klassen Vektor2D und Vektor3D, welche von Vektor abgeleitet sind und Vektoren für den zwei- bzw. dreidimensionalen Raum darstellen
 
+1.2 LineareAlgebra
 
+Die Klasse LineareAlgebra beinhaltet mathematische Operationen, die für Vektoren ausgeführt werden.
 
+2 Objekte
 
+Im Programm gibt es verschiedene Objekte, die sich im Raum aufhalten und aufeinander wirken. Hierbei werden unterschiedliche Arten von Objekten unterschieden (siehe [fig:Objekte]).
 
 
-Teil I Vektor, Vektor2D und Vektor3D
 
-1 Klassen
+2.1 BasisObjekt
 
-Gearbeitet wird mit drei Klassen: der Basisklasse Vektor und den abgeleiteten Klassen Vektor2D und Vektor3D. In Vektor werden sämtliche Methoden implementiert, sodass die Klassen Vektor2D und Vektor3D lediglich aus Konstruktoren bestehen. Außerdem enthält die Klasse Vektor ein double-Array, in dem die Komponenten gespeichert werden, sowie einen int-Wert, in welchem die Anzahl an Komponenten gespeichert wird.
+Die Grundlage der Objekte bildet die Klasse BasisObjekt. Sie ist abstract und besitzt protected Konstruktoren. Es nicht gewollt ist, eine Instanz von ihr zu erzeugen, allerdings soll es möglich sein, Subklassen von ihr zu erstellen. Die Klasse hat mehrere Attribute - eine ID vom Datentyp Integer, eine Position vom Typ Vektor2D und eine Farbe vom Typ Vektor3D gespeichert. Der Konstruktor wird überladen und bekommt als Parameter Farbe und/oder Position übergeben. Die Zuordnung einer ID erfolgt gesondert im ObjektManager (siehe [sub:ObjektManager]). Außerdem beinhaltet die Klasse BasisObjekt die abstrakte Methode render, die zum Anzeigen des Objektes überschrieben wird. Des Weiteren enthält sie Funktionen, die für das Erzeugen der Vertices und Anzeigen des Objektes aufgerufen werden können.
 
-public class Vektor {
+2.2 StatischesObjekt und BeweglichesObjekt
 
-2 Konstruktoren
+Die Klassen StatischesObjekt und BeweglichesObjekt sind von BasisObjekt abgeleitet und sind ebenfalls abstract. StatischesObjekt besitzt keine zusätzlichen Funktionen, lediglich Konstruktoren, die die Konstruktoren der Superklasse aufrufen. Ihre Aufgabe ist es, eine Unterscheidung zwischen sich bewegenden und festen Objekten zu ermöglichen. BeweglichesObjekt enthält mehrere zusätzliche Attribute.
 
-2.1 Standard-Konstruktor
+• speed ist die aktuelle Geschwindigkeit des Objektes
 
-Der Standard-Konstruktor der Klasse Vektor ist private, damit diese von außerhalb der Klasse nicht aufgerufen werden kann. Die von Vektor abgeleiteten Klassen hingegen erzeugen beim Aufruf des Standard-Konstruktors einen Nullvektor mit der zugehörigen Dimension.
+• masse dient zur Anwendung des zweiten newtonschen Gesetzes \overrightarrow{F}=m*\overrightarrow{a}
 
-2.2 Weitere Konstruktoren
 
-Es werden verschiedene Eingabemöglichkeiten zugelassen, mit welchen der Konstruktor aufgerufen werden kann: 
+• maxSpeed begrenzt die Geschwindigkeit eines Objektes
 
-• ein double-Array, das die Koordinaten des Vektors enthält
+• behavior ist eine Instanz der Klasse Behavior (siehe [sub:Behavior]) und das Verhalten des Objektes beinhaltet
 
-• einzelne double-Werte
+• abstand ist ein Array mit den Abständen des Objektes zu allen anderen im ObjektManager (siehe [sub:ObjektManager]) registrierten Objekten
 
-• eine Dimension und ein Array bzw. ein Array und eine Dimension (hierbei wird die Dimension des Vektors in einer int-Variable dimension gespeichert)
+Zu diesen Attributen beinhaltet die Klasse BeweglichesObjekt die Funktion calculateDistances, die das Array abstand mit den neu berechneten Werten befüllt. Die Funktion eulerMethod nimmt eine Kraft in Form eines Vektor2D als Übergabeparameter und wendet das explizite Euler-Verfahren auf das Objekt an.
 
-2.3 Kopierkonstruktor
+2.3 SchwarmObjekt
 
-Der Kopierkonstruktor nimmt einen Vektor als Eingabeparameter und erzeugt einen neuen Vektor mit den gleichen Komponenten. Die clone()-Funktion ruft den Kopierkonstruktor für einen Vektor auf und gibt das neu erzeugte Objekt zurück. Dadurch können die Funktionen der Vektor-Klasse genutzt werden, ohne den Vektor dabei zu verändern.
+SchwarmObjekt ist eine von BeweglichesObjekt abgeleitete Klasse und repräsentiert ein Subjekt des Schwarms. Die Konstruktoren beinhalten neben dem Aufruf des Superkonstruktors auch das Einfügen des Objektes in den ObjektManager (siehe [sub:ObjektManager]). Außerdem wird hier das Attribut behavior mit einem Objekt der Klasse SchwarmVerhalten (siehe [sub:SchwarmVerhalten]) initialisiert. Für das Anzeigen der SchwarmObjekte wird die Funktion render überschrieben. Darin wird zunächst color durch den Aufruf von getSchwarmColor geändert. Danach folgt der OpenGL Aufruf mit dem setzen der Farbe der Anzeige auf den im Objekt gespeicherten color Wert und anschließendem Ausführen von drawDynamicTriangle, welches ein gleichschenkliges Dreieck erzeugt, das in Richtung des eingegebenen Geschwindigkeitsvektors ausgerichtet ist.
 
-3 Getter und Setter
+2.4 AlphaObjekt
 
-Der Zustand eines Vektors (Komponenten, Dimension, Länge) kann abgefragt und teilweise verändert werden
+Auch die Klasse AlphaObjekt wurde von BeweglichesObjekt abgeleitet, jedoch enthält sie, im Unterschied zum SchwarmObjekt, neben Konstruktoren und dem überschriebenen render keine zusätzlichen Funktionen. Bereits im Konstruktor wird behavior ein neues Objekt von AlphaVerhalten (siehe [sub:AlphaVerhalten]) zugewiesen.
 
-3.1 getDimension()
+2.5 HindernisObjekt
 
-getDimension() gibt den Wert der Variable dimension, also die Dimension des Vektors zurück.
+Die Klasse HindernisObjekt wird von StatischesObjekt abgeleitet. Sie besitzt neben den Konstruktoren, welche die Konstruktoren der Superklasse verwenden, eine überschriebene Funktion render. In ihr wird die Farbe für die Anzeige auf schwarz gesetzt und ein regelmäßiges Achteck durch die Funktion drawOctagon an die Position des Objektes gezeichnet.
 
-3.2 getArray()
+2.6 ObjektManager
 
-getArray() gibt das Array, das die Komponenten des Vektors enthält, zurück.
+Die Klasse ObjektManager ist als Singleton-Pattern realisiert und dient der Verwaltung der erzeugten Objekte. Sie beinhaltet drei Arrays, diese speichern jeweils Instanzen von SchwarmObjekt, AlphaObjekt und HindernisObjekt. Zusätzlich gibt es Funktionen für das Hinzufügen und Entfernen von Objekten, sowie das Überprüfen, ob ein Objekt bereits im ObjektManager vorhanden ist. Außerdem gibt es die Funktionen update und render. Diese rufen die update bzw. render-Funktion einzeln für jedes im ObjektManager befindliche Objekt auf.
 
-3.3 getElem()
+3 Verhalten
 
-Erhält einen int-Wert und gibt das Element, das sich an dieser Position im Array befindet zurück. Eine einzelne Koordinate des Vektors wird zurückgegeben. Bei einem Übergabewert, der kleiner 0 oder größer als die Dimension-1 ist, wird eine Exception geworfen.
+Verhalten ist die Art, wie sich ein bewegliches Objekt im Raum bewegt und auf andere Objekte reagiert.
 
-public double getElem(int dimension) throws Exception {
+3.1 Behavior
 
-3.4 length()
+Behavior ist ein Interface, welches die Funktion update bereitstellt. Damit wird sichergestellt, dass in den Klassen, die Behavior implementieren, die Funktion update aufgerufen werden kann.
 
-Zunächst existiert eine Funktion lengthsquare(), welche das Quadrat der Länge eines Vektors liefert. Dafür werden die Komponenten jeweils quadriert und aufsummiert. length() liefert dann die Länge des Vektors, indem die Wurzel des Returnwertes von lengthsquare() zurückgegeben wird.
+3.2 BasisVerhalten
 
-3.5 toString()
+Die Klasse BasisVerhalten ist eine abstrakte Klasse, die Behavior implementiert. Zudem besitzt sie als Attribut ein Objekt der Klasse BeweglichesObjekt und die folgenden Funktionen.
 
-Es wird ein String angelegt, der aus einer öffnenden Klammer sowie dem ersten Element des Vektors besteht. Durch eine for-Schleife werden alle weiteren Komponente konkateniert, jeweils mit Komma getrennt. Daraufhin wird eine schließenden Klammer angehängt und der String zurückgegeben.
+3.2.1 Kohäsion
 
-public String toString() {
+Jedes bewegliche Objekt hat ein festgelegtes Umfeld. Alle beweglichen Objekte, die sich in diesem Umfeld befinden, nehmen Einfluss auf das Objekt. Die Größe des Feldes wird dem Verhalten als Parameter übergeben. Für die Berechnung der Kohäsion wird für jedes im ObjektManager befindliche SchwarmObjekt überprüft, welche beweglichen Objekte sich innerhalb des Umfeldes befinden. Für diese Objekte wird anschließend die durchschnittliche Position berechnet. Die Differenz aus berechnetem Mittelwert und der Position des im Verhalten gespeicherten Objektes liefert die Kohäsion.
 
-3.6 setPosition()
+public Vektor getCohesion(double abstand) {
 
-Die Koordinaten des Vektors werden beliebig verändert. Hierbei ist wichtig, dass die Länge des Eingabearrays der Dimension des Vektors entspricht. Andernfalls wird eine Exception geworfen.
+3.2.2 Separation
 
-public void setPosition(double... array) throws Exception {
+Wie bei der Kohäsion nehmen nur bewegliche Objekte in einem bestimmten Umkreis eines Objektes Einfluss auf das Objekt. Von diesen Objekten wird der durchschnittliche Abstand zum Ausgangsobjekt berechnet. Dabei wird der Abstand vorher durch das Quadrat seiner Länge geteilt. Die Differenz aus berechnetem Mittelwert und der Position des im Verhalten gespeicherten Objektes liefert die Separation.
 
-4 Vergleiche
+public Vektor2D getSeparation(double abstand) {
 
-Die folgenden Funktionen vergleichen den ursprünglichen Vektor mit einem Wert oder einem gegebenen Vektor und liefern als Rückgabewert des Typs boolean. Der Vektor wird hierbei nicht verändert.
+3.2.3 Alignment
 
-4.1 isNullVector()
+Für die Berechnung des Alignments wird die Durchschnittsgeschwindigkeit aller beweglichen Objekte, die sich in oben genanntem Umfeld (siehe [sub:Kohäsion]) des Ausgangsobjektes befinden, berechnet.
 
-isNullVector() liefert true, wenn es sich bei dem Vektor um einen Nullvektor handelt, ansonsten false. Dafür wird die Funktion lenghtsquare() aufgerufen. Ist der Returnwert 0, so handelt es sich um einen Nullvektor. Im Vergleich zur Benutzung der Funktion length() spart man sich das aufwendige Wurzelziehen. 
+public Vektor2D getAlignment(double abstand) {
 
-public boolean isNullVector() {
+3.2.4 Hindernisse-Separation
 
-4.2 isEqual()
+Die Hindernisse-Separation funktioniert wie die Separation. Allerdings werden zur Berechnung nur die statischen, nicht aber die beweglichen Objekte mit einbezogen.
 
-isEqual() vergleicht komponentenweise den übergebenen Vektor mit dem ursprünglichen Vektor. Zunächst wird geprüft, ob beide Vektoren die gleiche Dimension besitzen. Trifft dies nicht zu, wird ein false zurückgegeben. Ansonsten werden in einer for-Schleife die Komponenten verglichen. Sollte irgendwo eine Ungleichheit auftreten, wird sofort abgebrochen und ebenfalls ein false zurückgeben. Kommt die for-Schleife an ihr Ende, ohne eine Ungleichheit zu finden, wird ein true zurückgegeben.Bei paarweiser Übereinstimmung aller Werte wird true zurückgeliefert.
+public Vektor2D getObstacleSeparation(double abstand) {
 
-public boolean isEqual(Vektor vec) {
+3.2.5 Alpha-Kohäsion
 
-4.3 isNotEqual()
+Die Alpha-Kohäsion funktioniert wie die Kohäsion. Allerdings werden zur Berechnung nur AlphaObjekte mit einbezogen.
 
-Die Funktion isNotEqual() gibt den negierten Wert der Funktion isEqual() zurück.
+public Vektor2D getAlphaCohesion(double abstand) {
 
-5 Mathematische Operationen
+3.3 SchwarmVerhalten
 
-Die mathematischen Operationen verändern den ursprünglichen Vektor, indem sie eine Rechenoperation auf diesen anwenden. Der Rückgabewert ist der Vektor selbst, um eine Hintereinanderausführung mehrerer Operationen zu ermöglichen.
+Die Klasse Schwarmverhalten besitzt die Funktion getForce, die die Kräfte von getCohesion, getSeparation, getAlignment, getObstacleSeparation und getAlphaCohesion aufaddiert und zurückgibt. Damit berechnet sie die Gesamtkraft die auf das Objekt wirken soll. Die Funktion update schreibt zuerst die Abstände zwischen dem Ausgangsobjekt und allen anderen beweglichen Objekten im ObjektManager in das Array abstand. Anschließend wird das explizite Euler-Verfahren auf die berechnete Gesamtkraft ausgefüht.
 
-5.1 add()
+3.4 AlphaVerhalten
 
-add() verändert den ursprünglichen Vektor, indem er auf diesen einen zweiten Vektor komponentenweise aufaddiert. Als Returnwert gibt der Vektor sich selbst zurück, um eine Verkettung mehrerer Operationen zu ermöglichen. Vor der Ausführung wird mit Hilfe der Funktion CheckDimension() überprüft, ob die beiden Vektoren die gleiche Länge haben. Außerdem wird durch Aufruf der Funktion CheckAddOverflow auf einen Überlauf getestet.
+Die Klasse Alphaverhalten verhält sich ähnlich wie das Schwarmverhalten. Allerdings addiert getForce hier lediglich die Kräfte von getSeparation und getObstacleSeparation.
 
-public Vektor add(Vektor vec) throws Exception {
+4 Anzeige
 
-5.2 mult()
+Die Anzeige ist verantwortlich für die Darstellung des Schwarmverhaltens.
 
-mult() verändert den ursprünglichen Vektor indem er jede Komponente mit einem double-Wert, dem Skalar, multipliziert. Auch hierbei ist wieder zu beachten, das kein Überlauf entsteht. Dies wird mit Hilfe von CheckMultOverflow gewährleistet.
+4.1 BasisFenster
 
-5.3 negate()
+Die Klasse BasisFenster ist abstract und bildet die Grundlage für die grafische Ausgabe der Objekte. Sie besitzt eine Breite, eine Höhe und den Titel des Fensters als Attribute. Als Methoden beinhaltet sie die Initialisierung eines LWJGL Displays (siehe [fig:Display]) und das Starten des Renderloops.
 
-Um einen Vektor zu negieren, wird die mult()-Funktion mit dem Wert -1 aufgerufen.
+4.2 WeltDesSchwarms
 
-5.4 div()
+Die Klasse WeltDesSchwarms wird von BasisFenster abgeleitet und ist Startklasse des Projektes. Bei der Ausführung werden vorab zunächst sämtliche für den Programmablauf relevanten Objekte erstellt. Im Anschluss wird das Display erzeugt und der renderLoop gestartet. Die Funktion renderLoop löscht erst den Inhalt des Displays, erzeugt dann ein Shaderprogram in der Klasse Shader (siehe [sub:Shader]), führt anschließend die Funktionen update und render des ObjektManagers aus und löscht schließlich den erzeugten Shader. Dieser Ablauf wird wiederholt, solange keine Schließanfrage für das Display aufgetreten ist.
 
-div() dividiert komponentenweise durch einen double-Wert d. Die Division erfolgt indirekt durch eine Multiplikation der Komponenten mit dem Reziproken von d. Dafür wird die Funktion mult() aufgerufen. Vor der Ausführung wird überprüft, dass d ungleich 0 ist, also nicht durch 0 geteilt wird. Ist dies der Fall, wird eine Exception geworfen.
 
-public Vektor div(double d) throws Exception {
 
-5.5 sub()
+4.3 Shader
 
-Die Funktion sub() subtrahiert komponentenweise einen zweiten, übergebenen Vektor vom ursprünglichen Vektor. Dazu wird der übergebene Vektor mit Hilfe von negate() negiert und durch den Aufruf von add() komponentenweise auf den ursprünglichen Vektor addiert. 
+Die Klasse Shader dient dazu, die Berechnung der Anzeige der Objekte auf der Grafikkarte vorzunehmen. Dafür wird bei der Erstellung des Shaderprogramms ein Vertex- und ein Fragmentshader erzeugt. Deren Shadercode wir aus einer externen Datei geladen, um anschließend die beiden Shader mit dem Shaderprogramm zu linken.
 
-5.6 normalize()
-
-normalize() ändert die Länge des Vektors auf 1. Hierzu wird mit Hilfe von length() die Länge des Vektors berechnet und durch Aufruf der Funktion div() der Vektor durch diese Länge dividiert. Vor der Ausführung wird ausgeschlossen, dass es sich um einen Nullvektor handelt.
-
-public Vektor normalize() throws Exception {
-
-5.7 abs()
-
-In Funktion abs() wird in einer for-Schleife von alle Komponenten eines Vektors der Betrag gebildet.
-
-
-
-Teil II Lineare Algebra
-
-6 Basisoperationen 
-
-Die Funktionen add(), sub(), mult(), div(), negate(), normalize(), abs() werden alle auf die gleiche Weise implementiert. Über die clone()-Funktion wird ein neues Objekt der Klasse Vektor erzeugt. Dann wird die zugehörige Funktion aus der Klasse Vektor aufgerufen und das neu instanziierte Objekt zurückgegeben. 
-
-public static Vektor add(Vektor v1, Vektor v2) throws Exception {
-
-7 Erweiterte Operationen 
-
-Die Funktionen manhattanDistance(), euklDistance(), dotProduct() und crossProduct() werden mit 2 Vektoren als Übergabeparameter aufgerufen. Dabei wird stets am Anfang der Funktion geprüft, ob die übergebenen Vektoren die gleiche Dimension besitzen. Ist dies nicht der Fall, wird eine Exception geworfen.
-
-7.1 Manhattan-Distanz
-
-Die Differenzen der Komponenten werden in einer for-Schleife berechnet und aufaddiert. Die Summe wird anschließend zurückgegeben.
-
-public static double manhattanDistance(Vektor v1, Vektor v2) throws Exception {
-
-7.2 Euklidischer Abstand
-
-Die Differenzen der Komponenten werden in einer for-Schleife quadriert und aufaddiert. Die Wurzel der Summe wird anschließend zurückgegeben.
-
-7.3 Determinante
-
-Die Funktion determinante() bekommt ein Array an Vektoren übergeben und überprüft in einer for-Schleife, dass die Anzahl der Vektoren im Array auch mit der Dimension der übergebenen Vektoren übereinstimmt. Eine Switch-Case-Anweisung entscheidet welche Formel zur Berechnung der Determinante ausgeführt wird.
-
-7.4 Skalarprodukt
-
-In der Funktion dotProduct() werden die Produkte der Komponenten in einer for-Schleife berechnet und aufaddiert. Die Summe wird anschließend zurückgegeben. 
-
-7.5 Kreuzprodukt
-
-In der Funktion crossProduct() wird in einer Switch-Case-Anweisung entschieden, welche Formel zur Berechnung des Ergebnisvektors ausgeführt wird.
-
-Wenn es sich um zweidimensionale Vektoren handelt, wird die Funktion determinante mit den beiden Vektoren ausgeführt und das Ergebnis als eindimensionaler Vektor zurückgegeben. Wenn es sich um dreidimensionale Vektoren handelt, ergibt sich die Berechnung wie folgt, wobei v1, v2 und v3 um die eingegebenen Vektoren handelt:
-
-det\left(\begin{array}{ccc}
-v1{}_{x} & v2{}_{x} & v3{}_{x}\\
-v1{}_{y} & v2{}_{y} & v3{}_{y}\\
-v1{}_{z} & v2{}_{z} & v3{}_{z}
-\end{array}\right)=v1{}_{x}v2{}_{y}v3{}_{z}+v2{}_{x}v3{}_{y}v1{}_{z}+v3{}_{x}v1{}_{y}v2{}_{z}-v3{}_{x}v2{}_{y}v1{}_{z}-v1{}_{x}v3{}_{y}v2{}_{z}-v2{}_{x}v1{}_{y}v3{}_{z}
- 
-
-8 Trigonometrische Funktionen
-
-8.1 cosEquation() 
-
-Ruft die Funktion dotProduct() mit den eingegebenen Vektoren auf und teilt das Ergebnis durch das Produkt der beiden Längen der Vektoren. 
-
-8.2 sinEquation() 
-
-Ruft die Funktion crossProduct() mit den eingegebenen Vektoren auf und teilt die Länge des Ergebnisvektors durch die Summe der beiden übergebenen Vektoren.
-
-8.3 Grad- und Bogenmaß
-
-Die Funktionen radToDegree() und degreeToRad() erhalten einen double-Wert der entweder für ein Bogenmaß oder ein Gradmaß steht und geben das jeweilige Pendant zurück. Dabei gilt \frac{Degree}{180}=\frac{Rad}{\pi}
- .
-
-8.4 Arcus-Funktionen
-
-Die Funktionen angleRad und angleDegree bekommen einen double-Wert, sowie einen String, der angibt, ob es sich beim übergebenen Wert um einen sin-, cos- oder tan-Wert handelt. Auf diesen übergebenen Wert wird dann die zugehörige Arcus-Funktion angewendet und das Ergebnis zurückgegeben.
-
-public static double angleRad(double d, String trig) throws Exception {
-
-9 Ausgabe
-
-9.1 show() 
-
-Die Funktion bekommt einen Vektor übergeben und gibt dessen Ergebnis der toString()-Funktion auf der Konsole aus. 
-
-public static void show(Vektor vec) {
+public void createShaderProgram() {
+  shaderProgramm = glCreateProgram();
+  	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+  	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+  	attachShader("src/verhalten/anzeige.vshader", vertexShader);
+  	attachShader("src/verhalten/anzeige.fshader", fragmentShader);
+  	glLinkProgram(shaderProgramm);
+  	glValidateProgram(shaderProgramm);
+  	glUseProgram(shaderProgramm);
+  }
