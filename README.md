@@ -14,6 +14,8 @@ Die Klasse LineareAlgebra beinhaltet mathematische Operationen, die für Vektore
 
 Im Programm gibt es verschiedene Objekte, die sich im Raum aufhalten und aufeinander wirken. Hierbei werden unterschiedliche Arten von Objekten unterschieden (siehe [fig:Objekte]).
 
+![Objekte](https://github.com/Saritus/CG_Beleg/blob/master/doc/schwarmverhalten/images/Objekte.png?raw=true)
+
 ## 2.1 BasisObjekt
 
 Die Grundlage der Objekte bildet die Klasse BasisObjekt. Sie ist abstract und besitzt protected Konstruktoren. Es nicht gewollt ist, eine Instanz von ihr zu erzeugen, allerdings soll es möglich sein, Subklassen von ihr zu erstellen. Die Klasse hat mehrere Attribute - eine ID vom Datentyp Integer, eine Position vom Typ Vektor2D und eine Farbe vom Typ Vektor3D gespeichert. Der Konstruktor wird überladen und bekommt als Parameter Farbe und/oder Position übergeben. Die Zuordnung einer ID erfolgt gesondert im ObjektManager (siehe [sub:ObjektManager]). Außerdem beinhaltet die Klasse BasisObjekt die abstrakte Methode render, die zum Anzeigen des Objektes überschrieben wird. Des Weiteren enthält sie Funktionen, die für das Erzeugen der Vertices und Anzeigen des Objektes aufgerufen werden können.
@@ -168,6 +170,8 @@ Die Klasse BasisFenster ist abstract und bildet die Grundlage für die grafische
 Die Klasse WeltDesSchwarms wird von BasisFenster abgeleitet und ist Startklasse des Projektes. Bei der Ausführung werden vorab zunächst sämtliche für den Programmablauf relevanten Objekte erstellt. Im Anschluss wird das Display erzeugt und der renderLoop gestartet. Die Funktion renderLoop löscht erst den Inhalt des Displays, erzeugt dann ein Shaderprogram in der Klasse Shader (siehe [sub:Shader]), führt anschließend die Funktionen update und render des ObjektManagers aus und löscht schließlich den erzeugten Shader. Dieser Ablauf wird wiederholt, solange keine Schließanfrage für das Display aufgetreten ist.
 
 ## 4.3 Shader
+
+![Display](https://github.com/Saritus/CG_Beleg/blob/master/doc/schwarmverhalten/images/display.png?raw=true)
 
 Die Klasse Shader dient dazu, die Berechnung der Anzeige der Objekte auf der Grafikkarte vorzunehmen. Dafür wird bei der Erstellung des Shaderprogramms ein Vertex- und ein Fragmentshader erzeugt. Deren Shadercode wir aus einer externen Datei geladen, um anschließend die beiden Shader mit dem Shaderprogramm zu linken.
 
