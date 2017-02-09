@@ -22,15 +22,11 @@ Die Grundlage der Objekte bildet die Klasse BasisObjekt. Sie ist abstract und be
 
 Die Klassen StatischesObjekt und BeweglichesObjekt sind von BasisObjekt abgeleitet und sind ebenfalls abstract. StatischesObjekt besitzt keine zusätzlichen Funktionen, lediglich Konstruktoren, die die Konstruktoren der Superklasse aufrufen. Ihre Aufgabe ist es, eine Unterscheidung zwischen sich bewegenden und festen Objekten zu ermöglichen. BeweglichesObjekt enthält mehrere zusätzliche Attribute.
 
-• speed ist die aktuelle Geschwindigkeit des Objektes
-
-• masse dient zur Anwendung des zweiten newtonschen Gesetzes \overrightarrow{F}=m*\overrightarrow{a}
-
-• maxSpeed begrenzt die Geschwindigkeit eines Objektes
-
-• behavior ist eine Instanz der Klasse Behavior (siehe [sub:Behavior]) und das Verhalten des Objektes beinhaltet
-
-• abstand ist ein Array mit den Abständen des Objektes zu allen anderen im ObjektManager (siehe [sub:ObjektManager]) registrierten Objekten
+- speed ist die aktuelle Geschwindigkeit des Objektes
+- masse dient zur Anwendung des zweiten newtonschen Gesetzes `F = m * a`
+- maxSpeed begrenzt die Geschwindigkeit eines Objektes
+- behavior ist eine Instanz der Klasse Behavior (siehe [sub:Behavior]) und das Verhalten des Objektes beinhaltet
+- abstand ist ein Array mit den Abständen des Objektes zu allen anderen im ObjektManager (siehe [sub:ObjektManager]) registrierten Objekten
 
 Zu diesen Attributen beinhaltet die Klasse BeweglichesObjekt die Funktion calculateDistances, die das Array abstand mit den neu berechneten Werten befüllt. Die Funktion eulerMethod nimmt eine Kraft in Form eines Vektor2D als Übergabeparameter und wendet das explizite Euler-Verfahren auf das Objekt an.
 
@@ -66,31 +62,90 @@ Die Klasse BasisVerhalten ist eine abstrakte Klasse, die Behavior implementiert.
 
 Jedes bewegliche Objekt hat ein festgelegtes Umfeld. Alle beweglichen Objekte, die sich in diesem Umfeld befinden, nehmen Einfluss auf das Objekt. Die Größe des Feldes wird dem Verhalten als Parameter übergeben. Für die Berechnung der Kohäsion wird für jedes im ObjektManager befindliche SchwarmObjekt überprüft, welche beweglichen Objekte sich innerhalb des Umfeldes befinden. Für diese Objekte wird anschließend die durchschnittliche Position berechnet. Die Differenz aus berechnetem Mittelwert und der Position des im Verhalten gespeicherten Objektes liefert die Kohäsion.
 
+```java
 public Vektor getCohesion(double abstand) {
+    Vektor2D average = new Vektor2D();
+    int count = 0;
+    for (int i = 0; i < om.getObjectCount(); i++) {
+        if (obj.abstand[i] < abstand) {
+            average.add(om.getObject(i).pos);
+            count++;
+        }
+    }
+    return count == 0 ? average : average.div(count).sub(obj.pos);
+}
+```
 
 ### 3.2.2 Separation
 
 Wie bei der Kohäsion nehmen nur bewegliche Objekte in einem bestimmten Umkreis eines Objektes Einfluss auf das Objekt. Von diesen Objekten wird der durchschnittliche Abstand zum Ausgangsobjekt berechnet. Dabei wird der Abstand vorher durch das Quadrat seiner Länge geteilt. Die Differenz aus berechnetem Mittelwert und der Position des im Verhalten gespeicherten Objektes liefert die Separation.
 
+```java
 public Vektor2D getSeparation(double abstand) {
+    Vektor2D result = new Vektor2D();
+    for (int i = 0; i < om.getObjectCount(); i++) {
+        if (obj.id != i) {
+            Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, om.getObject(i).pos);
+            if ((obj.abstand[i] < abstand) && (obj.abstand[i] > 0)) {
+                result.add(dif.div(obj.abstand[i] * obj.abstand[i]));
+            }
+        }
+    }
+    return result;
+}
+```
 
 ### 3.2.3 Alignment
 
 Für die Berechnung des Alignments wird die Durchschnittsgeschwindigkeit aller beweglichen Objekte, die sich in oben genanntem Umfeld (siehe [sub:Kohäsion]) des Ausgangsobjektes befinden, berechnet.
 
+```java
 public Vektor2D getAlignment(double abstand) {
+    Vektor2D average = new Vektor2D();
+    int count = 0;
+    for (int i = 0; i < om.getObjectCount(); i++) {
+        if (obj.abstand[i] < abstand) {
+            average.add(om.getObject(i).speed);
+            count++;
+        }
+    }
+    return count == 0 ? average : (Vektor2D) average.div(count);
+}
+```
 
 ### 3.2.4 Hindernisse-Separation
 
 Die Hindernisse-Separation funktioniert wie die Separation. Allerdings werden zur Berechnung nur die statischen, nicht aber die beweglichen Objekte mit einbezogen.
 
+```java
 public Vektor2D getObstacleSeparation(double abstand) {
+    Vektor2D result = new Vektor2D();
+    double diflength;
+    for (int i = 0; i < om.getObstacleCount(); i++) {
+        Vektor2D dif = (Vektor2D) LineareAlgebra.sub(obj.pos, om.getObstacle(i).pos);
+        if (((diflength = dif.lengthsquare()) < abstand * abstand) && (diflength > 0)) {
+            result.add(dif.div(diflength));
+        }
+    }
+    return result;
+}
+```
 
 ### 3.2.5 Alpha-Kohäsion
 
 Die Alpha-Kohäsion funktioniert wie die Kohäsion. Allerdings werden zur Berechnung nur AlphaObjekte mit einbezogen.
 
+```java
 public Vektor2D getAlphaCohesion(double abstand) {
+    Vektor2D result = new Vektor2D();
+    for (int i = 0; i < om.getAlphaCount(); i++) {
+        if (LineareAlgebra.manhattanDistance(obj.pos, om.getAlpha(i).pos) < abstand) {
+            result.add(LineareAlgebra.sub(om.getAlpha(i).pos, obj.pos));
+        }
+    }
+    return result;
+}
+```
 
 ## 3.3 SchwarmVerhalten
 
@@ -116,4 +171,15 @@ Die Klasse WeltDesSchwarms wird von BasisFenster abgeleitet und ist Startklasse 
 
 Die Klasse Shader dient dazu, die Berechnung der Anzeige der Objekte auf der Grafikkarte vorzunehmen. Dafür wird bei der Erstellung des Shaderprogramms ein Vertex- und ein Fragmentshader erzeugt. Deren Shadercode wir aus einer externen Datei geladen, um anschließend die beiden Shader mit dem Shaderprogramm zu linken.
 
-public void createShaderProgram() { shaderProgramm = glCreateProgram(); vertexShader = glCreateShader(GL_VERTEX_SHADER); fragmentShader = glCreateShader(GL_FRAGMENT_SHADER); attachShader("src/verhalten/anzeige.vshader", vertexShader); attachShader("src/verhalten/anzeige.fshader", fragmentShader); glLinkProgram(shaderProgramm); glValidateProgram(shaderProgramm); glUseProgram(shaderProgramm); }
+```java
+public void createShaderProgram() {
+    shaderProgramm = glCreateProgram();
+    vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    attachShader("src/verhalten/anzeige.vshader", vertexShader);
+    attachShader("src/verhalten/anzeige.fshader", fragmentShader);
+    glLinkProgram(shaderProgramm);
+    glValidateProgram(shaderProgramm);
+    glUseProgram(shaderProgramm);
+}
+```
